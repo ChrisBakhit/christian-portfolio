@@ -61,6 +61,7 @@ export default function Home() {
 
   return (
     <main>
+      <div className="spaceBackdrop" aria-hidden="true"><span className="stars starsOne" /><span className="stars starsTwo" /><span className="shootingStar" /></div>
       <header className="siteHeader">
         <a className="logo" href="#top">Christian Bakhit</a>
         <nav aria-label="Main navigation"><a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="/Christian_Bakhit_Resume.pdf" target="_blank">Résumé</a></nav>
@@ -76,6 +77,8 @@ export default function Home() {
           <div className="actions"><a className="primaryButton" href="/Christian_Bakhit_Resume.pdf" target="_blank">View résumé</a><a className="textButton" href="#experience">Experience ↓</a></div>
         </div>
         <div className="profileWrap" data-reveal>
+          <span className="profileOrbit orbitOne" aria-hidden="true"><i /></span>
+          <span className="profileOrbit orbitTwo" aria-hidden="true"><i /></span>
           <img src="/christian-profile.webp" alt="Christian Bakhit" />
           <div className="profileMeta"><span>Based in Houston, TX</span><span>Georgia Tech · JHU</span></div>
         </div>
