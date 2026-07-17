@@ -59,11 +59,14 @@ export default function Home() {
               <a className="button ghost" href="https://github.com/ChrisBJHU" target="_blank" rel="noreferrer">GitHub ↗</a>
             </div>
           </div>
-          <div className="orbitStage" aria-hidden="true">
-            <div className="orbit orbitOuter"><span /><span /><span /></div>
-            <div className="orbit orbitMid"><span /><span /></div>
-            <div className="orbit orbitInner"><span /></div>
-            <div className="planet"><b>AI</b><small>+ ROBOTICS</small></div>
+          <div className="portraitStage">
+            <div className="portraitHalo" aria-hidden="true"><span /><span /><span /></div>
+            <div className="portraitFrame">
+              <img src="/christian-ai-portrait.png" alt="AI-styled portrait of Christian Bakhit surrounded by computer science code" />
+              <div className="portraitScan" aria-hidden="true" />
+            </div>
+            <div className="codeCard codeTop" aria-hidden="true"><span>christian.ts</span><code><b>const</b> mission = <i>&quot;build what&apos;s next&quot;</i>;</code></div>
+            <div className="codeCard codeBottom" aria-hidden="true"><span>focus.py</span><code><b>for</b> idea <b>in</b> possibilities:<br />&nbsp;&nbsp;prototype(idea)</code></div>
             <div className="coordinate">29.7604° N<br />95.3698° W</div>
           </div>
         </div>

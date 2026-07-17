@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Christian Bakhit | AI, Robotics & Data",
     description: "Building at the edge of intelligence, data, and human possibility.",
-    images: [{ url: "/og.png", width: 1536, height: 1024, alt: "Christian Bakhit — AI, Robotics, Data" }],
+    images: [{ url: "/og.png", width: 1536, height: 1024, alt: "Christian Bakhit in an AI and computer science workspace" }],
   },
   twitter: {
     card: "summary_large_image",
