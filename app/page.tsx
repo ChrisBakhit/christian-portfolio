@@ -44,9 +44,18 @@ const experience = [
 ];
 
 const projects = [
-  ["Delineo Modeling Project", "Epidemiological research and simulation platform supporting large-scale disease modeling.", "Research · Unity · React · SQL", "https://covidweb.isi.jhu.edu/"],
-  ["SkillLink", "A networking product taken from concept through an accelerator-backed MVP.", "Founder · Node.js · AWS", "https://github.com/ChrisBJHU"],
-  ["Gemini Discord Bot", "An automation bot for stock monitoring, website uptime, and community alerts.", "Python · APIs · Automation", "https://github.com/ChrisBJHU/DiscordBot"],
+  ["Supercharge", "A portfolio intelligence platform for organizing, analyzing, and activating intellectual-property opportunities.", "Product · Data · Full stack", "https://supercharge.work/"],
+  ["Sila by Supercharge", "A focused Supercharge experience for exploring patent portfolios, competitors, and feature relationships.", "Product · Visualization · Data", "https://sila.supercharge.work/"],
+  ["St. Luke", "A production healthcare operations platform with scheduling, patient workflows, and administrative tooling.", "Next.js · Supabase · Operations", "https://github.com/ChrisBakhit/St-Luke"],
+  ["DTFeatureMe", "A product for turning invention concepts into structured feature maps and clearer technical narratives.", "Next.js · Product · AI", "https://github.com/ChrisBakhit/DTFeatureMe"],
+  ["Delineo", "An epidemiological research platform supporting collaborative disease modeling and simulation work.", "Research · Unity · React · SQL", "https://covidweb.isi.jhu.edu/"],
+  ["AnyTown", "An interactive COVID-19 simulation that lets users explore how disease spreads through a modeled community.", "Simulation · C# · React", "https://covidweb.isi.jhu.edu/"],
+  ["SkillLink", "A professional-networking product taken from concept through an accelerator-backed MVP.", "Founder · Node.js · AWS", "https://github.com/ChrisBJHU"],
+  ["Church Site", "A community website designed to make services, events, and church information accessible across generations.", "React · Firebase · UX", "https://ststephencypresstx.org/"],
+  ["Gemini Discord Bot", "An automation bot for stock monitoring, website uptime, and useful community alerts.", "Python · APIs · Automation", "https://github.com/ChrisBJHU/DiscordBot"],
+  ["HopMC", "A Johns Hopkins Minecraft community and server that grew into a hands-on lesson in infrastructure and community leadership.", "Servers · Security · Community", "https://studentaffairs.jhu.edu/dmc/hopmc/"],
+  ["SSHelping Hands", "A community-focused platform created to make support, resources, and outreach easier to access and coordinate.", "Community · Web · Service", "https://github.com/ChrisBJHU"],
+  ["St. Stephen", "A modern church website for services, events, ministries, announcements, and community communication.", "Next.js · Content · Community", "https://ststephencypresstx.org/"],
 ];
 
 export default function Home() {
@@ -99,7 +108,7 @@ export default function Home() {
       <section className="projects section" id="projects">
         <div className="sectionTitle" data-reveal><span>03</span><h2>Selected projects</h2></div>
         <div className="projectGrid">
-          {projects.map(([title, description, tags, href], index) => <a href={href} target="_blank" rel="noreferrer" className="projectCard" key={title} data-reveal><span className="cardNumber">0{index + 1}</span><div><h3>{title}</h3><p>{description}</p></div><footer><span>{tags}</span><b>↗</b></footer></a>)}
+          {projects.map(([title, description, tags, href], index) => <a href={href} target="_blank" rel="noreferrer" className="projectCard" key={title} data-reveal><span className="cardNumber">{String(index + 1).padStart(2, "0")}</span><div><h3>{title}</h3><p>{description}</p></div><footer><span>{tags}</span><b>↗</b></footer></a>)}
         </div>
       </section>
 
