@@ -4,41 +4,32 @@ import { useEffect } from "react";
 
 const experience = [
   {
-    role: "Founder",
-    company: "SkillLink",
-    dates: "Mar 2023 — May 2024",
+    role: "Full Stack Developer",
+    company: "Supercharge",
+    dates: "Aug 2025 — Present",
     bullets: [
-      "Founded a networking product focused on addressing gaps in how professionals build useful connections.",
-      "Built the web experience and backend infrastructure with HTML, CSS, Node.js, and AWS S3.",
-      "Developed an MVP through the Spark Accelerator and secured initial funding.",
+      "Built full-stack patent intelligence software using React, REST APIs, AWS Lambda, and DynamoDB, integrating LLMs for AI-assisted workflows.",
+      "Designed and shipped AI-powered products used by IP professionals for portfolio analysis, competitor tracking, and licensing strategy.",
+      "Used Codex daily for rapid AI-assisted development while maintaining code quality and alignment with project requirements.",
     ],
   },
   {
-    role: "Academic Support Tutor",
-    company: "Johns Hopkins University",
-    dates: "Aug 2022 — May 2024",
+    role: "Patent Examiner",
+    company: "United States Patent and Trademark Office",
+    dates: "Jan 2025 — Aug 2025",
     bullets: [
-      "Mentored students across introductory computer science courses.",
-      "Created individualized learning plans covering JavaScript, Python, Java, C, and C++.",
+      "Reviewed software systems, APIs, and distributed architectures for technical compliance and prior-art analysis.",
+      "Automated documentation workflows to reduce manual overhead and maintain audit-ready procedural records.",
+      "Communicated complex technical findings to non-technical reviewers across engineering and legal contexts.",
     ],
   },
   {
-    role: "Student Leader",
-    company: "Delineo Disease Modeling",
-    dates: "Jan 2021 — May 2023",
+    role: "Head Developer",
+    company: "Daily Talk Media",
+    dates: "Dec 2024 — Feb 2026",
     bullets: [
-      "Managed a 50-person student team using Agile project practices.",
-      "Built COVID-19 simulation tools using Unity, C#, React, SQL, and cloud infrastructure.",
-      "Collaborated with Microsoft Research and AWS on simulation and dashboard testing.",
-    ],
-  },
-  {
-    role: "Full-Stack Developer",
-    company: "St. Mary & Archangel Michael Church",
-    dates: "Jun 2022 — Aug 2023",
-    bullets: [
-      "Developed and maintained a React and Firebase website for a multi-generational community.",
-      "Led a usability redesign focused on making the experience clearer for older users.",
+      "Led architecture and backend development for a production platform built from the ground up.",
+      "Made end-to-end technical decisions across front-end and back-end to keep a small team shipping on schedule.",
     ],
   },
 ];
@@ -72,29 +63,29 @@ export default function Home() {
     <main>
       <header className="siteHeader">
         <a className="logo" href="#top">Christian Bakhit</a>
-        <nav aria-label="Main navigation"><a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a></nav>
-        <a className="contactLink" href="mailto:cbakhit1@jh.edu">Contact</a>
+        <nav aria-label="Main navigation"><a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="/Christian_Bakhit_Resume.pdf" target="_blank">Résumé</a></nav>
+        <a className="contactLink" href="mailto:chrisbakhit@gmail.com">Contact</a>
       </header>
 
       <section className="hero" id="top">
         <div className="heroText" data-reveal>
           <span className="status"><i /> Open to opportunities</span>
-          <p className="kicker">Computer Science · Data · Product</p>
+          <p className="kicker">Full-Stack Engineering · AI · Cloud</p>
           <h1>Christian<br />Bakhit</h1>
-          <p className="intro">Computer science graduate with experience building software products, research systems, and technical communities.</p>
-          <div className="actions"><a className="primaryButton" href="#experience">View experience</a><a className="textButton" href="https://www.linkedin.com/in/christianbakhit/" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
+          <p className="intro">Full-stack engineer building modern React applications, AWS serverless systems, REST APIs, and AI-assisted workflows.</p>
+          <div className="actions"><a className="primaryButton" href="/Christian_Bakhit_Resume.pdf" target="_blank">View résumé</a><a className="textButton" href="#experience">Experience ↓</a></div>
         </div>
         <div className="profileWrap" data-reveal>
           <img src="/christian-profile.webp" alt="Christian Bakhit" />
-          <div className="profileMeta"><span>Based in Houston, TX</span><span>JHU ’24</span></div>
+          <div className="profileMeta"><span>Based in Houston, TX</span><span>Georgia Tech · JHU</span></div>
         </div>
       </section>
 
       <section className="about section" id="about">
         <div className="sectionTitle" data-reveal><span>01</span><h2>Profile</h2></div>
         <div className="aboutContent" data-reveal>
-          <p className="largeCopy">I enjoy turning complex technical problems into software that is useful, understandable, and built to last.</p>
-          <div className="aboutColumns"><p>My background spans full-stack development, data systems, simulation research, technical mentorship, and product leadership. I am especially interested in artificial intelligence, robotics, and data science.</p><p>I work well across disciplines—from writing code and designing systems to organizing teams, explaining tradeoffs, and helping people move toward a shared goal.</p></div>
+          <p className="largeCopy">I build modern software across the stack, from responsive interfaces to cloud back ends and AI-powered workflows.</p>
+          <div className="aboutColumns"><p>My recent work combines React front ends, REST APIs, AWS Lambda, DynamoDB, and large language models to deliver production tools for patent intelligence and portfolio analysis.</p><p>I am comfortable moving quickly across unfamiliar systems, making end-to-end technical decisions, and translating complex engineering work for non-technical partners.</p></div>
         </div>
       </section>
 
@@ -113,14 +104,14 @@ export default function Home() {
       </section>
 
       <section className="details section">
-        <div className="education" data-reveal><span className="miniLabel">Education</span><h2>Johns Hopkins University</h2><p>B.S. Computer Science<br />Applied Mathematics & Statistics</p><small>2020 — 2024 · Baltimore, Maryland</small></div>
-        <div className="skills" data-reveal><span className="miniLabel">Core skills</span><div>{["Python", "Java", "C / C++", "JavaScript", "React", "Node.js", "SQL", "AWS", "Unity", "Flutter"].map((skill) => <span key={skill}>{skill}</span>)}</div></div>
+        <div className="education" data-reveal><span className="miniLabel">Education</span><h2>Georgia Institute of Technology</h2><p>M.S. Computer Science (OMSCS)</p><small>Aug 2025 — Aug 2027</small><h2>Johns Hopkins University</h2><p>B.S. Computer Science & Applied Mathematics and Statistics</p><small>Aug 2020 — May 2024</small></div>
+        <div className="skills" data-reveal><span className="miniLabel">Technical skills</span><div>{["Python", "JavaScript", "Java", "C#", "C++", "React", "Node.js", "REST APIs", "AWS Lambda", "DynamoDB", "PostgreSQL", "Azure", "Kubernetes", "Firebase", "Codex", "OpenAI API", "Anthropic API", "Git"].map((skill) => <span key={skill}>{skill}</span>)}</div></div>
       </section>
 
       <section className="contact" id="contact">
-        <p data-reveal>Currently exploring software engineering and data opportunities.</p>
+        <p data-reveal>Full-stack engineering, AI-assisted products, and cloud systems.</p>
         <h2 data-reveal>Let&apos;s talk.</h2>
-        <a data-reveal href="mailto:cbakhit1@jh.edu">cbakhit1@jh.edu <span>↗</span></a>
+        <a data-reveal href="mailto:chrisbakhit@gmail.com">chrisbakhit@gmail.com <span>↗</span></a>
         <footer><span>© {new Date().getFullYear()} Christian Bakhit</span><div><a href="https://github.com/ChrisBJHU" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/christianbakhit/" target="_blank" rel="noreferrer">LinkedIn</a></div><span>Houston, Texas</span></footer>
       </section>
     </main>
