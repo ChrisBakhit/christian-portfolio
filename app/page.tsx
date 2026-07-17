@@ -115,9 +115,11 @@ export default function Home() {
           <div className="actions"><a className="primaryButton" href="/Christian_Bakhit_Resume.pdf" target="_blank">View résumé</a><a className="textButton" href="#experience">Experience ↓</a></div>
         </div>
         <div className="profileWrap" data-reveal>
-          <span className="profileOrbit orbitOne" aria-hidden="true"><i /></span>
-          <span className="profileOrbit orbitTwo" aria-hidden="true"><i /></span>
-          <img src="/christian-profile.webp" alt="Christian Bakhit" />
+          <span className="portraitGlow" aria-hidden="true" />
+          <div className="portraitFrame">
+            <img src="/christian-agent-portrait.png" alt="Stylized portrait of Christian Bakhit" />
+            <span className="portraitLabel">Engineer / Builder</span>
+          </div>
           <div className="profileMeta"><span>Based in Houston, TX</span><span>Georgia Tech · JHU</span></div>
         </div>
       </section>
