@@ -32,6 +32,44 @@ const experience = [
       "Made end-to-end technical decisions across front-end and back-end to keep a small team shipping on schedule.",
     ],
   },
+  {
+    role: "Founder",
+    company: "SkillLink",
+    dates: "Mar 2023 — May 2024",
+    bullets: [
+      "Founded a professional-networking product focused on improving how people build useful career connections.",
+      "Built the website and backend infrastructure using HTML, CSS, Node.js, and AWS S3.",
+      "Developed an MVP through the Spark Accelerator and secured initial funding.",
+    ],
+  },
+  {
+    role: "Academic Support Tutor",
+    company: "Johns Hopkins University",
+    dates: "Aug 2022 — May 2024",
+    bullets: [
+      "Mentored students across introductory computer science courses.",
+      "Created individualized learning plans covering JavaScript, Python, Java, C, and C++.",
+    ],
+  },
+  {
+    role: "Full-Stack Developer",
+    company: "St. Mary & Archangel Michael Church",
+    dates: "Jun 2022 — Aug 2023",
+    bullets: [
+      "Developed and maintained a React and Firebase website for a multi-generational church community.",
+      "Led a usability redesign focused on making the experience clearer and more accessible for older users.",
+    ],
+  },
+  {
+    role: "Student Leader",
+    company: "Delineo Disease Modeling",
+    dates: "Jan 2021 — May 2023",
+    bullets: [
+      "Managed a 50-person student team using Agile project practices.",
+      "Built COVID-19 simulation tools using Unity, C#, React, SQL, and cloud infrastructure.",
+      "Collaborated with Microsoft Research and AWS on simulation and dashboard testing.",
+    ],
+  },
 ];
 
 const projects = [
