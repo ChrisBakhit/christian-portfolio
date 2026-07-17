@@ -2,35 +2,58 @@
 
 import { useEffect } from "react";
 
+const experience = [
+  {
+    role: "Founder",
+    company: "SkillLink",
+    dates: "Mar 2023 — May 2024",
+    bullets: [
+      "Founded a networking product focused on addressing gaps in how professionals build useful connections.",
+      "Built the web experience and backend infrastructure with HTML, CSS, Node.js, and AWS S3.",
+      "Developed an MVP through the Spark Accelerator and secured initial funding.",
+    ],
+  },
+  {
+    role: "Academic Support Tutor",
+    company: "Johns Hopkins University",
+    dates: "Aug 2022 — May 2024",
+    bullets: [
+      "Mentored students across introductory computer science courses.",
+      "Created individualized learning plans covering JavaScript, Python, Java, C, and C++.",
+    ],
+  },
+  {
+    role: "Student Leader",
+    company: "Delineo Disease Modeling",
+    dates: "Jan 2021 — May 2023",
+    bullets: [
+      "Managed a 50-person student team using Agile project practices.",
+      "Built COVID-19 simulation tools using Unity, C#, React, SQL, and cloud infrastructure.",
+      "Collaborated with Microsoft Research and AWS on simulation and dashboard testing.",
+    ],
+  },
+  {
+    role: "Full-Stack Developer",
+    company: "St. Mary & Archangel Michael Church",
+    dates: "Jun 2022 — Aug 2023",
+    bullets: [
+      "Developed and maintained a React and Firebase website for a multi-generational community.",
+      "Led a usability redesign focused on making the experience clearer for older users.",
+    ],
+  },
+];
+
 const projects = [
-  {
-    number: "01",
-    title: "Delineo Disease Modeling",
-    tag: "Research · Simulation",
-    text: "Led a 50-person student team building epidemiological simulations with Unity, React, SQL, and cloud infrastructure in collaboration with Microsoft Research and AWS.",
-    href: "https://covidweb.isi.jhu.edu/",
-  },
-  {
-    number: "02",
-    title: "SkillLink",
-    tag: "Founder · Product",
-    text: "Created a networking platform from first idea to MVP, built the web and backend infrastructure, and earned backing through the Spark Accelerator.",
-    href: "https://github.com/ChrisBJHU",
-  },
-  {
-    number: "03",
-    title: "Gemini Discord Bot",
-    tag: "Automation · Data",
-    text: "Built a monitoring bot that keeps communities informed about watched stocks, website uptime, and other live signals through useful automated alerts.",
-    href: "https://github.com/ChrisBJHU/DiscordBot",
-  },
+  ["Delineo Modeling Project", "Epidemiological research and simulation platform supporting large-scale disease modeling.", "Research · Unity · React · SQL", "https://covidweb.isi.jhu.edu/"],
+  ["SkillLink", "A networking product taken from concept through an accelerator-backed MVP.", "Founder · Node.js · AWS", "https://github.com/ChrisBJHU"],
+  ["Gemini Discord Bot", "An automation bot for stock monitoring, website uptime, and community alerts.", "Python · APIs · Automation", "https://github.com/ChrisBJHU/DiscordBot"],
 ];
 
 export default function Home() {
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible")),
-      { threshold: 0.14 },
+      (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("visible")),
+      { threshold: 0.1 },
     );
     document.querySelectorAll("[data-reveal]").forEach((el) => observer.observe(el));
     return () => observer.disconnect();
@@ -38,103 +61,58 @@ export default function Home() {
 
   return (
     <main>
-      <div className="noise" aria-hidden="true" />
-      <nav className="nav" aria-label="Main navigation">
-        <a className="mark" href="#top" aria-label="Christian Bakhit, home">CB<span>✦</span></a>
-        <div className="navLinks">
-          <a href="#about">About</a><a href="#work">Work</a><a href="#contact">Contact</a>
-        </div>
-        <a className="navCta" href="mailto:cbakhit1@jh.edu">Start a conversation <span>↗</span></a>
-      </nav>
+      <header className="siteHeader">
+        <a className="logo" href="#top">Christian Bakhit</a>
+        <nav aria-label="Main navigation"><a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a></nav>
+        <a className="contactLink" href="mailto:cbakhit1@jh.edu">Contact</a>
+      </header>
 
       <section className="hero" id="top">
-        <div className="heroGlow glowOne" /><div className="heroGlow glowTwo" />
-        <div className="eyebrow heroEyebrow"><i /> Houston, TX · Open to ambitious ideas</div>
-        <div className="heroGrid">
-          <div className="heroCopy">
-            <h1><span>Christian</span><span className="outline">Bakhit.</span></h1>
-            <p className="lede">I build at the edge of <strong>intelligence</strong>, <strong>data</strong>, and human possibility.</p>
-            <div className="heroActions">
-              <a className="button primary" href="#work">Explore my work <span>↓</span></a>
-              <a className="button ghost" href="https://github.com/ChrisBJHU" target="_blank" rel="noreferrer">GitHub ↗</a>
-            </div>
-          </div>
-          <div className="portraitStage">
-            <div className="portraitHalo" aria-hidden="true"><span /><span /><span /></div>
-            <div className="portraitFrame">
-              <img src="/christian-ai-portrait.png" alt="Illustrated portrait of Christian Bakhit with subtle computer science motifs" />
-            </div>
-            <div className="coordinate">29.7604° N<br />95.3698° W</div>
-          </div>
+        <div className="heroText" data-reveal>
+          <span className="status"><i /> Open to opportunities</span>
+          <p className="kicker">Computer Science · Data · Product</p>
+          <h1>Christian<br />Bakhit</h1>
+          <p className="intro">Computer science graduate with experience building software products, research systems, and technical communities.</p>
+          <div className="actions"><a className="primaryButton" href="#experience">View experience</a><a className="textButton" href="https://www.linkedin.com/in/christianbakhit/" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
         </div>
-        <div className="heroFoot">
-          <span>Computer scientist</span><span>Research-minded builder</span><span>Community leader</span>
+        <div className="profileWrap" data-reveal>
+          <img src="/christian-profile.webp" alt="Christian Bakhit" />
+          <div className="profileMeta"><span>Based in Houston, TX</span><span>JHU ’24</span></div>
         </div>
       </section>
 
-      <section className="manifesto" id="about">
-        <div className="sectionLabel" data-reveal><span>01</span> Mission</div>
-        <div className="manifestoGrid">
-          <h2 data-reveal>Building toward<br /><em>what comes next.</em></h2>
-          <div data-reveal>
-            <p>Christian is a Johns Hopkins computer science and applied mathematics graduate drawn to artificial intelligence, robotics, and the difficult questions behind truly intelligent systems.</p>
-            <p>His work moves comfortably from research simulations and data systems to products and communities—always with the same instinct: understand the system, then make it more useful.</p>
-            <div className="facts">
-              <div><strong>JHU</strong><span>Computer Science<br />+ Applied Math</span></div>
-              <div><strong>04+</strong><span>Major technical<br />builds shipped</span></div>
-              <div><strong>50</strong><span>Students led on<br />a research team</span></div>
-            </div>
-          </div>
+      <section className="about section" id="about">
+        <div className="sectionTitle" data-reveal><span>01</span><h2>Profile</h2></div>
+        <div className="aboutContent" data-reveal>
+          <p className="largeCopy">I enjoy turning complex technical problems into software that is useful, understandable, and built to last.</p>
+          <div className="aboutColumns"><p>My background spans full-stack development, data systems, simulation research, technical mentorship, and product leadership. I am especially interested in artificial intelligence, robotics, and data science.</p><p>I work well across disciplines—from writing code and designing systems to organizing teams, explaining tradeoffs, and helping people move toward a shared goal.</p></div>
         </div>
       </section>
 
-      <section className="work" id="work">
-        <div className="sectionLabel" data-reveal><span>02</span> Selected trajectories</div>
-        <div className="workHeader" data-reveal><h2>Work with<br />real orbit.</h2><p>Selected projects at the intersection of technical depth, practical value, and collective impact.</p></div>
-        <div className="projectList">
-          {projects.map((project) => (
-            <a className="project" href={project.href} target="_blank" rel="noreferrer" key={project.title} data-reveal>
-              <span className="projectNumber">{project.number}</span>
-              <div><span className="projectTag">{project.tag}</span><h3>{project.title}</h3><p>{project.text}</p></div>
-              <span className="projectArrow">↗</span>
-            </a>
-          ))}
+      <section className="resume section" id="experience">
+        <div className="sectionTitle" data-reveal><span>02</span><h2>Experience</h2></div>
+        <div className="resumeList">
+          {experience.map((item) => <article className="resumeItem" key={item.role + item.company} data-reveal><div className="resumeDate">{item.dates}</div><div><h3>{item.role}</h3><p className="company">{item.company}</p><ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul></div></article>)}
         </div>
       </section>
 
-      <section className="experience">
-        <div className="sectionLabel" data-reveal><span>03</span> Signal history</div>
-        <div className="timeline">
-          <div className="timelineIntro" data-reveal><h2>Engineer.<br />Founder.<br /><em>Leader.</em></h2><p>A path shaped by making, teaching, organizing, and asking better questions.</p></div>
-          <div className="timelineItems">
-            {[
-              ["2023 — 2024", "Founder", "SkillLink", "Product strategy, full-stack development, accelerator pitch"],
-              ["2021 — 2023", "Student Leader", "Delineo Disease Modeling", "Research systems, Agile leadership, simulation infrastructure"],
-              ["2022 — 2024", "Academic Tutor", "Johns Hopkins University", "JavaScript, Python, Java, C, and C++ mentorship"],
-              ["2023 — 2024", "Senior Class Senator", "JHU Student Government", "Campus advocacy, programming, and student services"],
-            ].map(([date, role, org, detail]) => (
-              <article key={role + org} data-reveal><span>{date}</span><div><h3>{role}</h3><p>{org}</p><small>{detail}</small></div></article>
-            ))}
-          </div>
+      <section className="projects section" id="projects">
+        <div className="sectionTitle" data-reveal><span>03</span><h2>Selected projects</h2></div>
+        <div className="projectGrid">
+          {projects.map(([title, description, tags, href], index) => <a href={href} target="_blank" rel="noreferrer" className="projectCard" key={title} data-reveal><span className="cardNumber">0{index + 1}</span><div><h3>{title}</h3><p>{description}</p></div><footer><span>{tags}</span><b>↗</b></footer></a>)}
         </div>
       </section>
 
-      <section className="capabilities">
-        <div className="capCopy" data-reveal><span className="eyebrow"><i /> Toolkit</span><h2>From first principles<br />to working systems.</h2></div>
-        <div className="skillCloud" data-reveal>
-          {["Python", "Java", "C / C++", "React", "Node.js", "SQL", "Unity", "Flutter", "AWS", "Data Science", "Robotics", "Product Leadership"].map((skill, i) => <span style={{"--i": i} as React.CSSProperties} key={skill}>{skill}</span>)}
-        </div>
+      <section className="details section">
+        <div className="education" data-reveal><span className="miniLabel">Education</span><h2>Johns Hopkins University</h2><p>B.S. Computer Science<br />Applied Mathematics & Statistics</p><small>2020 — 2024 · Baltimore, Maryland</small></div>
+        <div className="skills" data-reveal><span className="miniLabel">Core skills</span><div>{["Python", "Java", "C / C++", "JavaScript", "React", "Node.js", "SQL", "AWS", "Unity", "Flutter"].map((skill) => <span key={skill}>{skill}</span>)}</div></div>
       </section>
 
       <section className="contact" id="contact">
-        <div className="contactOrbit" aria-hidden="true"><span /><span /><span /></div>
-        <div className="sectionLabel" data-reveal><span>04</span> Next mission</div>
-        <div className="contactContent" data-reveal>
-          <p>Have an impossible-looking problem?</p>
-          <h2>Let&apos;s make it<br /><em>move.</em></h2>
-          <a href="mailto:cbakhit1@jh.edu">cbakhit1@jh.edu <span>↗</span></a>
-        </div>
-        <footer><span>© {new Date().getFullYear()} Christian Bakhit</span><div><a href="https://www.linkedin.com/in/christianbakhit/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/ChrisBJHU" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.instagram.com/chrisbakhit/" target="_blank" rel="noreferrer">Instagram</a></div><span>Houston · Earth</span></footer>
+        <p data-reveal>Currently exploring software engineering and data opportunities.</p>
+        <h2 data-reveal>Let&apos;s talk.</h2>
+        <a data-reveal href="mailto:cbakhit1@jh.edu">cbakhit1@jh.edu <span>↗</span></a>
+        <footer><span>© {new Date().getFullYear()} Christian Bakhit</span><div><a href="https://github.com/ChrisBJHU" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/christianbakhit/" target="_blank" rel="noreferrer">LinkedIn</a></div><span>Houston, Texas</span></footer>
       </section>
     </main>
   );
