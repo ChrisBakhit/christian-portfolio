@@ -297,9 +297,14 @@ main.sidebarOpen { padding-left: 268px; }
 .projectCard:hover .projectVisual img { filter:saturate(.94) brightness(.94); }
 .projectCard h3 { font-size:23px; }
 .skillsEditor { border-top-color:rgba(139,233,211,.14); }
-.portraitFrame { aspect-ratio:2/3; }
-.hero { max-width:1440px; grid-template-columns:1fr minmax(460px,.95fr); gap:4vw; }
-.profileWrap { width:min(100%,520px); }
+.portraitFrame { aspect-ratio:1; width:min(100%,520px); margin-inline:auto; padding:11px; overflow:visible; border:1px solid rgba(139,233,211,.34); border-radius:50%; background:radial-gradient(circle at 50% 45%,rgba(29,101,108,.26),rgba(7,12,19,.96) 67%); box-shadow:0 32px 90px rgba(0,0,0,.55),0 0 0 10px rgba(139,233,211,.035),0 0 70px rgba(48,185,174,.16); }
+.portraitFrame:before { inset:11px; border-radius:50%; background:linear-gradient(145deg,rgba(139,233,211,.16),transparent 35%,rgba(0,0,0,.38) 100%); }
+.portraitFrame:after { inset:5px; border:1px solid rgba(139,233,211,.22); border-radius:50%; }
+.portraitFrame img { border-radius:50%; object-fit:cover; object-position:center; }
+.portraitLabel { left:50%; bottom:22px; transform:translateX(-50%); padding:7px 11px; border:1px solid rgba(139,233,211,.24); border-radius:999px; background:rgba(5,12,14,.72); backdrop-filter:blur(8px); white-space:nowrap; }
+.portraitLabel:before { display:none; }
+.hero { max-width:1440px; grid-template-columns:minmax(0,1fr) minmax(430px,.88fr); gap:5vw; }
+.profileWrap { width:min(100%,540px); }
 .section { overflow:hidden; }
 .sectionComet { position:absolute; z-index:0; top:13%; right:-190px; width:175px; height:1px; opacity:0; pointer-events:none; background:linear-gradient(90deg,transparent,rgba(139,233,211,.9),rgba(255,255,255,.85)); box-shadow:0 0 10px rgba(139,233,211,.45); transform:rotate(-24deg); animation:sectionFly 14s cubic-bezier(.2,.5,.2,1) infinite; }
 .sectionComet:before { content:""; position:absolute; right:-2px; top:-2px; width:5px; height:5px; border-radius:50%; background:#eafffa; box-shadow:0 0 13px var(--teal),-38px 17px 0 -1px rgba(139,233,211,.4),-76px -22px 0 -1px rgba(255,255,255,.28); }
