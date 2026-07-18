@@ -348,7 +348,7 @@ export default function Home() {
             <figure className="profileReadmePhoto"><img src="/christian-profile.webp" alt="Christian Bakhit at Washington Square Park" /><figcaption><span>Christian Bakhit</span><small>Software Developer</small></figcaption></figure>
             <div className="profileNarrative">
               <p>Hi! I&apos;m <strong>Christian Bakhit</strong>, a software developer living at the crossroads of <strong>backend engineering</strong>, <strong>AI/ML</strong>, and <strong>data science</strong>. I love building systems that are not just functional but genuinely <strong>intelligent and scalable</strong>.</p>
-              <p>Currently a <strong>Software Developer at Supercharge</strong>, building AI integrations and backend systems that power learning experiences for thousands of users daily.</p>
+              <p>Currently a <strong>Software Developer at Supercharge</strong>, building AI integrations and backend systems that power production workflows for teams every day.</p>
               <div className="profileCredentials"><span><small>EDUCATION</small>Georgia Tech · M.S. Computer Science</span><span><small>BACKGROUND</small>Johns Hopkins · CS + Applied Math &amp; Statistics</span></div>
             </div>
           </div>
