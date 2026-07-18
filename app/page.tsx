@@ -291,7 +291,7 @@ export default function Home() {
   };
 
   const paletteItems = [
-    ["home.tsx", "Introduction, résumé, full-stack", "#top", "tsIcon", "TS"],
+    ["home.tsx", "Introduction, resume, full-stack", "#top", "tsIcon", "TS"],
     ["profile.md", "Christian, Supercharge, Georgia Tech, JHU", "#about", "mdIcon", "#"],
     ["experience.js", "Work history, AWS, React, AI", "#experience", "jsIcon", "JS"],
     ["projects.json", "Live products, research, community builds", "#projects", "jsonIcon", "{}"],
@@ -324,7 +324,7 @@ export default function Home() {
           <p className="kicker">Full-Stack Engineering · AI · Cloud</p>
           <h1>Christian<br />Bakhit</h1>
           <p className="intro">Full-stack engineer building modern React applications, AWS serverless systems, REST APIs, and AI-assisted workflows.</p>
-          <div className="actions"><a className="primaryButton" href="/Christian_Bakhit_Resume.pdf" target="_blank">View résumé</a><a className="textButton" href="#experience">Experience ↓</a></div>
+          <div className="actions"><a className="primaryButton" href="/Christian_Bakhit_Resume.pdf" target="_blank">View resume</a><a className="textButton" href="#experience">Experience ↓</a></div>
         </div>
         <div className="profileWrap" data-reveal>
           <span className="portraitGlow" aria-hidden="true" />
