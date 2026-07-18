@@ -88,6 +88,12 @@ const projects = [
 export default function Home() {
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("top");
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [terminalOpen, setTerminalOpen] = useState(false);
+  const [terminalInput, setTerminalInput] = useState("");
+  const [terminalLines, setTerminalLines] = useState(["Christian Portfolio Terminal", "Type 'help' to see available commands."]);
+  const [statusMessage, setStatusMessage] = useState("portfolio online");
   const scrollingToSection = useRef<string | null>(null);
 
   useEffect(() => {
@@ -118,6 +124,18 @@ export default function Home() {
         event.preventDefault();
         setPaletteOpen((open) => !open);
       }
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "p") {
+        event.preventDefault();
+        setPaletteOpen((open) => !open);
+      }
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "b") {
+        event.preventDefault();
+        setSidebarOpen((open) => !open);
+      }
+      if ((event.metaKey || event.ctrlKey) && event.key === "`") {
+        event.preventDefault();
+        setTerminalOpen((open) => !open);
+      }
       if (event.key === "Escape") setPaletteOpen(false);
     };
     updateActiveSection();
@@ -136,17 +154,84 @@ export default function Home() {
     setActiveSection(section);
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
     setPaletteOpen(false);
+    setActiveMenu(null);
+  };
+
+  const runTerminalCommand = (rawCommand: string) => {
+    const command = rawCommand.trim().toLowerCase();
+    if (!command) return;
+    const responses: Record<string, string> = {
+      help: "Commands: whoami, projects, experience, resume, contact, clear",
+      whoami: "Christian Bakhit — Full-Stack Engineer · AI · Cloud",
+      projects: "Opening projects.json…",
+      experience: "Opening experience.js…",
+      resume: "Opening resume.pdf…",
+      contact: "chrisbakhit@gmail.com",
+    };
+    if (command === "clear") setTerminalLines([]);
+    else setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, responses[command] || `command not found: ${command}`]);
+    if (command === "projects") jumpTo("#projects");
+    if (command === "experience") jumpTo("#experience");
+    if (command === "resume") window.open("/Christian_Bakhit_Resume.pdf", "_blank");
+    setTerminalInput("");
+  };
+
+  const copyEmail = async () => {
+    await navigator.clipboard.writeText("chrisbakhit@gmail.com");
+    setStatusMessage("email copied");
+    setActiveMenu(null);
+  };
+
+  const menuItems: Record<string, { label: string; shortcut?: string; action: () => void }[]> = {
+    File: [
+      { label: "New Tab", shortcut: "Ctrl+T", action: () => { jumpTo("#top"); setStatusMessage("home.tsx opened"); } },
+      { label: "Open File…", shortcut: "Ctrl+P", action: () => { setPaletteOpen(true); setActiveMenu(null); } },
+      { label: "Download Resume", action: () => { window.open("/Christian_Bakhit_Resume.pdf", "_blank"); setActiveMenu(null); } },
+    ],
+    Edit: [
+      { label: "Find…", shortcut: "Ctrl+P", action: () => { setPaletteOpen(true); setActiveMenu(null); } },
+      { label: "Copy Email", shortcut: "Ctrl+C", action: copyEmail },
+    ],
+    View: [
+      { label: "Command Palette", shortcut: "Ctrl+P", action: () => { setPaletteOpen(true); setActiveMenu(null); } },
+      { label: "Toggle Sidebar", shortcut: "Ctrl+B", action: () => { setSidebarOpen((open) => !open); setActiveMenu(null); } },
+      { label: "Toggle Terminal", shortcut: "Ctrl+`", action: () => { setTerminalOpen((open) => !open); setActiveMenu(null); } },
+      { label: "Enter Full Screen", shortcut: "F11", action: () => { document.documentElement.requestFullscreen?.(); setActiveMenu(null); } },
+    ],
+    Go: [
+      { label: "home.tsx", action: () => jumpTo("#top") },
+      { label: "profile.md", action: () => jumpTo("#about") },
+      { label: "experience.js", action: () => jumpTo("#experience") },
+      { label: "projects.json", action: () => jumpTo("#projects") },
+    ],
+    Run: [
+      { label: "Start Terminal", shortcut: "Ctrl+`", action: () => { setTerminalOpen(true); setActiveMenu(null); } },
+      { label: "Run Portfolio Info", action: () => { setTerminalOpen(true); runTerminalCommand("whoami"); setActiveMenu(null); } },
+    ],
+    Terminal: [
+      { label: "New Terminal", shortcut: "Ctrl+`", action: () => { setTerminalLines(["New portfolio terminal ready."]); setTerminalOpen(true); setActiveMenu(null); } },
+      { label: "Toggle Terminal", action: () => { setTerminalOpen((open) => !open); setActiveMenu(null); } },
+      { label: "Clear Terminal", action: () => { setTerminalLines([]); setActiveMenu(null); } },
+    ],
+    Help: [
+      { label: "Keyboard Shortcuts", action: () => { setTerminalOpen(true); setTerminalLines(["Ctrl+P  Command Palette", "Ctrl+B  Toggle Explorer", "Ctrl+`  Toggle Terminal", "Esc  Close overlays"]); setActiveMenu(null); } },
+      { label: "GitHub ↗", action: () => { window.open("https://github.com/ChrisBJHU", "_blank"); setActiveMenu(null); } },
+      { label: "About", action: () => { jumpTo("#about"); setStatusMessage("Christian Bakhit Portfolio"); } },
+    ],
   };
 
   return (
-    <main>
+    <main className={sidebarOpen ? "sidebarOpen" : undefined} onClick={() => activeMenu && setActiveMenu(null)}>
       <div className="spaceBackdrop" aria-hidden="true"><span className="stars starsOne" /><span className="stars starsTwo" /><span className="shootingStar" /></div>
       <header className="siteHeader">
-        <div className="windowBar"><div className="windowDots" aria-hidden="true"><i /><i /><i /></div><a className="logo" href="#top">christian-bakhit / portfolio</a><button className="commandTrigger" onClick={() => setPaletteOpen(true)}><span>⌕</span> Go to file or section <kbd>Ctrl K</kbd></button><a className="contactLink" href="mailto:chrisbakhit@gmail.com">Contact</a></div>
+        <div className="windowBar"><div className="windowDots" aria-hidden="true"><i /><i /><i /></div><a className="logo" href="#top">christian-bakhit / portfolio</a><button className="commandTrigger" onClick={() => setPaletteOpen(true)}><span>⌕</span> christian-bakhit : portfolio <kbd>Ctrl P</kbd></button><a className="contactLink" href="mailto:chrisbakhit@gmail.com">Contact</a></div>
+        <nav className="desktopMenus" aria-label="Application menu" onClick={(event) => event.stopPropagation()}>{Object.keys(menuItems).map((menu) => <div className="menuRoot" key={menu}><button aria-expanded={activeMenu === menu} onClick={() => setActiveMenu(activeMenu === menu ? null : menu)}>{menu}</button>{activeMenu === menu && <div className="menuDropdown" role="menu">{menuItems[menu].map((item) => <button role="menuitem" key={item.label} onClick={item.action}><span>{item.label}</span>{item.shortcut && <kbd>{item.shortcut}</kbd>}</button>)}</div>}</div>)}</nav>
         <nav className="fileTabs" aria-label="Portfolio files"><a className={activeSection === "top" ? "active" : undefined} aria-current={activeSection === "top" ? "page" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#top"); }} href="#top"><i className="tsIcon">TS</i>home.tsx</a><a className={activeSection === "about" ? "active" : undefined} aria-current={activeSection === "about" ? "page" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#about"); }} href="#about"><i className="mdIcon">#</i>profile.md</a><a className={activeSection === "experience" ? "active" : undefined} aria-current={activeSection === "experience" ? "page" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#experience"); }} href="#experience"><i className="jsIcon">JS</i>experience.js</a><a className={activeSection === "projects" ? "active" : undefined} aria-current={activeSection === "projects" ? "page" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#projects"); }} href="#projects"><i className="jsonIcon">{`{}`}</i>projects.json</a><a href="/Christian_Bakhit_Resume.pdf" target="_blank"><i className="pdfIcon">PDF</i>resume.pdf</a></nav>
       </header>
 
       <aside className="activityRail" aria-label="Quick navigation"><a className={activeSection === "top" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#top"); }} href="#top" aria-label="Home">⌂</a><a className={activeSection === "about" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#about"); }} href="#about" aria-label="Profile">◎</a><a className={activeSection === "experience" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#experience"); }} href="#experience" aria-label="Experience">⑂</a><a className={activeSection === "projects" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#projects"); }} href="#projects" aria-label="Projects">◇</a><a href="mailto:chrisbakhit@gmail.com" aria-label="Email">✉</a></aside>
+
+      {sidebarOpen && <aside className="explorerPanel" aria-label="Portfolio explorer"><div className="explorerTitle"><span>EXPLORER</span><button onClick={() => setSidebarOpen(false)} aria-label="Close explorer">×</button></div><strong>⌄ CHRISTIAN-PORTFOLIO</strong><button className={activeSection === "top" ? "active" : undefined} onClick={() => jumpTo("#top")}><i className="tsIcon">TS</i> home.tsx</button><button className={activeSection === "about" ? "active" : undefined} onClick={() => jumpTo("#about")}><i className="mdIcon">#</i> profile.md</button><button className={activeSection === "experience" ? "active" : undefined} onClick={() => jumpTo("#experience")}><i className="jsIcon">JS</i> experience.js</button><button className={activeSection === "projects" ? "active" : undefined} onClick={() => jumpTo("#projects")}><i className="jsonIcon">{`{}`}</i> projects.json</button><a href="/Christian_Bakhit_Resume.pdf" target="_blank"><i className="pdfIcon">PDF</i> resume.pdf <span>↓</span></a><div className="explorerBranch">⑂ main <span>✓</span></div></aside>}
 
       {paletteOpen && <div className="paletteBackdrop" onMouseDown={() => setPaletteOpen(false)}><div className="commandPalette" role="dialog" aria-modal="true" aria-label="Go to portfolio section" onMouseDown={(event) => event.stopPropagation()}><div className="paletteInput"><span>›</span><strong>Go to file or section</strong><kbd>ESC</kbd></div><button onClick={() => jumpTo("#top")}><i className="tsIcon">TS</i><span><b>home.tsx</b><small>Introduction and résumé</small></span></button><button onClick={() => jumpTo("#about")}><i className="mdIcon">#</i><span><b>profile.md</b><small>Real photo and background</small></span></button><button onClick={() => jumpTo("#experience")}><i className="jsIcon">JS</i><span><b>experience.js</b><small>Combined work history</small></span></button><button onClick={() => jumpTo("#projects")}><i className="jsonIcon">{`{}`}</i><span><b>projects.json</b><small>Live builds and site previews</small></span></button></div></div>}
 
@@ -205,7 +290,8 @@ export default function Home() {
         <a data-reveal href="mailto:chrisbakhit@gmail.com">chrisbakhit@gmail.com <span>↗</span></a>
         <footer><span>© {new Date().getFullYear()} Christian Bakhit</span><div><a href="https://github.com/ChrisBJHU" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/christianbakhit/" target="_blank" rel="noreferrer">LinkedIn</a></div><span>Houston, Texas</span></footer>
       </section>
-      <div className="statusBar" aria-hidden="true"><span>⑂ main</span><span>✓ portfolio online</span><span>UTF-8</span><span>React · TypeScript</span><span>Christian Dark</span></div>
+      {terminalOpen && <section className="terminalPanel" aria-label="Portfolio terminal"><header><span>TERMINAL</span><button onClick={() => setTerminalLines([])}>Clear</button><button onClick={() => setTerminalOpen(false)} aria-label="Close terminal">×</button></header><div className="terminalOutput">{terminalLines.map((line, index) => <p key={`${line}-${index}`}>{line}</p>)}</div><form onSubmit={(event) => { event.preventDefault(); runTerminalCommand(terminalInput); }}><span>christian@portfolio:~$</span><input aria-label="Terminal command" value={terminalInput} onChange={(event) => setTerminalInput(event.target.value)} autoComplete="off" spellCheck={false} /></form></section>}
+      <div className="statusBar"><button onClick={() => setSidebarOpen((open) => !open)}>⑂ main</button><span>✓ {statusMessage}</span><button onClick={() => setPaletteOpen(true)}>Ctrl P</button><span>React · TypeScript</span><button onClick={() => setTerminalOpen((open) => !open)}>⌘ Terminal</button></div>
     </main>
   );
 }
