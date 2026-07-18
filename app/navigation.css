@@ -255,8 +255,13 @@ main.sidebarOpen { padding-left: 268px; }
 .explorerPanel > button:hover,.explorerPanel > a:hover,.explorerPanel > .active { background: #222825; color: #fff; }
 .explorerPanel > .active { border-left: 2px solid var(--teal); padding-left: 26px; }
 .explorerPanel > a span { margin-left: auto; color: var(--teal); }
-.explorerBranch { margin-top: auto; height: 35px; padding: 0 12px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #29302d; color: #8d9793; }
-.explorerBranch span { color: var(--teal); }
+.explorerBranch { margin-top: auto; height: 35px; padding: 0 7px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #29302d; color: #8d9793; }
+.explorerBranch button { height: 27px; padding: 0 7px; border: 0; border-radius: 4px; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+.explorerBranch button:hover { background: #29312e; color: #fff; }
+.explorerBranch button:last-child { color: var(--teal); font-size: 13px; }
+.explorerBranch button:disabled { cursor: wait; }
+.explorerBranch.checking button:last-child { animation: branchCheckSpin .8s linear infinite; }
+@keyframes branchCheckSpin { to { transform: rotate(360deg); } }
 .terminalPanel {
   position: fixed;
   z-index: 36;

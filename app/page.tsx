@@ -104,6 +104,7 @@ export default function Home() {
   const [terminalLines, setTerminalLines] = useState(["Christian Portfolio Terminal", "Type 'help' to see available commands."]);
   const [terminalTheme, setTerminalTheme] = useState<"default" | "matrix" | "space" | "vault">("default");
   const [statusMessage, setStatusMessage] = useState("portfolio online");
+  const [checksRunning, setChecksRunning] = useState(false);
   const scrollingToSection = useRef<string | null>(null);
 
   useEffect(() => {
@@ -223,6 +224,25 @@ export default function Home() {
     setActiveMenu(null);
   };
 
+  const showBranchInfo = () => {
+    setTerminalLines(["$ git branch --show-current", "main", "$ git log -1 --oneline", "latest  portfolio ready to ship"]);
+    setTerminalOpen(true);
+    setStatusMessage("main branch opened");
+  };
+
+  const runPortfolioChecks = () => {
+    if (checksRunning) return;
+    setChecksRunning(true);
+    setTerminalOpen(true);
+    setTerminalLines(["$ npm run check", "Checking routes, links, and build…"]);
+    setStatusMessage("running checks…");
+    window.setTimeout(() => {
+      setTerminalLines((lines) => [...lines, "✓ 6 portfolio files found", "✓ project links connected", "✓ production build healthy", "All checks passed."]);
+      setStatusMessage("all checks passed");
+      setChecksRunning(false);
+    }, 900);
+  };
+
   const menuItems: Record<string, { label: string; shortcut?: string; action: () => void }[]> = {
     File: [
       { label: "New Tab", shortcut: "Ctrl+T", action: () => { jumpTo("#top"); setStatusMessage("home.tsx opened"); } },
@@ -274,7 +294,7 @@ export default function Home() {
 
       <aside className="activityRail" aria-label="Quick navigation"><a className={activeSection === "top" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#top"); }} href="#top" aria-label="Home">⌂</a><a className={activeSection === "about" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#about"); }} href="#about" aria-label="Profile">◎</a><a className={activeSection === "experience" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#experience"); }} href="#experience" aria-label="Experience">⑂</a><a className={activeSection === "projects" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#projects"); }} href="#projects" aria-label="Projects">◇</a><a className={activeSection === "skills" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#skills"); }} href="#skills" aria-label="Skills">{`{}`}</a><a className={activeSection === "education" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#education"); }} href="#education" aria-label="Education">◉</a><a href="mailto:chrisbakhit@gmail.com" aria-label="Email">✉</a></aside>
 
-      {sidebarOpen && <aside className="explorerPanel" aria-label="Portfolio explorer"><div className="explorerTitle"><span>EXPLORER</span><button onClick={() => setSidebarOpen(false)} aria-label="Close explorer">×</button></div><strong>⌄ CHRISTIAN-PORTFOLIO</strong><button className={activeSection === "top" ? "active" : undefined} onClick={() => jumpTo("#top")}><i className="tsIcon">TS</i> home.tsx</button><button className={activeSection === "about" ? "active" : undefined} onClick={() => jumpTo("#about")}><i className="mdIcon">#</i> profile.md</button><button className={activeSection === "experience" ? "active" : undefined} onClick={() => jumpTo("#experience")}><i className="jsIcon">JS</i> experience.js</button><button className={activeSection === "projects" ? "active" : undefined} onClick={() => jumpTo("#projects")}><i className="jsonIcon">{`{}`}</i> projects.json</button><button className={activeSection === "skills" ? "active" : undefined} onClick={() => jumpTo("#skills")}><i className="jsonIcon">{`{}`}</i> skills.json</button><button className={activeSection === "education" ? "active" : undefined} onClick={() => jumpTo("#education")}><i className="mdIcon">#</i> education.md</button><a href="/Christian_Bakhit_Resume.pdf" target="_blank"><i className="pdfIcon">PDF</i> resume <span>↓</span></a><div className="explorerBranch">⑂ main <span>✓</span></div></aside>}
+      {sidebarOpen && <aside className="explorerPanel" aria-label="Portfolio explorer"><div className="explorerTitle"><span>EXPLORER</span><button onClick={() => setSidebarOpen(false)} aria-label="Close explorer">×</button></div><strong>⌄ CHRISTIAN-PORTFOLIO</strong><button className={activeSection === "top" ? "active" : undefined} onClick={() => jumpTo("#top")}><i className="tsIcon">TS</i> home.tsx</button><button className={activeSection === "about" ? "active" : undefined} onClick={() => jumpTo("#about")}><i className="mdIcon">#</i> profile.md</button><button className={activeSection === "experience" ? "active" : undefined} onClick={() => jumpTo("#experience")}><i className="jsIcon">JS</i> experience.js</button><button className={activeSection === "projects" ? "active" : undefined} onClick={() => jumpTo("#projects")}><i className="jsonIcon">{`{}`}</i> projects.json</button><button className={activeSection === "skills" ? "active" : undefined} onClick={() => jumpTo("#skills")}><i className="jsonIcon">{`{}`}</i> skills.json</button><button className={activeSection === "education" ? "active" : undefined} onClick={() => jumpTo("#education")}><i className="mdIcon">#</i> education.md</button><a href="/Christian_Bakhit_Resume.pdf" target="_blank"><i className="pdfIcon">PDF</i> resume <span>↓</span></a><div className={`explorerBranch ${checksRunning ? "checking" : ""}`}><button onClick={showBranchInfo} aria-label="Show main branch information">⑂ main</button><button onClick={runPortfolioChecks} aria-label="Run portfolio checks" disabled={checksRunning}>{checksRunning ? "◌" : "✓"}</button></div></aside>}
 
       {paletteOpen && <div className="paletteBackdrop" onMouseDown={() => setPaletteOpen(false)}><div className="commandPalette" role="dialog" aria-modal="true" aria-label="Go to portfolio section" onMouseDown={(event) => event.stopPropagation()}><div className="paletteInput"><span>›</span><strong>Go to file or section</strong><kbd>ESC</kbd></div><button onClick={() => jumpTo("#top")}><i className="tsIcon">TS</i><span><b>home.tsx</b><small>Introduction and résumé</small></span></button><button onClick={() => jumpTo("#about")}><i className="mdIcon">#</i><span><b>profile.md</b><small>Real photo and background</small></span></button><button onClick={() => jumpTo("#experience")}><i className="jsIcon">JS</i><span><b>experience.js</b><small>Combined work history</small></span></button><button onClick={() => jumpTo("#projects")}><i className="jsonIcon">{`{}`}</i><span><b>projects.json</b><small>Live builds and site previews</small></span></button><button onClick={() => jumpTo("#skills")}><i className="jsonIcon">{`{}`}</i><span><b>skills.json</b><small>Technical stack and tools</small></span></button><button onClick={() => jumpTo("#education")}><i className="mdIcon">#</i><span><b>education.md</b><small>Degrees and continued study</small></span></button></div></div>}
 

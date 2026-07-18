@@ -9,6 +9,7 @@ const mono = Geist_Mono({ variable: "--font-mono", subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Christian Bakhit | Full-Stack Engineer",
   description: "Full-stack engineer building React applications, AWS serverless systems, REST APIs, and AI-assisted workflows.",
+  icons: { icon: "/vscode.svg", shortcut: "/vscode.svg", apple: "/vscode.svg" },
   openGraph: { title: "Christian Bakhit | Full-Stack Engineer", description: "React, AWS, REST APIs, cloud systems, and AI-assisted product development." },
   twitter: { card: "summary", title: "Christian Bakhit | Full-Stack Engineer", description: "React, AWS, REST APIs, cloud systems, and AI-assisted product development." },
 };
