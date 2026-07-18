@@ -249,11 +249,13 @@ export default function Home() {
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><span>src</span><b>›</b><strong>home.tsx</strong></div>
         <div className="heroText" data-reveal>
           <p className="codeComment">// home.tsx — full-stack engineering, AI, and cloud systems</p>
+          <code className="tsxLine"><span>export default function</span> Portfolio() {`{`}</code>
           <span className="status"><i /> Open to opportunities</span>
           <p className="kicker">Full-Stack Engineering · AI · Cloud</p>
           <h1>Christian<br />Bakhit</h1>
           <p className="intro">Full-stack engineer building modern React applications, AWS serverless systems, REST APIs, and AI-assisted workflows.</p>
           <div className="actions"><a className="primaryButton" href="/Christian_Bakhit_Resume.pdf" target="_blank">View résumé</a><a className="textButton" href="#experience">Experience ↓</a></div>
+          <code className="tsxLine tsxClose">{`  return <Engineer focus="useful software" />;\n}`}</code>
         </div>
         <div className="profileWrap" data-reveal>
           <span className="portraitGlow" aria-hidden="true" />
@@ -270,8 +272,9 @@ export default function Home() {
         <div className="sectionTitle" data-reveal><span>01</span><h2>Profile</h2></div>
         <div className="aboutContent" data-reveal>
           <p className="codeComment">// profile.md — background, approach, and the person behind the work</p>
+          <p className="markdownHeading"><span>##</span> Builder across the stack</p>
           <p className="largeCopy">I build modern software across the stack, from responsive interfaces to cloud back ends and AI-powered workflows.</p>
-          <div className="realProfileGrid"><figure className="realPhoto"><img src="/christian-profile.webp" alt="Christian Bakhit at Washington Square Park" /><figcaption><span>christian-profile.webp</span><small>New York, NY</small></figcaption></figure><div className="aboutColumns"><p>My recent work combines React front ends, REST APIs, AWS Lambda, DynamoDB, and large language models to deliver production tools for patent intelligence and portfolio analysis.</p><p>I am comfortable moving quickly across unfamiliar systems, making end-to-end technical decisions, and translating complex engineering work for non-technical partners.</p></div></div>
+          <div className="realProfileGrid"><figure className="realPhoto"><img src="/christian-profile.webp" alt="Christian Bakhit at Washington Square Park" /><figcaption><span>christian-profile.webp</span><small>New York, NY</small></figcaption></figure><div className="aboutColumns"><p><b className="mdQuote">›</b> My recent work combines React front ends, REST APIs, AWS Lambda, DynamoDB, and large language models to deliver production tools for patent intelligence and portfolio analysis.</p><p><b className="mdQuote">›</b> I am comfortable moving quickly across unfamiliar systems, making end-to-end technical decisions, and translating complex engineering work for non-technical partners.</p></div></div>
         </div>
       </section>
 
@@ -280,7 +283,7 @@ export default function Home() {
         <p className="codeComment" data-reveal>// experience.js — roles, responsibilities, and shipped outcomes</p>
         <div className="sectionTitle" data-reveal><span>02</span><h2>Experience</h2></div>
         <div className="resumeList">
-          {experience.map((item) => <article className="resumeItem" key={item.role + item.company} data-reveal><div className="resumeDate">{item.dates}</div><div><h3>{item.role}</h3><p className="company">{item.company}</p><ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul></div></article>)}
+          {experience.map((item) => <article className="resumeItem jsObject" key={item.role + item.company} data-reveal><span className="objectBrace">{`{`}</span><div className="resumeDate"><b>dates:</b> &quot;{item.dates}&quot;,</div><div><h3><small>role:</small> &quot;{item.role}&quot;,</h3><p className="company"><small>company:</small> &quot;{item.company}&quot;,</p><span className="arrayLabel">highlights: [</span><ul>{item.bullets.map((bullet) => <li key={bullet}>&quot;{bullet}&quot;,</li>)}</ul><span className="arrayLabel">]</span></div><span className="objectBrace closeBrace">{`},`}</span></article>)}
         </div>
       </section>
 
@@ -289,7 +292,7 @@ export default function Home() {
         <p className="codeComment" data-reveal>// projects.json — selected products, platforms, and community builds</p>
         <div className="sectionTitle" data-reveal><span>03</span><h2>Selected projects</h2></div>
         <div className="projectGrid">
-          {projects.map(([title, description, tags, href, image], index) => <a href={href} target="_blank" rel="noreferrer" className="projectCard" key={title} data-reveal><div className="projectVisual"><img src={image} alt={`${title} website preview`} /><span className="cardNumber">{String(index + 1).padStart(2, "0")}</span></div><div className="projectCopy"><h3>{title}</h3><p>{description}</p></div><footer><span>{tags}</span><b>↗</b></footer></a>)}
+          {projects.map(([title, description, tags, href, image], index) => <a href={href} target="_blank" rel="noreferrer" className="projectCard jsonObject" key={title} data-reveal><div className="projectVisual"><img src={image} alt={`${title} website preview`} /><span className="cardNumber">{String(index + 1).padStart(2, "0")}</span></div><div className="projectCopy"><span className="jsonBrace">{`{`}</span><h3><small>&quot;name&quot;:</small> &quot;{title}&quot;,</h3><p><b>&quot;description&quot;:</b> &quot;{description}&quot;,</p><p className="jsonStack"><b>&quot;stack&quot;:</b> [&quot;{tags.split(" · ").join("\", \"")}&quot;]</p><span className="jsonBrace">{`}`}</span></div><footer><span>&quot;live_url&quot;</span><b>↗</b></footer></a>)}
         </div>
       </section>
 
@@ -298,7 +301,7 @@ export default function Home() {
         <p className="codeComment" data-reveal>// skills.json — technologies I use to ship real products</p>
         <div className="skillsHeading" data-reveal><h2>Skills</h2></div>
         <div className="skillGroupGrid">
-          {skillGroups.map((group, groupIndex) => <article className="skillGroup" data-reveal key={group.title} style={{ "--group-index": groupIndex } as React.CSSProperties}><header><span>{String(groupIndex + 1).padStart(2, "0")}</span><h3>{group.title}</h3><small>{group.skills.length} capabilities</small></header><div className="skillOrbitGrid">{group.skills.map(([name, level], skillIndex) => <div className="skillNode" key={name}><div className="skillGauge" style={{ "--level": level, "--skill-color": `var(--skill-${(groupIndex + skillIndex) % 5})`, "--node-index": skillIndex } as React.CSSProperties}><span>{level}</span></div><strong>{name}</strong></div>)}</div></article>)}
+          {skillGroups.map((group, groupIndex) => <article className="skillGroup" data-reveal key={group.title} style={{ "--group-index": groupIndex } as React.CSSProperties}><header><span>{String(groupIndex + 1).padStart(2, "0")}</span><h3>&quot;{group.title.toLowerCase().replaceAll(" ", "_")}&quot;</h3><small>[{group.skills.length}]</small></header><div className="skillOrbitGrid">{group.skills.map(([name, level], skillIndex) => <div className="skillNode" key={name}><div className="skillGauge" style={{ "--level": level, "--skill-color": `var(--skill-${(groupIndex + skillIndex) % 5})`, "--node-index": skillIndex } as React.CSSProperties}><span>{level}</span></div><strong>&quot;{name}&quot;</strong></div>)}</div></article>)}
         </div>
         <div className="familiarTools" data-reveal><span>Also familiar with</span><div>{["Azure", "Firebase", "SQL", "C++", "C#", "JIRA", "Unity", "Figma", "MLOps", "Vector DBs", "Cloudflare", "Vercel"].map((skill) => <b key={skill}>{skill}</b>)}</div></div>
       </section>
