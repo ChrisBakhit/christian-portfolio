@@ -167,6 +167,9 @@ main.sidebarOpen { padding-left: 268px; }
 .terminalPanel.matrix header,.terminalPanel.matrix form { color:#5dff76; }
 .terminalPanel.space { background-color:rgba(3,7,14,.985); background-image:radial-gradient(circle at 15% 30%,rgba(139,233,211,.08),transparent 23%),radial-gradient(circle,#fff 0 1px,transparent 1.4px); background-size:auto,71px 71px; color:#cfe8ff; animation:terminalStars 16s linear infinite; }
 .terminalPanel.space header,.terminalPanel.space form { color:#8be9d3; }
+.terminalPanel.vault { color:#ffe8a3; background-color:rgba(15,10,3,.99); background-image:linear-gradient(135deg,rgba(255,196,72,.05) 25%,transparent 25%,transparent 75%,rgba(255,196,72,.05) 75%),radial-gradient(circle at 50% 100%,rgba(255,179,64,.14),transparent 40%); background-size:22px 22px,auto; border-top-color:rgba(255,202,91,.55); box-shadow:0 -22px 70px rgba(255,173,41,.12); }
+.terminalPanel.vault header,.terminalPanel.vault form { color:#ffd166; }
+.terminalPanel.vault .terminalOutput p { animation:vaultReveal .38s ease both; }
 .statusBar button { padding: 0; border: 0; background: transparent; color: inherit; font: inherit; cursor: pointer; }
 
 @media(max-width: 850px) {
@@ -193,4 +196,5 @@ main.sidebarOpen { padding-left: 268px; }
 @keyframes skillScan { to { transform:translateX(85%); } }
 @keyframes terminalPulse { 50% { box-shadow:0 -20px 65px rgba(39,255,74,.13); } }
 @keyframes terminalStars { to { background-position:0 0,71px 35px; } }
+@keyframes vaultReveal { from { opacity:0; transform:translateX(-8px); } }
 @media(prefers-reduced-motion:reduce) { .skillGauge { opacity:1; transform:none; } }

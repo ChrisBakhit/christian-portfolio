@@ -102,7 +102,7 @@ export default function Home() {
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
   const [terminalLines, setTerminalLines] = useState(["Christian Portfolio Terminal", "Type 'help' to see available commands."]);
-  const [terminalTheme, setTerminalTheme] = useState<"default" | "matrix" | "space">("default");
+  const [terminalTheme, setTerminalTheme] = useState<"default" | "matrix" | "space" | "vault">("default");
   const [statusMessage, setStatusMessage] = useState("portfolio online");
   const scrollingToSection = useRef<string | null>(null);
 
@@ -188,10 +188,23 @@ export default function Home() {
       "42": ["The answer is 42. The implementation is probably TypeScript."],
       clove: ["Controller selected: CLOVE", "Pick me up again. I dare you.", "Teal energy output: stable."],
       secret: ["Achievement unlocked: inspected the source of the source."],
+      "cd .secrets": ["Access denied. Hint: doors sometimes respond to polite phrases."],
+      "cat .secrets/commands.txt": ["Encrypted. Try: open sesame"],
+      "sudo make me a sandwich": ["Okay. 🥪", "Dependency added: lunch@latest"],
+      "rm -rf /": ["Nice try.", "This portfolio has emotional backups and a very nervous firewall."],
+      "git log --oneline": ["e3a2f7f add terminal easter eggs", "9488d10 make it less ugly", "c4be46f equip teal agent portrait", "0000000 begin building things"],
+      hopmc: ["Connecting to mc.jhu.edu…", "Homewood campus loaded. Watch out for creepers near Gilman."],
+      supercharge: ["⚡ Systems charged.", "Patent intelligence: online", "Portfolio strategy: online", "Builder mode: active"],
+      patent: ["Claim 1: A developer configured to ship useful software.", "Status: exceptionally allowable."],
+      xyzzy: ["A hollow voice says: impressive commit history."],
+      "ping christian": ["64 bytes from christian: talent=high latency=low", "64 bytes from christian: curiosity=∞ latency=low"],
+      "npm run destiny": ["> christian-portfolio@future destiny", "Compiling ambitious ideas…", "Build succeeded."],
+      "hello there": ["General Kenobi.", "You are a bold one for checking the terminal."],
     };
     if (command === "clear") { setTerminalLines([]); setTerminalTheme("default"); }
     else if (command === "matrix") { setTerminalTheme("matrix"); setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, "Wake up, Christian…", "The portfolio has you."]); }
     else if (command === "space") { setTerminalTheme("space"); setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, "⋆｡°✩ Launching portfolio into orbit…", "Houston, we have a deployment."]); }
+    else if (command === "open sesame" || command === "konami") { setTerminalTheme("vault"); setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, "◆ PRIVATE VAULT UNLOCKED ◆", "Hidden commands detected: coffee · matrix · space · clove", "There are more. The best secrets are found, not listed."]); setStatusMessage("secret vault discovered"); }
     else if (command === "exit") { setTerminalOpen(false); setTerminalTheme("default"); }
     else setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, ...(responses[command] || [`command not found: ${command}`, "Try 'help' — or experiment."])]);
     if (command === "projects") jumpTo("#projects");
