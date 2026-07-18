@@ -151,6 +151,7 @@ main.sidebarOpen { padding-left: 268px; }
 .projectCard:hover .projectVisual img { filter:saturate(.94) brightness(.94); }
 .projectCard h3 { font-size:27px; }
 .skillsEditor { border-top-color:rgba(139,233,211,.14); }
+.portraitFrame { aspect-ratio:2/3; }
 .explorerTitle { height: 31px; display: flex; justify-content: space-between; align-items: center; padding: 0 12px; color: #818b87; letter-spacing: .09em; }
 .explorerTitle button { border: 0; background: transparent; color: #7f8a85; font-size: 18px; cursor: pointer; }
 .explorerPanel > strong { padding: 9px 11px; color: #dbe2df; font-size: 9px; letter-spacing: .04em; }
