@@ -108,7 +108,6 @@ export default function Home() {
   const [checksRunning, setChecksRunning] = useState(false);
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [recruiterMode, setRecruiterMode] = useState(false);
   const [cosmicMode, setCosmicMode] = useState<"default" | "eclipse" | "warp" | "launch">("default");
   const scrollingToSection = useRef<string | null>(null);
 
@@ -213,7 +212,6 @@ export default function Home() {
     if (command === "clear") { setTerminalLines([]); setTerminalTheme("default"); }
     else if (["eclipse", "warp", "launch"].includes(command)) { const mode = command as "eclipse" | "warp" | "launch"; setCosmicMode(mode); setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, `${mode} mode engaged.`, "Run: normal to restore orbit."]); setStatusMessage(`${mode} mode`); }
     else if (command === "normal") { setCosmicMode("default"); setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, "Normal orbit restored."]); }
-    else if (command === "recruiter") { setRecruiterMode((mode) => !mode); setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, "Recruiter mode toggled."]); }
     else if (command === "matrix") { setTerminalTheme("matrix"); setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, "Wake up, Christian…", "The portfolio has you."]); }
     else if (command === "space") { setTerminalTheme("space"); setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, "⋆｡°✩ Launching portfolio into orbit…", "Houston, we have a deployment."]); }
     else if (command === "open sesame" || command === "konami") { setTerminalTheme("vault"); setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, "◆ PRIVATE VAULT UNLOCKED ◆", "Hidden commands detected: coffee · matrix · space · clove", "There are more. The best secrets are found, not listed."]); setStatusMessage("secret vault discovered"); }
@@ -305,7 +303,7 @@ export default function Home() {
   const projectStatus = (title: string) => title === "Delineo" || title === "AnyTown" ? "Research" : title === "HopMC" ? "Community" : "Live";
 
   return (
-    <main className={`${sidebarOpen ? "sidebarOpen" : ""} cosmic-${cosmicMode} ${recruiterMode ? "recruiterMode" : ""}`} onClick={() => activeMenu && setActiveMenu(null)}>
+    <main className={`${sidebarOpen ? "sidebarOpen" : ""} cosmic-${cosmicMode}`} onClick={() => activeMenu && setActiveMenu(null)}>
       <div className="spaceBackdrop" aria-hidden="true"><span className="stars starsOne" /><span className="stars starsTwo" /><div className="meteorShow"><i /><i /><i /><i /><i /><i /><i /></div></div>
       <header className="siteHeader">
         <div className="windowBar"><div className="windowDots" aria-hidden="true"><i /><i /><i /></div><a className="logo" href="#top">christian-bakhit / portfolio</a><button className="commandTrigger" onClick={() => setPaletteOpen(true)}><span>⌕</span> christian-bakhit : portfolio <kbd>Ctrl P</kbd></button><a className="contactLink" href="mailto:chrisbakhit@gmail.com">Contact</a></div>
@@ -408,7 +406,7 @@ export default function Home() {
         <footer><span>© {new Date().getFullYear()} Christian Bakhit</span><div><a href="https://github.com/ChrisBJHU" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/christianbakhit/" target="_blank" rel="noreferrer">LinkedIn</a></div><span>Houston, Texas</span></footer>
       </section>
       {terminalOpen && <section className={`terminalPanel ${terminalTheme}`} aria-label="Portfolio terminal"><header><span>TERMINAL</span><small>{terminalTheme !== "default" ? `${terminalTheme} mode` : "bash"}</small><button onClick={() => { setTerminalLines([]); setTerminalTheme("default"); }}>Clear</button><button onClick={() => setTerminalOpen(false)} aria-label="Close terminal">×</button></header><div className="terminalOutput" aria-live="polite">{terminalLines.map((line, index) => <p key={`${line}-${index}`}>{line}</p>)}</div><form onSubmit={(event) => { event.preventDefault(); runTerminalCommand(terminalInput); }}><span>christian@portfolio:~$</span><input aria-label="Terminal command" value={terminalInput} onChange={(event) => setTerminalInput(event.target.value)} autoComplete="off" spellCheck={false} autoFocus /></form></section>}
-      <div className="statusBar"><button onClick={() => setSidebarOpen((open) => !open)}>⑂ main</button><span>✓ {statusMessage}</span><div className="progressStars" aria-label={`${Math.round(scrollProgress * 100)}% explored`}>{[.12,.3,.5,.7,.9].map((point) => <i className={scrollProgress >= point ? "lit" : ""} key={point}>✦</i>)}</div><button onClick={() => setRecruiterMode((mode) => !mode)}>{recruiterMode ? "Exit Recruiter" : "Recruiter"}</button><button onClick={() => setPaletteOpen(true)}>Ctrl P</button><span>React · TypeScript</span><button onClick={() => setTerminalOpen((open) => !open)}>⌘ Terminal</button></div>
+      <div className="statusBar"><button onClick={() => setSidebarOpen((open) => !open)}>⑂ main</button><span>✓ {statusMessage}</span><div className="progressStars" aria-label={`${Math.round(scrollProgress * 100)}% explored`}>{[.12,.3,.5,.7,.9].map((point) => <i className={scrollProgress >= point ? "lit" : ""} key={point}>✦</i>)}</div><button onClick={() => setPaletteOpen(true)}>Ctrl P</button><span>React · TypeScript</span><button onClick={() => setTerminalOpen((open) => !open)}>⌘ Terminal</button></div>
     </main>
   );
 }
