@@ -245,7 +245,7 @@ main.sidebarOpen { padding-left: 268px; }
 .resumeItem:hover:before { background:var(--teal); box-shadow:0 0 12px rgba(139,233,211,.55); }
 .resumeItem h3 { font-size:27px; }
 .projects { padding-left:clamp(22px,2.6vw,48px); padding-right:clamp(22px,2.6vw,48px); }
-.projectGrid { grid-template-columns:repeat(5,minmax(0,1fr)); gap:14px; margin-left:0; }
+.projectGrid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-left:0; }
 .projectCard { min-height:480px; padding:0 20px 25px; border-color:rgba(255,255,255,.09); box-shadow:none; }
 .projectCard { width:100%; color:inherit; text-align:left; cursor:pointer; font:inherit; appearance:none; -webkit-appearance:none; outline:0; }
 .projectVisual { height:215px; margin:0 -20px 25px; }
@@ -259,6 +259,8 @@ main.sidebarOpen { padding-left: 268px; }
 .projectCard h3 { font-size:26px; }
 .skillsEditor { border-top-color:rgba(139,233,211,.14); }
 .portraitFrame { aspect-ratio:2/3; }
+.hero { max-width:1440px; grid-template-columns:1fr minmax(460px,.95fr); gap:4vw; }
+.profileWrap { width:min(100%,520px); }
 .section { overflow:hidden; }
 .sectionComet { position:absolute; z-index:0; top:13%; right:-190px; width:175px; height:1px; opacity:0; pointer-events:none; background:linear-gradient(90deg,transparent,rgba(139,233,211,.9),rgba(255,255,255,.85)); box-shadow:0 0 10px rgba(139,233,211,.45); transform:rotate(-24deg); animation:sectionFly 14s cubic-bezier(.2,.5,.2,1) infinite; }
 .sectionComet:before { content:""; position:absolute; right:-2px; top:-2px; width:5px; height:5px; border-radius:50%; background:#eafffa; box-shadow:0 0 13px var(--teal),-38px 17px 0 -1px rgba(139,233,211,.4),-76px -22px 0 -1px rgba(255,255,255,.28); }
@@ -338,12 +340,16 @@ main.sidebarOpen { padding-left: 268px; }
 
 @media(max-width: 1100px) {
   .projectGrid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .hero { grid-template-columns:1fr minmax(390px,.8fr); }
+  .profileWrap { width:min(100%,455px); }
 }
 
 @media(max-width: 850px) {
   .projectGrid { grid-template-columns:1fr; margin-left:0; }
   .projectCard { min-height:420px; }
   .projectVisual { height:210px; }
+  .hero { grid-template-columns:1fr; }
+  .profileWrap { width:min(100%,430px); }
   .progressStars { display:none; }
   main.sidebarOpen { padding-left: 48px; }
   .explorerPanel { display: none; }
@@ -363,6 +369,7 @@ main.sidebarOpen { padding-left: 268px; }
 }
 
 @media(max-width: 540px) {
+  .profileWrap { width:min(100%,370px); }
   main.sidebarOpen { padding-left: 0; }
   .desktopMenus { padding-left: 4px; }
   .siteHeader { height: 120px; }
