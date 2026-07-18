@@ -119,9 +119,9 @@ main.sidebarOpen { padding-left: 268px; }
 .contactSky { position:absolute; z-index:0; inset:0; pointer-events:none; }
 .contactSky span { position:absolute; width:4px; height:4px; border-radius:50%; background:#07100d; opacity:.22; }
 .contactSky span:nth-child(1){left:7%;top:21%;width:6px;height:6px}.contactSky span:nth-child(2){left:18%;top:72%;opacity:.14}.contactSky span:nth-child(3){left:34%;top:13%}.contactSky span:nth-child(4){left:52%;top:48%;width:7px;height:7px;opacity:.16}.contactSky span:nth-child(5){left:67%;top:17%;opacity:.28}.contactSky span:nth-child(6){left:79%;top:62%;width:6px;height:6px}.contactSky span:nth-child(7){left:91%;top:28%;opacity:.15}.contactSky span:nth-child(8){left:43%;top:82%}
-.contactSignalArt { position:absolute!important; z-index:1!important; right:5%; top:9%; width:390px; height:280px; color:#07100d; pointer-events:none; opacity:.32; transform:scaleX(-1); }
+.contactSignalArt { position:absolute!important; z-index:1!important; right:5%; top:9%; width:390px; height:280px; color:#07100d; pointer-events:none; opacity:.32; }
 .signalStar { position:absolute; right:15px; top:9px; font-size:34px; line-height:1; text-shadow:0 0 18px rgba(7,16,13,.32); animation:signalStarPulse 3.5s ease-in-out infinite; }
-.signalWaves { position:absolute; right:38px; top:42px; width:210px; height:180px; transform:rotate(-34deg); }
+.signalWaves { position:absolute; right:38px; top:42px; width:210px; height:180px; transform:rotate(-34deg) scaleX(-1); transform-origin:center; }
 .signalWaves i { position:absolute; left:0; bottom:0; width:70px; height:70px; border:3px solid transparent; border-top-color:#07100d; border-radius:50%; opacity:0; animation:contactBroadcast 3.6s ease-out infinite; }
 .signalWaves i:nth-child(2) { animation-delay:1.2s; }.signalWaves i:nth-child(3) { animation-delay:2.4s; }
 .signalDish { position:absolute; left:20px; bottom:16px; width:145px; height:72px; overflow:hidden; border-bottom:9px solid #07100d; border-radius:0 0 100px 100px; transform:rotate(20deg); animation:dishFloat 5s ease-in-out infinite; }
@@ -145,18 +145,18 @@ main.sidebarOpen { padding-left: 268px; }
 .profileConstellation i:nth-of-type(1){left:9%;top:59%;width:105px;transform:rotate(-48deg)}.profileConstellation i:nth-of-type(2){left:30%;top:24%;width:96px;transform:rotate(35deg)}.profileConstellation i:nth-of-type(3){left:54%;top:46%;width:132px;transform:rotate(-30deg)}
 .profileDocument { max-width:900px; }
 .profileRoute { max-width:1160px; margin:auto; }
-.profileBio { position:relative; z-index:2; display:grid; grid-template-columns:minmax(270px,390px) minmax(0,1fr); gap:clamp(48px,7vw,110px); align-items:center; max-width:1120px; margin:36px auto 0; }
-.profilePhoto { position:relative; margin:0; padding:9px; border:1px solid #35403c; background:#0a0e0c; box-shadow:0 28px 70px rgba(0,0,0,.35); }
+.profileBio { position:relative; z-index:2; display:grid; grid-template-columns:minmax(260px,320px) minmax(0,1fr); gap:clamp(46px,5vw,72px); align-items:start; max-width:1080px; margin:44px auto 0; padding-top:42px; border-top:1px solid #35403c; }
+.profilePhoto { position:relative; width:100%; margin:0; padding:9px; border:1px solid #35403c; background:#0a0e0c; box-shadow:0 28px 70px rgba(0,0,0,.35); transform:rotate(-1deg); }
 .profilePhoto img { position:relative; z-index:1; display:block; width:100%; aspect-ratio:4/5; object-fit:cover; filter:saturate(.78); transition:filter .45s ease; }
 .profilePhoto:hover img { filter:saturate(1); }
 .profilePhoto figcaption { position:relative; z-index:2; display:flex; justify-content:space-between; gap:12px; padding:13px 5px 4px; color:#dbe2df; font:600 8px var(--font-mono); text-transform:uppercase; letter-spacing:.09em; }
-.profilePhotoOrbit { position:absolute; z-index:0; inset:-38px; border:1px solid rgba(139,233,211,.12); border-radius:50%; transform:rotate(-18deg); animation:profileOrbit 18s linear infinite; }
+.profilePhotoOrbit { position:absolute; z-index:0; inset:-20px; border:1px solid rgba(139,233,211,.11); border-radius:50%; transform:rotate(-12deg); animation:profileOrbit 18s linear infinite; }
 .profilePhotoOrbit:before { content:""; position:absolute; inset:22px -15px; border:1px solid rgba(139,233,211,.08); border-radius:50%; }
 .profilePhotoOrbit i { position:absolute; width:5px; height:5px; border-radius:50%; background:var(--teal); box-shadow:0 0 12px var(--teal); }
 .profilePhotoOrbit i:nth-child(1){left:14%;top:20%}.profilePhotoOrbit i:nth-child(2){right:8%;top:47%}.profilePhotoOrbit i:nth-child(3){left:36%;bottom:1%}
-.profileCopy { max-width:650px; }
+.profileCopy { max-width:680px; padding-top:5px; }
 .profileEyebrow { margin:0 0 17px!important; color:var(--teal)!important; font:650 10px var(--font-mono)!important; letter-spacing:.18em; }
-.profileCopy h2 { margin:0 0 28px; color:#f0f4f2; font-size:clamp(52px,6vw,82px); line-height:.9; letter-spacing:-.065em; }
+.profileCopy h2 { margin:0 0 28px; color:#f0f4f2; font-size:clamp(48px,5vw,70px); line-height:.92; letter-spacing:-.06em; }
 .profileCopy>p:not(.profileEyebrow) { margin:0 0 18px; color:#adb6b2; font-size:15px; line-height:1.78; }
 .profileFacts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); margin-top:34px; border-top:1px solid #343d39; border-left:1px solid #343d39; }
 .profileFacts div { min-height:94px; padding:17px 18px; border-right:1px solid #343d39; border-bottom:1px solid #343d39; background:rgba(255,255,255,.012); }
@@ -400,7 +400,7 @@ main.sidebarOpen { padding-left: 268px; }
 }
 
 @media(max-width: 540px) {
-  .contactSignalArt { right:-92px; top:19%; width:300px; height:220px; opacity:.16; transform:scaleX(-1) scale(.82); transform-origin:center; }
+  .contactSignalArt { right:-92px; top:19%; width:300px; height:220px; opacity:.16; transform:scale(.82); transform-origin:center; }
   .profileWrap { width:min(100%,370px); }
   main.sidebarOpen { padding-left: 0; }
   .desktopMenus { padding-left: 4px; }
