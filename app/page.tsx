@@ -102,6 +102,7 @@ export default function Home() {
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
   const [terminalLines, setTerminalLines] = useState(["Christian Portfolio Terminal", "Type 'help' to see available commands."]);
+  const [terminalTheme, setTerminalTheme] = useState<"default" | "matrix" | "space">("default");
   const [statusMessage, setStatusMessage] = useState("portfolio online");
   const scrollingToSection = useRef<string | null>(null);
 
@@ -169,19 +170,35 @@ export default function Home() {
   const runTerminalCommand = (rawCommand: string) => {
     const command = rawCommand.trim().toLowerCase();
     if (!command) return;
-    const responses: Record<string, string> = {
-      help: "Commands: whoami, projects, experience, resume, contact, clear",
-      whoami: "Christian Bakhit — Full-Stack Engineer · AI · Cloud",
-      projects: "Opening projects.json…",
-      experience: "Opening experience.js…",
-      resume: "Opening resume.pdf…",
-      contact: "chrisbakhit@gmail.com",
+    const responses: Record<string, string[]> = {
+      help: ["Commands: whoami, ls, projects, experience, skills, resume, contact, neofetch, git status, clear, exit", "Tip: good terminals reward curiosity."],
+      whoami: ["Christian Bakhit — Full-Stack Engineer · AI · Cloud"],
+      ls: ["home.tsx   profile.md   experience.js", "projects.json   skills.json   resume.pdf   .secrets/"],
+      projects: ["Opening projects.json…"],
+      experience: ["Opening experience.js…"],
+      skills: ["Opening skills.json…"],
+      resume: ["Opening resume.pdf…"],
+      contact: ["chrisbakhit@gmail.com"],
+      neofetch: ["christian@portfolio", "OS: Houston / Web", "Shell: React + TypeScript", "Cloud: AWS", "Editor: Codex", "Uptime: always learning"],
+      "git status": ["On branch main", "Your portfolio is up to date.", "nothing to commit, still building things"],
+      coffee: ["Brewing…", "[██████████] 100%", "Coffee compiled successfully. No warnings."],
+      "sudo hire christian": ["Permission granted.", "Opening mail client…"],
+      "cat .secrets/mission.txt": ["Build useful software. Stay curious. Help good teams ship."],
+      "cat resume.md": ["Nice try — the real one is resume.pdf. Run: resume"],
+      "42": ["The answer is 42. The implementation is probably TypeScript."],
+      clove: ["Controller selected: CLOVE", "Pick me up again. I dare you.", "Teal energy output: stable."],
+      secret: ["Achievement unlocked: inspected the source of the source."],
     };
-    if (command === "clear") setTerminalLines([]);
-    else setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, responses[command] || `command not found: ${command}`]);
+    if (command === "clear") { setTerminalLines([]); setTerminalTheme("default"); }
+    else if (command === "matrix") { setTerminalTheme("matrix"); setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, "Wake up, Christian…", "The portfolio has you."]); }
+    else if (command === "space") { setTerminalTheme("space"); setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, "⋆｡°✩ Launching portfolio into orbit…", "Houston, we have a deployment."]); }
+    else if (command === "exit") { setTerminalOpen(false); setTerminalTheme("default"); }
+    else setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, ...(responses[command] || [`command not found: ${command}`, "Try 'help' — or experiment."])]);
     if (command === "projects") jumpTo("#projects");
     if (command === "experience") jumpTo("#experience");
+    if (command === "skills") jumpTo("#skills");
     if (command === "resume") window.open("/Christian_Bakhit_Resume.pdf", "_blank");
+    if (command === "sudo hire christian") window.location.href = "mailto:chrisbakhit@gmail.com?subject=Let%27s%20work%20together";
     setTerminalInput("");
   };
 
@@ -314,7 +331,7 @@ export default function Home() {
         <a data-reveal href="mailto:chrisbakhit@gmail.com">chrisbakhit@gmail.com <span>↗</span></a>
         <footer><span>© {new Date().getFullYear()} Christian Bakhit</span><div><a href="https://github.com/ChrisBJHU" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/christianbakhit/" target="_blank" rel="noreferrer">LinkedIn</a></div><span>Houston, Texas</span></footer>
       </section>
-      {terminalOpen && <section className="terminalPanel" aria-label="Portfolio terminal"><header><span>TERMINAL</span><button onClick={() => setTerminalLines([])}>Clear</button><button onClick={() => setTerminalOpen(false)} aria-label="Close terminal">×</button></header><div className="terminalOutput">{terminalLines.map((line, index) => <p key={`${line}-${index}`}>{line}</p>)}</div><form onSubmit={(event) => { event.preventDefault(); runTerminalCommand(terminalInput); }}><span>christian@portfolio:~$</span><input aria-label="Terminal command" value={terminalInput} onChange={(event) => setTerminalInput(event.target.value)} autoComplete="off" spellCheck={false} /></form></section>}
+      {terminalOpen && <section className={`terminalPanel ${terminalTheme}`} aria-label="Portfolio terminal"><header><span>TERMINAL</span><small>{terminalTheme !== "default" ? `${terminalTheme} mode` : "bash"}</small><button onClick={() => { setTerminalLines([]); setTerminalTheme("default"); }}>Clear</button><button onClick={() => setTerminalOpen(false)} aria-label="Close terminal">×</button></header><div className="terminalOutput" aria-live="polite">{terminalLines.map((line, index) => <p key={`${line}-${index}`}>{line}</p>)}</div><form onSubmit={(event) => { event.preventDefault(); runTerminalCommand(terminalInput); }}><span>christian@portfolio:~$</span><input aria-label="Terminal command" value={terminalInput} onChange={(event) => setTerminalInput(event.target.value)} autoComplete="off" spellCheck={false} autoFocus /></form></section>}
       <div className="statusBar"><button onClick={() => setSidebarOpen((open) => !open)}>⑂ main</button><span>✓ {statusMessage}</span><button onClick={() => setPaletteOpen(true)}>Ctrl P</button><span>React · TypeScript</span><button onClick={() => setTerminalOpen((open) => !open)}>⌘ Terminal</button></div>
     </main>
   );
