@@ -1,0 +1,5 @@
+.activityRail a.active {
+  color: #eef4f1;
+  background: #151a18;
+  border-left-color: var(--teal);
+}
