@@ -248,6 +248,7 @@ export default function Home() {
       <section className="hero" id="top">
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><span>src</span><b>›</b><strong>home.tsx</strong></div>
         <div className="heroText" data-reveal>
+          <p className="codeComment">// home.tsx — full-stack engineering, AI, and cloud systems</p>
           <span className="status"><i /> Open to opportunities</span>
           <p className="kicker">Full-Stack Engineering · AI · Cloud</p>
           <h1>Christian<br />Bakhit</h1>
@@ -268,6 +269,7 @@ export default function Home() {
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>profile.md</strong></div>
         <div className="sectionTitle" data-reveal><span>01</span><h2>Profile</h2></div>
         <div className="aboutContent" data-reveal>
+          <p className="codeComment">// profile.md — background, approach, and the person behind the work</p>
           <p className="largeCopy">I build modern software across the stack, from responsive interfaces to cloud back ends and AI-powered workflows.</p>
           <div className="realProfileGrid"><figure className="realPhoto"><img src="/christian-profile.webp" alt="Christian Bakhit at Washington Square Park" /><figcaption><span>christian-profile.webp</span><small>New York, NY</small></figcaption></figure><div className="aboutColumns"><p>My recent work combines React front ends, REST APIs, AWS Lambda, DynamoDB, and large language models to deliver production tools for patent intelligence and portfolio analysis.</p><p>I am comfortable moving quickly across unfamiliar systems, making end-to-end technical decisions, and translating complex engineering work for non-technical partners.</p></div></div>
         </div>
@@ -275,6 +277,7 @@ export default function Home() {
 
       <section className="resume section" id="experience">
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>experience.js</strong></div>
+        <p className="codeComment" data-reveal>// experience.js — roles, responsibilities, and shipped outcomes</p>
         <div className="sectionTitle" data-reveal><span>02</span><h2>Experience</h2></div>
         <div className="resumeList">
           {experience.map((item) => <article className="resumeItem" key={item.role + item.company} data-reveal><div className="resumeDate">{item.dates}</div><div><h3>{item.role}</h3><p className="company">{item.company}</p><ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul></div></article>)}
@@ -283,6 +286,7 @@ export default function Home() {
 
       <section className="projects section" id="projects">
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>projects.json</strong></div>
+        <p className="codeComment" data-reveal>// projects.json — selected products, platforms, and community builds</p>
         <div className="sectionTitle" data-reveal><span>03</span><h2>Selected projects</h2></div>
         <div className="projectGrid">
           {projects.map(([title, description, tags, href, image], index) => <a href={href} target="_blank" rel="noreferrer" className="projectCard" key={title} data-reveal><div className="projectVisual"><img src={image} alt={`${title} website preview`} /><span className="cardNumber">{String(index + 1).padStart(2, "0")}</span></div><div className="projectCopy"><h3>{title}</h3><p>{description}</p></div><footer><span>{tags}</span><b>↗</b></footer></a>)}
@@ -292,7 +296,7 @@ export default function Home() {
       <section className="skillsEditor section" id="skills">
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><span>data</span><b>›</b><strong>skills.json</strong></div>
         <p className="codeComment" data-reveal>// skills.json — technologies I use to ship real products</p>
-        <div className="skillsHeading" data-reveal><h2>Skills</h2><code>{`{ "status": "always_learning", "focus": "building_useful_software" }`}</code></div>
+        <div className="skillsHeading" data-reveal><h2>Skills</h2></div>
         <div className="skillGroupGrid">
           {skillGroups.map((group, groupIndex) => <article className="skillGroup" data-reveal key={group.title} style={{ "--group-index": groupIndex } as React.CSSProperties}><header><span>{String(groupIndex + 1).padStart(2, "0")}</span><h3>{group.title}</h3><small>{group.skills.length} capabilities</small></header><div className="skillOrbitGrid">{group.skills.map(([name, level], skillIndex) => <div className="skillNode" key={name}><div className="skillGauge" style={{ "--level": level, "--skill-color": `var(--skill-${(groupIndex + skillIndex) % 5})`, "--node-index": skillIndex } as React.CSSProperties}><span>{level}</span></div><strong>{name}</strong></div>)}</div></article>)}
         </div>
@@ -300,10 +304,11 @@ export default function Home() {
       </section>
 
       <section className="details educationOnly section">
-        <div className="education" data-reveal><span className="miniLabel">Education</span><h2>Georgia Institute of Technology</h2><p>M.S. Computer Science (OMSCS)</p><small>Aug 2025 — Aug 2027</small><h2>Johns Hopkins University</h2><p>B.S. Computer Science & Applied Mathematics and Statistics</p><small>Aug 2020 — May 2024</small></div>
+        <div className="education" data-reveal><p className="codeComment">// education.md — computer science, mathematics, and continued study</p><span className="miniLabel">Education</span><h2>Georgia Institute of Technology</h2><p>M.S. Computer Science (OMSCS)</p><small>Aug 2025 — Aug 2027</small><h2>Johns Hopkins University</h2><p>B.S. Computer Science & Applied Mathematics and Statistics</p><small>Aug 2020 — May 2024</small></div>
       </section>
 
       <section className="contact" id="contact">
+        <p className="contactComment" data-reveal>// contact.css — start a conversation</p>
         <p data-reveal>Full-stack engineering, AI-assisted products, and cloud systems.</p>
         <h2 data-reveal>Let&apos;s talk.</h2>
         <a data-reveal href="mailto:chrisbakhit@gmail.com">chrisbakhit@gmail.com <span>↗</span></a>
