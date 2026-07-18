@@ -342,25 +342,11 @@ export default function Home() {
 
       <section className="about section" id="about">
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>profile.md</strong></div>
-        <article className="profileBio" data-reveal>
-          <figure className="profilePhoto">
-            <img src="/christian-profile.webp" alt="Christian Bakhit at Washington Square Park" />
-            <figcaption><b>Christian Bakhit</b><span>Houston, Texas</span></figcaption>
-          </figure>
-          <div className="profileCopy">
-            <p className="profileEyebrow">BIOGRAPHY</p>
-            <h2>About me</h2>
-            <p>Hi, I&apos;m Christian. I&apos;m a full-stack engineer in Houston, currently building software at Supercharge and working toward my M.S. in Computer Science at Georgia Tech.</p>
-            <p>Most of my work sits between React, APIs, AWS, and applied AI. Before Supercharge, I worked in patent examination, research software, education, and community projects. I like learning unfamiliar domains, turning messy requirements into something useful, and staying close to the work until it ships.</p>
-            <div className="profileFacts">
-              <div><small>LOCATION</small><strong>Houston, TX</strong></div>
-              <div><small>CURRENTLY</small><strong>Full-Stack Developer at Supercharge</strong></div>
-              <div><small>EDUCATION</small><strong>Georgia Tech · M.S. Computer Science</strong></div>
-              <div><small>BACKGROUND</small><strong>Johns Hopkins · CS + Applied Math &amp; Statistics</strong></div>
-            </div>
-            <div className="profileLinks"><a href="/Christian_Bakhit_Resume.pdf" target="_blank">View resume ↗</a><a href="mailto:chrisbakhit@gmail.com">Email me ↗</a></div>
-          </div>
-        </article>
+        <div className="sectionTitle" data-reveal><span>01</span><h2>Profile</h2></div>
+        <div className="aboutContent" data-reveal>
+          <p className="largeCopy">I build modern software across the stack, from responsive interfaces to cloud back ends and AI-powered workflows.</p>
+          <div className="realProfileGrid"><figure className="realPhoto"><img src="/christian-profile.webp" alt="Christian Bakhit at Washington Square Park" /><figcaption><span>christian-profile.webp</span><small>New York, NY</small></figcaption></figure><div className="aboutColumns"><p>My recent work combines React front ends, REST APIs, AWS Lambda, DynamoDB, and large language models to deliver production tools for patent intelligence and portfolio analysis.</p><p>I am comfortable moving quickly across unfamiliar systems, making end-to-end technical decisions, and translating complex engineering work for non-technical partners.</p></div></div>
+        </div>
       </section>
 
       <section className="resume section" id="experience">
