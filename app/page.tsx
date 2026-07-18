@@ -341,19 +341,25 @@ export default function Home() {
       </section>
 
       <section className="about section" id="about">
-        <nav className="profileConstellation" aria-label="Profile constellation"><button onClick={() => jumpTo("#experience")} data-label="Supercharge" /><button onClick={() => jumpTo("#education")} data-label="Georgia Tech" /><button onClick={() => jumpTo("#education")} data-label="Johns Hopkins" /><button onClick={() => jumpTo("#skills")} data-label="Engineering" /><button onClick={() => jumpTo("#contact")} data-label="Houston" /><i /><i /><i /></nav>
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>profile.md</strong></div>
-        <article className="profileRoute" data-reveal>
-          <header className="routeIntro"><div className="routeFile"><span>01</span><b>PROFILE / README</b></div><h2>More than a title.<br /><em>Here&apos;s the route.</em></h2><p>Christian is a full-stack engineer who moves comfortably between product thinking, cloud architecture, and applied AI.</p></header>
-          <div className="routeMap">
-            <div className="routeTrack" aria-hidden="true"><i /><i /><i /><i /></div>
-            <figure className="routePortrait"><img src="/christian-profile.webp" alt="Christian Bakhit at Washington Square Park" /><figcaption><b>Christian Bakhit</b><span>Houston, Texas</span></figcaption></figure>
-            <div className="routeStops">
-              <article><span className="stopIndex">01</span><small>ORIGIN</small><h3>Computer science meets applied mathematics.</h3><p>Johns Hopkins built the technical foundation; Georgia Tech is extending it through graduate study in computer science.</p></article>
-              <article><span className="stopIndex">02</span><small>CURRENT STOP</small><h3>Building at Supercharge.</h3><p>Turning complex patent evidence into practical software for research, portfolio analysis, and licensing strategy.</p></article>
-              <article><span className="stopIndex">03</span><small>HOW I MOVE</small><h3>From ambiguity to shipped product.</h3><p>I connect React interfaces, APIs, AWS systems, data models, and AI workflows—then stay accountable for the result.</p></article>
-              <article><span className="stopIndex">04</span><small>NEXT</small><h3>Useful systems with real leverage.</h3><p>The goal is simple: own the outcome, explain the tradeoffs, and ship the part that matters.</p></article>
+        <article className="profileBio" data-reveal>
+          <figure className="profilePhoto">
+            <div className="profilePhotoOrbit" aria-hidden="true"><i /><i /><i /></div>
+            <img src="/christian-profile.webp" alt="Christian Bakhit at Washington Square Park" />
+            <figcaption><b>Christian Bakhit</b><span>Houston, Texas</span></figcaption>
+          </figure>
+          <div className="profileCopy">
+            <p className="profileEyebrow">BIOGRAPHY</p>
+            <h2>About me</h2>
+            <p>Hi, I&apos;m Christian. I&apos;m a full-stack engineer in Houston, currently building software at Supercharge and working toward my M.S. in Computer Science at Georgia Tech.</p>
+            <p>Most of my work sits between React, APIs, AWS, and applied AI. Before Supercharge, I worked in patent examination, research software, education, and community projects. I like learning unfamiliar domains, turning messy requirements into something useful, and staying close to the work until it ships.</p>
+            <div className="profileFacts">
+              <div><small>LOCATION</small><strong>Houston, TX</strong></div>
+              <div><small>CURRENTLY</small><strong>Full-Stack Developer at Supercharge</strong></div>
+              <div><small>EDUCATION</small><strong>Georgia Tech · M.S. Computer Science</strong></div>
+              <div><small>BACKGROUND</small><strong>Johns Hopkins · CS + Applied Math &amp; Statistics</strong></div>
             </div>
+            <div className="profileLinks"><a href="/Christian_Bakhit_Resume.pdf" target="_blank">View resume ↗</a><a href="mailto:chrisbakhit@gmail.com">Email me ↗</a></div>
           </div>
         </article>
       </section>
