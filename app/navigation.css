@@ -62,7 +62,7 @@ main.sidebarOpen { padding-left: 268px; }
 .explorerPanel {
   position: fixed;
   z-index: 29;
-  top: 120px;
+  top: 78px;
   bottom: 25px;
   left: 48px;
   width: 220px;
@@ -75,6 +75,32 @@ main.sidebarOpen { padding-left: 268px; }
   font: 500 10px var(--font-mono);
   box-shadow: 15px 0 35px rgba(0,0,0,.14);
 }
+.skillsEditor {
+  --skill-0: #ff66c4;
+  --skill-1: #ff9f43;
+  --skill-2: #ffd166;
+  --skill-3: #45c8f5;
+  --skill-4: #9b6cff;
+  max-width: none;
+  padding-left: max(6vw, calc((100vw - 1320px)/2 + 6vw));
+  padding-right: max(6vw, calc((100vw - 1320px)/2 + 6vw));
+  background: #111413;
+}
+.codeComment { margin: 0 0 22px; color: #74a96e; font: 500 13px var(--font-mono); font-style: italic; }
+.skillsHeading { margin-bottom: 58px; }
+.skillsHeading h2 { margin: 0 0 13px; font-size: clamp(42px,5vw,68px); line-height: 1; letter-spacing: -.055em; }
+.skillsHeading code { color: #7f8985; font: 500 12px var(--font-mono); }
+.skillGroupGrid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 60px 6vw; }
+.skillGroup h3 { margin: 0 0 20px; padding-bottom: 13px; border-bottom: 1px solid #343a38; color: #e8dfad; font: 650 12px var(--font-mono); text-transform: uppercase; letter-spacing: .18em; }
+.skillRow { min-height: 32px; display: grid; grid-template-columns: 125px 1fr 38px; gap: 14px; align-items: center; color: #909a96; font: 500 11px var(--font-mono); }
+.skillRow i { height: 2px; overflow: hidden; background: #2a302e; }
+.skillRow i b { display: block; height: 100%; background: var(--skill-color); box-shadow: 0 0 8px color-mix(in srgb,var(--skill-color),transparent 35%); }
+.skillRow em { color: var(--skill-color); font-style: normal; text-align: right; }
+.familiarTools { margin-top: 72px; padding-top: 28px; border-top: 1px solid #303735; }
+.familiarTools > span { color: #8d9793; font: 500 10px var(--font-mono); text-transform: uppercase; letter-spacing: .14em; }
+.familiarTools > div { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.familiarTools b { padding: 8px 11px; border: 1px solid #343c39; border-radius: 2px; color: #aeb8b4; background: #171b1a; font: 500 10px var(--font-mono); }
+.educationOnly { grid-template-columns: minmax(0,760px); }
 .explorerTitle { height: 31px; display: flex; justify-content: space-between; align-items: center; padding: 0 12px; color: #818b87; letter-spacing: .09em; }
 .explorerTitle button { border: 0; background: transparent; color: #7f8a85; font-size: 18px; cursor: pointer; }
 .explorerPanel > strong { padding: 9px 11px; color: #dbe2df; font-size: 9px; letter-spacing: .04em; }
@@ -114,6 +140,7 @@ main.sidebarOpen { padding-left: 268px; }
   .desktopMenus { overflow-x: auto; scrollbar-width: none; }
   .menuRoot > button { padding: 0 8px; }
   .sidebarOpen .terminalPanel { left: 48px; }
+  .skillGroupGrid { grid-template-columns: 1fr; }
 }
 
 @media(max-width: 540px) {
@@ -121,4 +148,6 @@ main.sidebarOpen { padding-left: 268px; }
   .desktopMenus { padding-left: 4px; }
   .siteHeader { height: 120px; }
   .terminalPanel,.sidebarOpen .terminalPanel { left: 0; }
+  .skillsEditor { padding-left: 20px; padding-right: 20px; }
+  .skillRow { grid-template-columns: 105px 1fr 34px; gap: 9px; }
 }

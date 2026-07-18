@@ -85,6 +85,15 @@ const projects = [
   ["St. Stephen", "A modern church website for services, events, ministries, announcements, and community communication.", "Next.js · Content · Community", "https://ststephencypresstx.org/", "/projects/st-stephen.png"],
 ];
 
+const skillGroups = [
+  { title: "Languages", skills: [["Python", 90], ["JavaScript", 92], ["Java", 82], ["C#", 80], ["C++", 76]] },
+  { title: "Frontend", skills: [["React", 94], ["Next.js", 90], ["HTML / CSS", 94], ["Responsive Design", 92]] },
+  { title: "Cloud & Backend", skills: [["Node.js", 91], ["REST APIs", 94], ["AWS Lambda", 90], ["DynamoDB", 86], ["PostgreSQL", 84]] },
+  { title: "AI Engineering", skills: [["OpenAI API", 91], ["Anthropic API", 85], ["Codex", 95], ["LLM Workflows", 90], ["RAG Systems", 82]] },
+  { title: "DevOps & Tools", skills: [["Git", 94], ["Docker", 84], ["Kubernetes", 76], ["Azure", 78], ["Firebase", 84]] },
+  { title: "Product Engineering", skills: [["System Design", 88], ["Technical Writing", 90], ["Agile Leadership", 87], ["Rapid Prototyping", 94]] },
+];
+
 export default function Home() {
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("top");
@@ -112,7 +121,7 @@ export default function Home() {
         if (!reachedTop && !reachedSection && !reachedPageEnd) return;
         scrollingToSection.current = null;
       }
-      const sections = ["top", "about", "experience", "projects"];
+      const sections = ["top", "about", "experience", "projects", "skills"];
       const current = sections.reduce((active, id) => {
         const element = document.getElementById(id);
         return element && element.getBoundingClientRect().top <= 180 ? id : active;
@@ -203,6 +212,7 @@ export default function Home() {
       { label: "profile.md", action: () => jumpTo("#about") },
       { label: "experience.js", action: () => jumpTo("#experience") },
       { label: "projects.json", action: () => jumpTo("#projects") },
+      { label: "skills.json", action: () => jumpTo("#skills") },
     ],
     Run: [
       { label: "Start Terminal", shortcut: "Ctrl+`", action: () => { setTerminalOpen(true); setActiveMenu(null); } },
@@ -226,14 +236,14 @@ export default function Home() {
       <header className="siteHeader">
         <div className="windowBar"><div className="windowDots" aria-hidden="true"><i /><i /><i /></div><a className="logo" href="#top">christian-bakhit / portfolio</a><button className="commandTrigger" onClick={() => setPaletteOpen(true)}><span>⌕</span> christian-bakhit : portfolio <kbd>Ctrl P</kbd></button><a className="contactLink" href="mailto:chrisbakhit@gmail.com">Contact</a></div>
         <nav className="desktopMenus" aria-label="Application menu" onClick={(event) => event.stopPropagation()}>{Object.keys(menuItems).map((menu) => <div className="menuRoot" key={menu}><button aria-expanded={activeMenu === menu} onClick={() => setActiveMenu(activeMenu === menu ? null : menu)}>{menu}</button>{activeMenu === menu && <div className="menuDropdown" role="menu">{menuItems[menu].map((item) => <button role="menuitem" key={item.label} onClick={item.action}><span>{item.label}</span>{item.shortcut && <kbd>{item.shortcut}</kbd>}</button>)}</div>}</div>)}</nav>
-        <nav className="fileTabs" aria-label="Portfolio files"><a className={activeSection === "top" ? "active" : undefined} aria-current={activeSection === "top" ? "page" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#top"); }} href="#top"><i className="tsIcon">TS</i>home.tsx</a><a className={activeSection === "about" ? "active" : undefined} aria-current={activeSection === "about" ? "page" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#about"); }} href="#about"><i className="mdIcon">#</i>profile.md</a><a className={activeSection === "experience" ? "active" : undefined} aria-current={activeSection === "experience" ? "page" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#experience"); }} href="#experience"><i className="jsIcon">JS</i>experience.js</a><a className={activeSection === "projects" ? "active" : undefined} aria-current={activeSection === "projects" ? "page" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#projects"); }} href="#projects"><i className="jsonIcon">{`{}`}</i>projects.json</a><a href="/Christian_Bakhit_Resume.pdf" target="_blank"><i className="pdfIcon">PDF</i>resume.pdf</a></nav>
+        <nav className="fileTabs" aria-label="Portfolio files"><a className={activeSection === "top" ? "active" : undefined} aria-current={activeSection === "top" ? "page" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#top"); }} href="#top"><i className="tsIcon">TS</i>home.tsx</a><a className={activeSection === "about" ? "active" : undefined} aria-current={activeSection === "about" ? "page" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#about"); }} href="#about"><i className="mdIcon">#</i>profile.md</a><a className={activeSection === "experience" ? "active" : undefined} aria-current={activeSection === "experience" ? "page" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#experience"); }} href="#experience"><i className="jsIcon">JS</i>experience.js</a><a className={activeSection === "projects" ? "active" : undefined} aria-current={activeSection === "projects" ? "page" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#projects"); }} href="#projects"><i className="jsonIcon">{`{}`}</i>projects.json</a><a className={activeSection === "skills" ? "active" : undefined} aria-current={activeSection === "skills" ? "page" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#skills"); }} href="#skills"><i className="jsonIcon">{`{}`}</i>skills.json</a><a href="/Christian_Bakhit_Resume.pdf" target="_blank"><i className="pdfIcon">PDF</i>resume.pdf</a></nav>
       </header>
 
-      <aside className="activityRail" aria-label="Quick navigation"><a className={activeSection === "top" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#top"); }} href="#top" aria-label="Home">⌂</a><a className={activeSection === "about" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#about"); }} href="#about" aria-label="Profile">◎</a><a className={activeSection === "experience" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#experience"); }} href="#experience" aria-label="Experience">⑂</a><a className={activeSection === "projects" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#projects"); }} href="#projects" aria-label="Projects">◇</a><a href="mailto:chrisbakhit@gmail.com" aria-label="Email">✉</a></aside>
+      <aside className="activityRail" aria-label="Quick navigation"><a className={activeSection === "top" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#top"); }} href="#top" aria-label="Home">⌂</a><a className={activeSection === "about" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#about"); }} href="#about" aria-label="Profile">◎</a><a className={activeSection === "experience" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#experience"); }} href="#experience" aria-label="Experience">⑂</a><a className={activeSection === "projects" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#projects"); }} href="#projects" aria-label="Projects">◇</a><a className={activeSection === "skills" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#skills"); }} href="#skills" aria-label="Skills">{`{}`}</a><a href="mailto:chrisbakhit@gmail.com" aria-label="Email">✉</a></aside>
 
-      {sidebarOpen && <aside className="explorerPanel" aria-label="Portfolio explorer"><div className="explorerTitle"><span>EXPLORER</span><button onClick={() => setSidebarOpen(false)} aria-label="Close explorer">×</button></div><strong>⌄ CHRISTIAN-PORTFOLIO</strong><button className={activeSection === "top" ? "active" : undefined} onClick={() => jumpTo("#top")}><i className="tsIcon">TS</i> home.tsx</button><button className={activeSection === "about" ? "active" : undefined} onClick={() => jumpTo("#about")}><i className="mdIcon">#</i> profile.md</button><button className={activeSection === "experience" ? "active" : undefined} onClick={() => jumpTo("#experience")}><i className="jsIcon">JS</i> experience.js</button><button className={activeSection === "projects" ? "active" : undefined} onClick={() => jumpTo("#projects")}><i className="jsonIcon">{`{}`}</i> projects.json</button><a href="/Christian_Bakhit_Resume.pdf" target="_blank"><i className="pdfIcon">PDF</i> resume.pdf <span>↓</span></a><div className="explorerBranch">⑂ main <span>✓</span></div></aside>}
+      {sidebarOpen && <aside className="explorerPanel" aria-label="Portfolio explorer"><div className="explorerTitle"><span>EXPLORER</span><button onClick={() => setSidebarOpen(false)} aria-label="Close explorer">×</button></div><strong>⌄ CHRISTIAN-PORTFOLIO</strong><button className={activeSection === "top" ? "active" : undefined} onClick={() => jumpTo("#top")}><i className="tsIcon">TS</i> home.tsx</button><button className={activeSection === "about" ? "active" : undefined} onClick={() => jumpTo("#about")}><i className="mdIcon">#</i> profile.md</button><button className={activeSection === "experience" ? "active" : undefined} onClick={() => jumpTo("#experience")}><i className="jsIcon">JS</i> experience.js</button><button className={activeSection === "projects" ? "active" : undefined} onClick={() => jumpTo("#projects")}><i className="jsonIcon">{`{}`}</i> projects.json</button><button className={activeSection === "skills" ? "active" : undefined} onClick={() => jumpTo("#skills")}><i className="jsonIcon">{`{}`}</i> skills.json</button><a href="/Christian_Bakhit_Resume.pdf" target="_blank"><i className="pdfIcon">PDF</i> resume <span>↓</span></a><div className="explorerBranch">⑂ main <span>✓</span></div></aside>}
 
-      {paletteOpen && <div className="paletteBackdrop" onMouseDown={() => setPaletteOpen(false)}><div className="commandPalette" role="dialog" aria-modal="true" aria-label="Go to portfolio section" onMouseDown={(event) => event.stopPropagation()}><div className="paletteInput"><span>›</span><strong>Go to file or section</strong><kbd>ESC</kbd></div><button onClick={() => jumpTo("#top")}><i className="tsIcon">TS</i><span><b>home.tsx</b><small>Introduction and résumé</small></span></button><button onClick={() => jumpTo("#about")}><i className="mdIcon">#</i><span><b>profile.md</b><small>Real photo and background</small></span></button><button onClick={() => jumpTo("#experience")}><i className="jsIcon">JS</i><span><b>experience.js</b><small>Combined work history</small></span></button><button onClick={() => jumpTo("#projects")}><i className="jsonIcon">{`{}`}</i><span><b>projects.json</b><small>Live builds and site previews</small></span></button></div></div>}
+      {paletteOpen && <div className="paletteBackdrop" onMouseDown={() => setPaletteOpen(false)}><div className="commandPalette" role="dialog" aria-modal="true" aria-label="Go to portfolio section" onMouseDown={(event) => event.stopPropagation()}><div className="paletteInput"><span>›</span><strong>Go to file or section</strong><kbd>ESC</kbd></div><button onClick={() => jumpTo("#top")}><i className="tsIcon">TS</i><span><b>home.tsx</b><small>Introduction and résumé</small></span></button><button onClick={() => jumpTo("#about")}><i className="mdIcon">#</i><span><b>profile.md</b><small>Real photo and background</small></span></button><button onClick={() => jumpTo("#experience")}><i className="jsIcon">JS</i><span><b>experience.js</b><small>Combined work history</small></span></button><button onClick={() => jumpTo("#projects")}><i className="jsonIcon">{`{}`}</i><span><b>projects.json</b><small>Live builds and site previews</small></span></button><button onClick={() => jumpTo("#skills")}><i className="jsonIcon">{`{}`}</i><span><b>skills.json</b><small>Technical stack and tools</small></span></button></div></div>}
 
       <section className="hero" id="top">
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><span>src</span><b>›</b><strong>home.tsx</strong></div>
@@ -279,9 +289,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="details section">
+      <section className="skillsEditor section" id="skills">
+        <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><span>data</span><b>›</b><strong>skills.json</strong></div>
+        <p className="codeComment" data-reveal>// skills.json — technologies I use to ship real products</p>
+        <div className="skillsHeading" data-reveal><h2>Skills</h2><code>{`{ "status": "always_learning", "focus": "building_useful_software" }`}</code></div>
+        <div className="skillGroupGrid">
+          {skillGroups.map((group, groupIndex) => <article className="skillGroup" data-reveal key={group.title}><h3>{group.title}</h3>{group.skills.map(([name, level], skillIndex) => <div className="skillRow" key={name}><span>{name}</span><i><b style={{ width: `${level}%`, "--skill-color": `var(--skill-${(groupIndex + skillIndex) % 5})` } as React.CSSProperties} /></i><em>{level}%</em></div>)}</article>)}
+        </div>
+        <div className="familiarTools" data-reveal><span>Also familiar with</span><div>{["Azure", "Firebase", "SQL", "C++", "C#", "JIRA", "Unity", "Figma", "MLOps", "Vector DBs", "Cloudflare", "Vercel"].map((skill) => <b key={skill}>{skill}</b>)}</div></div>
+      </section>
+
+      <section className="details educationOnly section">
         <div className="education" data-reveal><span className="miniLabel">Education</span><h2>Georgia Institute of Technology</h2><p>M.S. Computer Science (OMSCS)</p><small>Aug 2025 — Aug 2027</small><h2>Johns Hopkins University</h2><p>B.S. Computer Science & Applied Mathematics and Statistics</p><small>Aug 2020 — May 2024</small></div>
-        <div className="skills" data-reveal><span className="miniLabel">Technical skills</span><div>{["Python", "JavaScript", "Java", "C#", "C++", "React", "Node.js", "REST APIs", "AWS Lambda", "DynamoDB", "PostgreSQL", "Azure", "Kubernetes", "Firebase", "Codex", "OpenAI API", "Anthropic API", "Git"].map((skill) => <span key={skill}>{skill}</span>)}</div></div>
       </section>
 
       <section className="contact" id="contact">
