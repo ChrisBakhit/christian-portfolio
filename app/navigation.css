@@ -62,13 +62,13 @@ main.sidebarOpen { padding-left: 268px; }
 .explorerPanel {
   position: fixed;
   z-index: 29;
-  top: 78px;
+  top: 0;
   bottom: 25px;
   left: 48px;
   width: 220px;
   display: flex;
   flex-direction: column;
-  padding-top: 8px;
+  padding-top: 86px;
   border-right: 1px solid #2b322f;
   background: rgba(17,21,20,.985);
   color: #aeb7b3;
