@@ -152,6 +152,23 @@ main.sidebarOpen { padding-left: 268px; }
 .projectCard h3 { font-size:27px; }
 .skillsEditor { border-top-color:rgba(139,233,211,.14); }
 .portraitFrame { aspect-ratio:2/3; }
+.section { overflow:hidden; }
+.sectionComet { position:absolute; z-index:0; top:13%; right:-190px; width:175px; height:1px; opacity:0; pointer-events:none; background:linear-gradient(90deg,transparent,rgba(139,233,211,.9),rgba(255,255,255,.85)); box-shadow:0 0 10px rgba(139,233,211,.45); transform:rotate(-24deg); animation:sectionFly 14s cubic-bezier(.2,.5,.2,1) infinite; }
+.sectionComet:before { content:""; position:absolute; right:-2px; top:-2px; width:5px; height:5px; border-radius:50%; background:#eafffa; box-shadow:0 0 13px var(--teal),-38px 17px 0 -1px rgba(139,233,211,.4),-76px -22px 0 -1px rgba(255,255,255,.28); }
+.cometTwo { top:27%; animation-delay:3.5s; animation-duration:17s; transform:rotate(-18deg); }
+.cometThree { top:8%; animation-delay:7s; animation-duration:19s; }
+.cometFour { top:38%; animation-delay:2s; animation-duration:18s; transform:rotate(-31deg); }
+.cometFive { top:18%; animation-delay:10s; animation-duration:21s; }
+.sectionOrbit { position:absolute; z-index:0; top:90px; right:-170px; width:430px; height:430px; border:1px solid rgba(139,233,211,.08); border-radius:50%; pointer-events:none; animation:orbitDrift 18s linear infinite; }
+.sectionOrbit:before,.sectionOrbit:after { content:""; position:absolute; border:1px solid rgba(139,233,211,.055); border-radius:50%; }
+.sectionOrbit:before { inset:55px; }
+.sectionOrbit:after { inset:112px; }
+.sectionOrbit i { position:absolute; width:5px; height:5px; border-radius:50%; background:var(--teal); box-shadow:0 0 12px var(--teal); }
+.sectionOrbit i:nth-child(1) { top:38px; left:92px; }
+.sectionOrbit i:nth-child(2) { right:54px; top:176px; width:3px; height:3px; }
+.sectionOrbit i:nth-child(3) { left:128px; bottom:24px; width:2px; height:2px; }
+.resumeList:after { content:""; position:absolute; z-index:2; left:187px; top:0; width:7px; height:28px; border-radius:7px; opacity:0; background:linear-gradient(180deg,transparent,var(--teal),transparent); box-shadow:0 0 15px rgba(139,233,211,.5); animation:timelineSignal 8s ease-in-out infinite; }
+.projects:after { content:""; position:absolute; inset:0; z-index:0; opacity:.13; pointer-events:none; background-image:radial-gradient(circle,#dffff7 0 1px,transparent 1.4px); background-size:113px 113px; mask-image:linear-gradient(90deg,transparent,black 45%,black); animation:dustDrift 35s linear infinite; }
 .explorerTitle { height: 31px; display: flex; justify-content: space-between; align-items: center; padding: 0 12px; color: #818b87; letter-spacing: .09em; }
 .explorerTitle button { border: 0; background: transparent; color: #7f8a85; font-size: 18px; cursor: pointer; }
 .explorerPanel > strong { padding: 9px 11px; color: #dbe2df; font-size: 9px; letter-spacing: .04em; }
@@ -200,7 +217,7 @@ main.sidebarOpen { padding-left: 268px; }
   .menuRoot > button { padding: 0 8px; }
   .sidebarOpen .terminalPanel { left: 48px; }
   .skillGroupGrid { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .resumeList:before,.resumeItem:before { display:none; }
+  .resumeList:before,.resumeList:after,.resumeItem:before { display:none; }
   .resumeItem:hover { padding-left:0; }
   .about { grid-template-columns:1fr; }
   .profileDocument { max-width:none; }
@@ -222,4 +239,8 @@ main.sidebarOpen { padding-left: 268px; }
 @keyframes terminalPulse { 50% { box-shadow:0 -20px 65px rgba(39,255,74,.13); } }
 @keyframes terminalStars { to { background-position:0 0,71px 35px; } }
 @keyframes vaultReveal { from { opacity:0; transform:translateX(-8px); } }
+@keyframes sectionFly { 0%,68% { opacity:0; translate:0 0; } 72% { opacity:.8; } 82%,100% { opacity:0; translate:-125vw 42vh; } }
+@keyframes orbitDrift { to { transform:rotate(360deg); } }
+@keyframes timelineSignal { 0%,18% { opacity:0; top:0; } 24% { opacity:.75; } 70% { opacity:.45; } 82%,100% { opacity:0; top:calc(100% - 30px); } }
+@keyframes dustDrift { to { background-position:80px 45px; } }
 @media(prefers-reduced-motion:reduce) { .skillGauge { opacity:1; transform:none; } }

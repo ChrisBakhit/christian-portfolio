@@ -296,6 +296,7 @@ export default function Home() {
       </section>
 
       <section className="about section" id="about">
+        <span className="sectionComet cometOne" aria-hidden="true" />
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>profile.md</strong></div>
         <div className="sectionTitle" data-reveal><span>01</span><h2>Profile</h2></div>
         <article className="profileDocument" data-reveal>
@@ -307,6 +308,7 @@ export default function Home() {
       </section>
 
       <section className="resume section" id="experience">
+        <span className="sectionComet cometTwo" aria-hidden="true" />
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>experience.js</strong></div>
         <p className="codeComment" data-reveal>// experience.js — roles, responsibilities, and shipped outcomes</p>
         <div className="sectionTitle" data-reveal><span>02</span><h2>Experience</h2></div>
@@ -316,6 +318,7 @@ export default function Home() {
       </section>
 
       <section className="projects section" id="projects">
+        <span className="sectionComet cometThree" aria-hidden="true" />
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>projects.json</strong></div>
         <p className="codeComment" data-reveal>// projects.json — selected products, platforms, and community builds</p>
         <div className="sectionTitle" data-reveal><span>03</span><h2>Selected projects</h2></div>
@@ -325,6 +328,8 @@ export default function Home() {
       </section>
 
       <section className="skillsEditor section" id="skills">
+        <span className="sectionOrbit" aria-hidden="true"><i /><i /><i /></span>
+        <span className="sectionComet cometFour" aria-hidden="true" />
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><span>data</span><b>›</b><strong>skills.json</strong></div>
         <p className="codeComment" data-reveal>// skills.json — technologies I use to ship real products</p>
         <div className="skillsHeading" data-reveal><h2>Skills</h2></div>
@@ -335,6 +340,7 @@ export default function Home() {
       </section>
 
       <section className="details educationOnly section">
+        <span className="sectionComet cometFive" aria-hidden="true" />
         <div className="education" data-reveal><p className="codeComment">// education.md — computer science, mathematics, and continued study</p><span className="miniLabel">Education</span><h2>Georgia Institute of Technology</h2><p>M.S. Computer Science (OMSCS)</p><small>Aug 2025 — Aug 2027</small><h2>Johns Hopkins University</h2><p>B.S. Computer Science & Applied Mathematics and Statistics</p><small>Aug 2020 — May 2024</small></div>
       </section>
 
