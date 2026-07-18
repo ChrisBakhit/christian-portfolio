@@ -344,7 +344,6 @@ export default function Home() {
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>profile.md</strong></div>
         <article className="profileBio" data-reveal>
           <figure className="profilePhoto">
-            <div className="profilePhotoOrbit" aria-hidden="true"><i /><i /><i /></div>
             <img src="/christian-profile.webp" alt="Christian Bakhit at Washington Square Park" />
             <figcaption><b>Christian Bakhit</b><span>Houston, Texas</span></figcaption>
           </figure>
