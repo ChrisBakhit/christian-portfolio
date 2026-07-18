@@ -396,6 +396,7 @@ export default function Home() {
 
       <section className="contact" id="contact">
         <div className="contactSky" aria-hidden="true"><span /><span /><span /><span /><span /><span /><span /><span /></div>
+        <div className="contactSignalArt" aria-hidden="true"><span className="signalStar">✦</span><div className="signalWaves"><i /><i /><i /></div><div className="signalDish"><i /></div></div>
         <p className="contactComment" data-reveal>// contact.css — start a conversation</p>
         <p data-reveal>Full-stack engineering, AI-assisted products, and cloud systems.</p>
         <h2 data-reveal>Let&apos;s talk.</h2>
