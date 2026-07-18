@@ -82,16 +82,16 @@ main.sidebarOpen { padding-left: 268px; }
   --skill-3: #45c8f5;
   --skill-4: #9b6cff;
   max-width: none;
-  padding-left: max(6vw, calc((100vw - 1320px)/2 + 6vw));
-  padding-right: max(6vw, calc((100vw - 1320px)/2 + 6vw));
+  padding-left: max(3vw, calc((100vw - 1440px)/2 + 3vw));
+  padding-right: max(3vw, calc((100vw - 1440px)/2 + 3vw));
   background: #111413;
 }
 .codeComment { margin: 0 0 22px; color: #74a96e; font: 500 13px var(--font-mono); font-style: italic; }
 .skillsHeading { margin-bottom: 58px; }
 .skillsHeading h2 { margin: 0 0 13px; font-size: clamp(50px,5.5vw,76px); line-height: 1; letter-spacing: -.055em; }
 .skillsHeading code { color: #7f8985; font: 500 12px var(--font-mono); }
-.skillGroupGrid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px; perspective: 1200px; }
-.skillGroup { position: relative; min-height: 340px; padding: 28px; overflow: hidden; border: 1px solid #303936; border-radius: 5px; background: linear-gradient(145deg,rgba(25,30,28,.96),rgba(13,17,16,.98)); transition: transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s,box-shadow .35s; }
+.skillGroupGrid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; max-width:1180px; margin:0 auto; perspective: 1200px; }
+.skillGroup { position: relative; min-height: 380px; padding: 32px; overflow: hidden; border: 1px solid #303936; border-radius: 5px; background: linear-gradient(145deg,rgba(25,30,28,.96),rgba(13,17,16,.98)); transition: transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s,box-shadow .35s; }
 .skillGroup:before { content:""; position:absolute; inset:0; opacity:0; background:linear-gradient(110deg,transparent 25%,rgba(139,233,211,.07) 48%,transparent 70%); transform:translateX(-75%); pointer-events:none; }
 .skillGroup:hover { transform:translateY(-5px) rotateX(1deg); border-color:rgba(139,233,211,.42); box-shadow:0 22px 50px rgba(0,0,0,.24); }
 .skillGroup:hover:before { opacity:1; animation:skillScan 1.15s ease forwards; }
@@ -99,12 +99,12 @@ main.sidebarOpen { padding-left: 268px; }
 .skillGroup header > span { color:var(--teal); font:700 9px var(--font-mono); }
 .skillGroup h3 { margin:0; color:#e7edeb; font:650 13px var(--font-mono); text-transform:uppercase; letter-spacing:.1em; }
 .skillGroup header small { color:#68736e; font:500 9px var(--font-mono); text-transform:uppercase; }
-.skillOrbitGrid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px 13px; padding-top:30px; }
+.skillOrbitGrid { display:grid; grid-template-columns:repeat(3,minmax(88px,1fr)); gap:34px 22px; padding-top:34px; }
 .skillNode { min-width:0; display:flex; flex-direction:column; align-items:center; gap:11px; text-align:center; }
-.skillGauge { --gauge-size:60px; width:var(--gauge-size); height:var(--gauge-size); position:relative; display:grid; place-items:center; border-radius:50%; background:conic-gradient(var(--skill-color) calc(var(--level) * 1%),#29302d 0); transform:scale(.7) rotate(-35deg); opacity:0; box-shadow:0 0 18px color-mix(in srgb,var(--skill-color),transparent 78%); }
+.skillGauge { --gauge-size:72px; width:var(--gauge-size); height:var(--gauge-size); position:relative; display:grid; place-items:center; border-radius:50%; background:conic-gradient(var(--skill-color) calc(var(--level) * 1%),#29302d 0); transform:scale(.7) rotate(-35deg); opacity:0; box-shadow:0 0 18px color-mix(in srgb,var(--skill-color),transparent 78%); }
 .skillGauge:before { content:""; position:absolute; inset:4px; border-radius:50%; background:#121715; border:1px solid rgba(255,255,255,.04); }
 .skillGauge span { position:relative; z-index:1; color:#dce5e1; font:650 10px var(--font-mono); }
-.skillNode strong { color:#939e99; font:500 10px/1.25 var(--font-mono); }
+.skillNode strong { max-width:110px; color:#939e99; font:500 11px/1.35 var(--font-mono); overflow-wrap:anywhere; }
 .skillGroup.visible .skillGauge { animation:gaugeArrive .65s cubic-bezier(.2,.8,.2,1) forwards; animation-delay:calc((var(--group-index) * 55ms) + (var(--node-index) * 85ms)); }
 .skillNode:hover .skillGauge { box-shadow:0 0 24px color-mix(in srgb,var(--skill-color),transparent 56%); }
 .skillNode:hover strong { color:#eef4f1; }
@@ -274,18 +274,18 @@ main.sidebarOpen { padding-left: 268px; }
 .resumeItem:hover:before { background:var(--teal); box-shadow:0 0 12px rgba(139,233,211,.55); }
 .resumeItem h3 { font-size:27px; }
 .projects { padding-left:clamp(22px,2.6vw,48px); padding-right:clamp(22px,2.6vw,48px); }
-.projectGrid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; margin-left:0; }
-.projectCard { min-height:450px; padding:0 20px 23px; border-color:rgba(255,255,255,.09); box-shadow:none; }
+.projectGrid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; width:min(100%,850px); margin:0 auto; }
+.projectCard { min-height:410px; padding:0 18px 20px; border-color:rgba(255,255,255,.09); box-shadow:none; }
 .projectCard { width:100%; color:inherit; text-align:left; cursor:pointer; font:inherit; appearance:none; -webkit-appearance:none; outline:0; }
-.projectVisual { height:195px; margin:0 -20px 23px; }
-.projectCard p { font-size:13px; line-height:1.6; margin-bottom:23px; }
+.projectVisual { height:168px; margin:0 -18px 20px; }
+.projectCard p { font-size:12px; line-height:1.55; margin-bottom:20px; }
 .projectCard footer { padding-top:20px; }
 .projectCard:focus-visible { border-color:var(--teal); box-shadow:0 0 0 2px rgba(139,233,211,.22); }
 .projectCard:active { transform:translateY(-1px) scale(.995); }
 .projectCard:hover { transform:translateY(-3px); border-color:rgba(139,233,211,.3); box-shadow:0 16px 36px rgba(0,0,0,.18); }
 .projectVisual img { filter:saturate(.76) brightness(.86); }
 .projectCard:hover .projectVisual img { filter:saturate(.94) brightness(.94); }
-.projectCard h3 { font-size:26px; }
+.projectCard h3 { font-size:23px; }
 .skillsEditor { border-top-color:rgba(139,233,211,.14); }
 .portraitFrame { aspect-ratio:2/3; }
 .hero { max-width:1440px; grid-template-columns:1fr minmax(460px,.95fr); gap:4vw; }
@@ -368,14 +368,14 @@ main.sidebarOpen { padding-left: 268px; }
 .cosmic-eclipse { filter:saturate(.72); }.cosmic-eclipse .spaceBackdrop { background:radial-gradient(circle at 78% 29%,#050505 0 8%,rgba(42,0,58,.28) 9%,transparent 21%),#020303; }.cosmic-warp .stars { animation-duration:3s; }.cosmic-warp .meteorShow i { animation-duration:2.2s!important; }.cosmic-launch .meteorShow i { animation-duration:8.2s!important; }.cosmic-launch .spaceBackdrop { filter:brightness(1.5) saturate(1.35); }
 
 @media(max-width: 1100px) {
-  .projectGrid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .projectGrid { grid-template-columns:repeat(2,minmax(0,1fr)); width:min(100%,720px); }
   .hero { grid-template-columns:1fr minmax(390px,.8fr); }
   .profileWrap { width:min(100%,455px); }
 }
 
 @media(max-width: 850px) {
   .contactSignalArt { right:-42px; top:14%; opacity:.22; }
-  .projectGrid { grid-template-columns:1fr; margin-left:0; }
+  .projectGrid { grid-template-columns:1fr; width:min(100%,520px); margin:0 auto; }
   .projectCard { min-height:420px; }
   .projectVisual { height:210px; }
   .hero { grid-template-columns:1fr; }
@@ -386,7 +386,7 @@ main.sidebarOpen { padding-left: 268px; }
   .desktopMenus { overflow-x: auto; scrollbar-width: none; }
   .menuRoot > button { padding: 0 8px; }
   .sidebarOpen .terminalPanel { left: 48px; }
-  .skillGroupGrid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .skillGroupGrid { grid-template-columns:1fr; }
   .resumeList:before,.resumeList:after,.resumeItem:before { display:none; }
   .resumeItem:hover { padding-left:0; }
   .about { grid-template-columns:1fr; }
@@ -408,6 +408,8 @@ main.sidebarOpen { padding-left: 268px; }
   .terminalPanel,.sidebarOpen .terminalPanel { left: 0; }
   .skillsEditor { padding-left: 20px; padding-right: 20px; }
   .skillGroupGrid { grid-template-columns: 1fr; }
+  .skillGroup { min-height:0; padding:24px 20px; }
+  .skillOrbitGrid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .profileIntro,.focusGrid,.educationCards { grid-template-columns:1fr; }
   .profileBio,.profileFacts { grid-template-columns:1fr; }
   .profileBio { gap:42px; margin-top:20px; }
