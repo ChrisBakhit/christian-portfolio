@@ -321,9 +321,18 @@ export default function Home() {
       <section className="about section" id="about">
         <span className="sectionComet cometOne" aria-hidden="true" />
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>profile.md</strong></div>
-        <article className="profileCanvas" data-reveal>
-          <figure className="profilePhotoPanel"><img src="/christian-profile.webp" alt="Christian Bakhit at Washington Square Park" /><span className="photoScan" aria-hidden="true" /><figcaption><b>christian-profile.webp</b><small>40.7308° N · 73.9973° W</small></figcaption></figure>
-          <div className="profileStory"><div className="profileFileMark"><span>#</span> profile.md</div><h2>I turn difficult systems into <em>useful software.</em></h2><p className="profileDeck">Full-stack engineer working across product, cloud infrastructure, and applied AI.</p><div className="profileBio"><p>I build production tools from end to end: React interfaces, REST APIs, AWS serverless systems, data models, and AI-assisted workflows.</p><p>At Supercharge, I help turn complex patent evidence into products that support clearer research, portfolio analysis, and strategy.</p></div><dl className="profileCoordinates"><div><dt>Now</dt><dd>Full-Stack Developer · Supercharge</dd></div><div><dt>Learning</dt><dd>M.S. Computer Science · Georgia Tech</dd></div><div><dt>Based</dt><dd>Houston, Texas</dd></div></dl><div className="profilePrinciples"><span>01 Own the outcome</span><span>02 Explain the tradeoffs</span><span>03 Ship what matters</span></div></div>
+        <article className="profileRoute" data-reveal>
+          <header className="routeIntro"><div className="routeFile"><span>01</span><b>PROFILE / README</b></div><h2>More than a title.<br /><em>Here&apos;s the route.</em></h2><p>Christian is a full-stack engineer who moves comfortably between product thinking, cloud architecture, and applied AI.</p></header>
+          <div className="routeMap">
+            <div className="routeTrack" aria-hidden="true"><i /><i /><i /><i /></div>
+            <figure className="routePortrait"><img src="/christian-profile.webp" alt="Christian Bakhit at Washington Square Park" /><figcaption><b>Christian Bakhit</b><span>Houston, Texas</span></figcaption></figure>
+            <div className="routeStops">
+              <article><span className="stopIndex">01</span><small>ORIGIN</small><h3>Computer science meets applied mathematics.</h3><p>Johns Hopkins built the technical foundation; Georgia Tech is extending it through graduate study in computer science.</p></article>
+              <article><span className="stopIndex">02</span><small>CURRENT STOP</small><h3>Building at Supercharge.</h3><p>Turning complex patent evidence into practical software for research, portfolio analysis, and licensing strategy.</p></article>
+              <article><span className="stopIndex">03</span><small>HOW I MOVE</small><h3>From ambiguity to shipped product.</h3><p>I connect React interfaces, APIs, AWS systems, data models, and AI workflows—then stay accountable for the result.</p></article>
+              <article><span className="stopIndex">04</span><small>NEXT</small><h3>Useful systems with real leverage.</h3><p>The goal is simple: own the outcome, explain the tradeoffs, and ship the part that matters.</p></article>
+            </div>
+          </div>
         </article>
       </section>
 
