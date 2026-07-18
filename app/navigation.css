@@ -117,8 +117,8 @@ main.sidebarOpen { padding-left: 268px; }
 .contact { position:relative; overflow:hidden; isolation:isolate; }
 .contact>*:not(.contactSky) { position:relative; z-index:2; }
 .contactSky { position:absolute; z-index:0; inset:0; pointer-events:none; }
-.contactSky span { position:absolute; width:4px; height:4px; border-radius:50%; background:#07100d; opacity:.22; animation:contactShimmer 5.5s ease-in-out infinite; }
-.contactSky span:nth-child(1){left:7%;top:21%}.contactSky span:nth-child(2){left:18%;top:72%;animation-delay:.5s}.contactSky span:nth-child(3){left:34%;top:13%;animation-delay:1s}.contactSky span:nth-child(4){left:52%;top:48%;animation-delay:1.5s}.contactSky span:nth-child(5){left:67%;top:17%;animation-delay:2s}.contactSky span:nth-child(6){left:79%;top:62%;animation-delay:2.5s}.contactSky span:nth-child(7){left:91%;top:28%;animation-delay:1.2s}.contactSky span:nth-child(8){left:43%;top:82%;animation-delay:.8s}
+.contactSky span { position:absolute; width:4px; height:4px; border-radius:50%; background:#07100d; opacity:.22; }
+.contactSky span:nth-child(1){left:7%;top:21%;width:6px;height:6px}.contactSky span:nth-child(2){left:18%;top:72%;opacity:.14}.contactSky span:nth-child(3){left:34%;top:13%}.contactSky span:nth-child(4){left:52%;top:48%;width:7px;height:7px;opacity:.16}.contactSky span:nth-child(5){left:67%;top:17%;opacity:.28}.contactSky span:nth-child(6){left:79%;top:62%;width:6px;height:6px}.contactSky span:nth-child(7){left:91%;top:28%;opacity:.15}.contactSky span:nth-child(8){left:43%;top:82%}
 .codeComment { margin-bottom: 30px; color: #739688; font-size: 11px; letter-spacing: -.01em; }
 .hero .codeComment { margin-bottom: 24px; }
 .about .codeComment { margin-bottom: 28px; }
@@ -394,7 +394,6 @@ main.sidebarOpen { padding-left: 268px; }
 @keyframes meteorShower { 0%,8% { opacity:0; translate:0 0; } 11% { opacity:.9; } 30%,100% { opacity:0; translate:-125vw 72vh; } }
 @keyframes constellationFloat { 50% { transform:translate(-13px,9px) rotate(2deg); } }
 @keyframes constellationBlink { 50% { opacity:.25; transform:scale(.65); } }
-@keyframes contactShimmer { 0%,100% { opacity:.12; transform:scale(.7); } 45% { opacity:.35; transform:scale(1.25); } }
 @keyframes projectNebula { from { transform:translate(-3%,-2%) rotate(-8deg) scale(.94); } to { transform:translate(5%,4%) rotate(11deg) scale(1.08); } }
 @keyframes projectGridFlow { to { background-position:0 76px,76px 0; } }
 @keyframes projectFieldShift { from { background-position:0% 0%,100% 100%; } to { background-position:28% 18%,70% 76%; } }
