@@ -301,12 +301,9 @@ export default function Home() {
       <section className="about section" id="about">
         <span className="sectionComet cometOne" aria-hidden="true" />
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>profile.md</strong></div>
-        <div className="sectionTitle" data-reveal><span>01</span><h2>Profile</h2></div>
-        <article className="profileDocument" data-reveal>
-          <div className="markdownTitle"><span>#</span><h3>Christian Bakhit</h3></div>
-          <p className="markdownSubtitle">Full-stack engineer · product builder · applied AI</p>
-          <hr />
-          <div className="markdownBody"><figure className="markdownImage"><img src="/christian-profile.webp" alt="Christian Bakhit at Washington Square Park" /><figcaption>![Christian Bakhit](christian-profile.webp)</figcaption></figure><div className="markdownCopy"><h4><span>##</span> About</h4><p>Hi, I&apos;m <strong>Christian</strong>. I build production software across responsive React interfaces, REST APIs, AWS serverless systems, data models, and AI-assisted workflows.</p><p>At Supercharge, I work on patent-intelligence and portfolio-strategy products that help professionals move from complex evidence to clearer decisions.</p><blockquote>I like unfamiliar problems, end-to-end ownership, and software that earns trust by being genuinely useful.</blockquote><h4><span>##</span> Current focus</h4><ul><li>Patent intelligence and portfolio analysis</li><li>React product interfaces and dependable APIs</li><li>AWS Lambda and DynamoDB workflows</li><li>Evidence-backed LLM applications</li><li>Georgia Tech OMSCS</li></ul></div></div>
+        <article className="profileCanvas" data-reveal>
+          <figure className="profilePhotoPanel"><img src="/christian-profile.webp" alt="Christian Bakhit at Washington Square Park" /><span className="photoScan" aria-hidden="true" /><figcaption><b>christian-profile.webp</b><small>40.7308° N · 73.9973° W</small></figcaption></figure>
+          <div className="profileStory"><div className="profileFileMark"><span>#</span> profile.md</div><h2>I turn difficult systems into <em>useful software.</em></h2><p className="profileDeck">Full-stack engineer working across product, cloud infrastructure, and applied AI.</p><div className="profileBio"><p>I build production tools from end to end: React interfaces, REST APIs, AWS serverless systems, data models, and AI-assisted workflows.</p><p>At Supercharge, I help turn complex patent evidence into products that support clearer research, portfolio analysis, and strategy.</p></div><dl className="profileCoordinates"><div><dt>Now</dt><dd>Full-Stack Developer · Supercharge</dd></div><div><dt>Learning</dt><dd>M.S. Computer Science · Georgia Tech</dd></div><div><dt>Based</dt><dd>Houston, Texas</dd></div></dl><div className="profilePrinciples"><span>01 Own the outcome</span><span>02 Explain the tradeoffs</span><span>03 Ship what matters</span></div></div>
         </article>
       </section>
 

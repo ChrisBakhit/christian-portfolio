@@ -117,8 +117,30 @@ main.sidebarOpen { padding-left: 268px; }
 .codeComment { margin-bottom: 30px; color: #739688; font-size: 11px; letter-spacing: -.01em; }
 .hero .codeComment { margin-bottom: 24px; }
 .about .codeComment { margin-bottom: 28px; }
-.about { grid-template-columns:.3fr 1.7fr; gap:4vw; }
+.about { display:block; }
 .profileDocument { max-width:900px; }
+.profileCanvas { display:grid; grid-template-columns:minmax(260px,.72fr) minmax(480px,1.28fr); gap:clamp(45px,7vw,105px); align-items:center; max-width:1120px; margin:auto; }
+.profilePhotoPanel { position:relative; margin:0; overflow:hidden; border:1px solid #36413d; background:#090c0b; box-shadow:0 30px 75px rgba(0,0,0,.34); }
+.profilePhotoPanel:before { content:""; position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(180deg,transparent 58%,rgba(5,9,8,.82)); }
+.profilePhotoPanel img { display:block; width:100%; aspect-ratio:3/4; object-fit:cover; filter:saturate(.72) contrast(1.03); transition:filter .7s,transform .9s cubic-bezier(.2,.7,.2,1); }
+.profilePhotoPanel:hover img { filter:saturate(1) contrast(1.02); transform:scale(1.025); }
+.profilePhotoPanel figcaption { position:absolute; z-index:3; left:20px; right:20px; bottom:17px; display:flex; justify-content:space-between; gap:12px; color:#c9d3cf; font:550 8px var(--font-mono); text-transform:uppercase; letter-spacing:.07em; }
+.profilePhotoPanel figcaption small { color:#71807a; }
+.photoScan { position:absolute; z-index:4; left:0; right:0; top:-2px; height:1px; opacity:0; background:linear-gradient(90deg,transparent,var(--teal),transparent); box-shadow:0 0 12px var(--teal); pointer-events:none; }
+.profilePhotoPanel:hover .photoScan { animation:photoScan 2.2s ease-in-out infinite; }
+.profileStory { position:relative; }
+.profileFileMark { margin-bottom:31px; color:#71817a; font:600 10px var(--font-mono); text-transform:uppercase; letter-spacing:.12em; }
+.profileFileMark span { margin-right:9px; color:#79c0ff; font-size:15px; }
+.profileStory h2 { max-width:700px; margin:0; color:#f2f4f3; font-size:clamp(52px,6.2vw,88px); line-height:.9; letter-spacing:-.072em; }
+.profileStory h2 em { color:var(--teal); font-style:normal; }
+.profileDeck { max-width:650px; margin:29px 0 35px; color:#c0c8c4; font-size:19px; line-height:1.5; }
+.profileBio { display:grid; grid-template-columns:1fr 1fr; gap:30px; padding:27px 0; border-top:1px solid #343c39; border-bottom:1px solid #343c39; }
+.profileBio p { margin:0; color:#929e98; font-size:13px; line-height:1.72; }
+.profileCoordinates { display:grid; grid-template-columns:1fr 1fr 1fr; margin:0; padding:25px 0; border-bottom:1px solid #343c39; }
+.profileCoordinates > div { padding-right:18px; }
+.profileCoordinates dt { margin-bottom:8px; color:#69766f; font:600 8px var(--font-mono); text-transform:uppercase; letter-spacing:.14em; }
+.profileCoordinates dd { margin:0; color:#d1d9d5; font-size:11px; line-height:1.45; }
+.profilePrinciples { display:flex; flex-wrap:wrap; gap:9px 20px; padding-top:24px; color:#7e8b85; font:550 8px var(--font-mono); text-transform:uppercase; letter-spacing:.1em; }
 .profileIntro { display:grid; grid-template-columns:210px 1fr; gap:4vw; align-items:start; padding-bottom:42px; border-bottom:1px solid #343b38; }
 .profileIntro .realPhoto { width:100%; transform:none; box-shadow:0 18px 45px rgba(0,0,0,.22); }
 .profileIntro h3 { margin:0 0 23px; font-size:clamp(50px,6.2vw,82px); line-height:.88; letter-spacing:-.065em; }
@@ -280,6 +302,8 @@ main.sidebarOpen { padding-left: 268px; }
   .resumeItem:hover { padding-left:0; }
   .about { grid-template-columns:1fr; }
   .profileDocument { max-width:none; }
+  .profileCanvas { grid-template-columns:minmax(220px,.65fr) minmax(380px,1.35fr); gap:42px; }
+  .profileStory h2 { font-size:clamp(48px,7vw,70px); }
   .educationFile { grid-template-columns:1fr; gap:30px; }
   .blackHoleScene { width:min(82vw,390px); }
 }
@@ -293,6 +317,9 @@ main.sidebarOpen { padding-left: 268px; }
   .skillGroupGrid { grid-template-columns: 1fr; }
   .profileIntro,.focusGrid,.educationCards { grid-template-columns:1fr; }
   .profileIntro .realPhoto { width:min(78%,260px); }
+  .profileCanvas,.profileBio,.profileCoordinates { grid-template-columns:1fr; }
+  .profilePhotoPanel { width:min(85%,330px); }
+  .profileCoordinates { gap:18px; }
   .markdownBody { grid-template-columns:1fr; }
   .markdownImage { width:min(78%,260px); }
   .markdownCopy ul { grid-template-columns:1fr; }
@@ -312,4 +339,5 @@ main.sidebarOpen { padding-left: 268px; }
 @keyframes diskPulse { 50% { filter:blur(3px) brightness(1.2); transform:rotate(-8deg) scaleX(1.04); } }
 @keyframes gravitySurge { from { filter:blur(1px) brightness(1.2); transform:rotate(-8deg) scaleX(1.04) scaleY(.82); } to { filter:blur(4px) brightness(1.75) saturate(1.35); transform:rotate(-8deg) scaleX(1.18) scaleY(.58); } }
 @keyframes lensWarp { 0% { opacity:.55; transform:scale(.72); border-color:rgba(139,233,211,.35); box-shadow:0 0 12px rgba(139,233,211,.12); } 100% { opacity:0; transform:scale(1.75); border-color:rgba(183,118,224,.05); box-shadow:0 0 60px rgba(113,45,158,.08); } }
+@keyframes photoScan { 0% { top:0; opacity:0; } 12% { opacity:.65; } 80% { opacity:.35; } 100% { top:100%; opacity:0; } }
 @media(prefers-reduced-motion:reduce) { .skillGauge { opacity:1; transform:none; } }
