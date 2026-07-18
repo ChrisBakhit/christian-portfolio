@@ -200,7 +200,7 @@ export default function Home() {
       "rm -rf /": ["Nice try.", "This portfolio has emotional backups and a very nervous firewall."],
       "git log --oneline": ["e3a2f7f add terminal easter eggs", "9488d10 make it less ugly", "c4be46f equip teal agent portrait", "0000000 begin building things"],
       hopmc: ["Connecting to mc.jhu.edu…", "Homewood campus loaded. Watch out for creepers near Gilman."],
-      supercharge: ["⚡ Systems charged.", "Patent intelligence: online", "Portfolio strategy: online", "Builder mode: active"],
+      supercharge: ["⚡ Systems charged.", "Patent intelligence: online", "Portfolio strategy: online", "Engineering mode: active"],
       patent: ["Claim 1: A developer configured to ship useful software.", "Status: exceptionally allowable."],
       xyzzy: ["A hollow voice says: impressive commit history."],
       "ping christian": ["64 bytes from christian: talent=high latency=low", "64 bytes from christian: curiosity=∞ latency=low"],
@@ -334,7 +334,7 @@ export default function Home() {
           <span className="portraitGlow" aria-hidden="true" />
           <div className="portraitFrame">
             <img src="/christian-agent-portrait.png" alt="Stylized portrait of Christian Bakhit" />
-            <span className="portraitLabel">Engineer / Builder</span>
+            <span className="portraitLabel">Engineer</span>
           </div>
           <div className="profileMeta"><span>Based in Houston, TX</span><span>Georgia Tech · JHU</span></div>
         </div>
