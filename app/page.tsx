@@ -106,7 +106,6 @@ export default function Home() {
   const [terminalTheme, setTerminalTheme] = useState<"default" | "matrix" | "space" | "vault">("default");
   const [statusMessage, setStatusMessage] = useState("portfolio online");
   const [checksRunning, setChecksRunning] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [cosmicMode, setCosmicMode] = useState<"default" | "eclipse" | "warp" | "launch">("default");
   const scrollingToSection = useRef<string | null>(null);
@@ -153,7 +152,7 @@ export default function Home() {
         event.preventDefault();
         setTerminalOpen((open) => !open);
       }
-      if (event.key === "Escape") { setPaletteOpen(false); setSelectedProject(null); }
+      if (event.key === "Escape") setPaletteOpen(false);
     };
     updateActiveSection();
     window.addEventListener("scroll", updateActiveSection, { passive: true });
@@ -372,12 +371,10 @@ export default function Home() {
         <div className="sectionTitle" data-reveal><span>03</span><h2>Selected projects</h2></div>
         <code className="jsonRoot" data-reveal><span>{`{`}</span> <b>&quot;projects&quot;</b>: [</code>
         <div className="projectGrid">
-          {projects.map(([title, description, tags, href, image], index) => <button type="button" onClick={() => setSelectedProject(index)} className="projectCard" key={title} data-reveal><div className="jsonRecord"><span>{index}</span><code>project</code><b className={`projectStatus status${projectStatus(title)}`}>{projectStatus(title)}</b></div><div className="projectVisual"><img src={image} alt={`${title} website preview`} /><span className="cardNumber">{String(index + 1).padStart(2, "0")}</span></div><div className="projectCopy"><small>name</small><h3>{title}</h3><small>summary</small><p>{description}</p></div><footer><span><i>stack</i>{tags}</span><b className="focusAction">Case study <i>↗</i></b></footer></button>)}
+          {projects.map(([title, description, tags, href, image], index) => <a href={href} target="_blank" rel="noreferrer" className="projectCard" key={title} data-reveal><div className="jsonRecord"><span>{index}</span><code>project</code><b className={`projectStatus status${projectStatus(title)}`}>{projectStatus(title)}</b></div><div className="projectVisual"><img src={image} alt={`${title} website preview`} /><span className="cardNumber">{String(index + 1).padStart(2, "0")}</span></div><div className="projectCopy"><small>name</small><h3>{title}</h3><small>summary</small><p>{description}</p></div><footer><span><i>stack</i>{tags}</span><b aria-hidden="true">↗</b></footer></a>)}
         </div>
         <code className="jsonRoot jsonClose" data-reveal>]</code>
       </section>
-      {selectedProject !== null && (() => { const [title, description, tags, href, image] = projects[selectedProject]; return <div className="projectFocusBackdrop" onMouseDown={() => setSelectedProject(null)}><article className="projectFocus" role="dialog" aria-modal="true" aria-label={`${title} case study`} onMouseDown={(event) => event.stopPropagation()}><button className="focusClose" onClick={() => setSelectedProject(null)} aria-label="Close project">×</button><div className="focusImage"><img src={image} alt={`${title} website`} /></div><div className="focusCopy"><span>{projectStatus(title)} project · {String(selectedProject + 1).padStart(2, "0")}</span><h2>{title}</h2><p>{description}</p><dl><div><dt>Role</dt><dd>Product engineering from concept through implementation</dd></div><div><dt>Stack</dt><dd>{tags}</dd></div><div><dt>Outcome</dt><dd>A working, publicly viewable product built for real users.</dd></div></dl><a href={href} target="_blank" rel="noreferrer">Open live project ↗</a></div></article></div>; })()}
-
       <section className="skillsEditor section" id="skills">
         <span className="sectionOrbit" aria-hidden="true"><i /><i /><i /></span>
         <span className="sectionComet cometFour" aria-hidden="true" />
@@ -398,7 +395,7 @@ export default function Home() {
       </section>
 
       <section className="contact" id="contact">
-        <div className="contactSky" aria-hidden="true"><span /><span /><span /><span /><span /><span /><span /><span /><i /></div>
+        <div className="contactSky" aria-hidden="true"><span /><span /><span /><span /><span /><span /><span /><span /></div>
         <p className="contactComment" data-reveal>// contact.css — start a conversation</p>
         <p data-reveal>Full-stack engineering, AI-assisted products, and cloud systems.</p>
         <h2 data-reveal>Let&apos;s talk.</h2>
