@@ -96,6 +96,7 @@ const skillGroups = [
 
 export default function Home() {
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [paletteQuery, setPaletteQuery] = useState("");
   const [activeSection, setActiveSection] = useState("top");
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -105,6 +106,10 @@ export default function Home() {
   const [terminalTheme, setTerminalTheme] = useState<"default" | "matrix" | "space" | "vault">("default");
   const [statusMessage, setStatusMessage] = useState("portfolio online");
   const [checksRunning, setChecksRunning] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [recruiterMode, setRecruiterMode] = useState(false);
+  const [cosmicMode, setCosmicMode] = useState<"default" | "eclipse" | "warp" | "launch">("default");
   const scrollingToSection = useRef<string | null>(null);
 
   useEffect(() => {
@@ -114,6 +119,8 @@ export default function Home() {
     );
     document.querySelectorAll("[data-reveal]").forEach((el) => observer.observe(el));
     const updateActiveSection = () => {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(maxScroll > 0 ? Math.min(1, window.scrollY / maxScroll) : 0);
       const destination = scrollingToSection.current;
       if (destination) {
         const target = document.getElementById(destination);
@@ -147,7 +154,7 @@ export default function Home() {
         event.preventDefault();
         setTerminalOpen((open) => !open);
       }
-      if (event.key === "Escape") setPaletteOpen(false);
+      if (event.key === "Escape") { setPaletteOpen(false); setSelectedProject(null); }
     };
     updateActiveSection();
     window.addEventListener("scroll", updateActiveSection, { passive: true });
@@ -204,6 +211,9 @@ export default function Home() {
       "hello there": ["General Kenobi.", "You are a bold one for checking the terminal."],
     };
     if (command === "clear") { setTerminalLines([]); setTerminalTheme("default"); }
+    else if (["eclipse", "warp", "launch"].includes(command)) { const mode = command as "eclipse" | "warp" | "launch"; setCosmicMode(mode); setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, `${mode} mode engaged.`, "Run: normal to restore orbit."]); setStatusMessage(`${mode} mode`); }
+    else if (command === "normal") { setCosmicMode("default"); setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, "Normal orbit restored."]); }
+    else if (command === "recruiter") { setRecruiterMode((mode) => !mode); setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, "Recruiter mode toggled."]); }
     else if (command === "matrix") { setTerminalTheme("matrix"); setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, "Wake up, Christian…", "The portfolio has you."]); }
     else if (command === "space") { setTerminalTheme("space"); setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, "⋆｡°✩ Launching portfolio into orbit…", "Houston, we have a deployment."]); }
     else if (command === "open sesame" || command === "konami") { setTerminalTheme("vault"); setTerminalLines((lines) => [...lines, `$ ${rawCommand}`, "◆ PRIVATE VAULT UNLOCKED ◆", "Hidden commands detected: coffee · matrix · space · clove", "There are more. The best secrets are found, not listed."]); setStatusMessage("secret vault discovered"); }
@@ -283,8 +293,19 @@ export default function Home() {
     ],
   };
 
+  const paletteItems = [
+    ["home.tsx", "Introduction, résumé, full-stack", "#top", "tsIcon", "TS"],
+    ["profile.md", "Christian, Supercharge, Georgia Tech, JHU", "#about", "mdIcon", "#"],
+    ["experience.js", "Work history, AWS, React, AI", "#experience", "jsIcon", "JS"],
+    ["projects.json", "Live products, research, community builds", "#projects", "jsonIcon", "{}"],
+    ["skills.json", "React, TypeScript, cloud, APIs, LLMs", "#skills", "jsonIcon", "{}"],
+    ["education.md", "Georgia Tech and Johns Hopkins", "#education", "mdIcon", "#"],
+  ].filter(([name, keywords]) => `${name} ${keywords}`.toLowerCase().includes(paletteQuery.toLowerCase()));
+
+  const projectStatus = (title: string) => title === "Delineo" || title === "AnyTown" ? "Research" : title === "HopMC" ? "Community" : "Live";
+
   return (
-    <main className={sidebarOpen ? "sidebarOpen" : undefined} onClick={() => activeMenu && setActiveMenu(null)}>
+    <main className={`${sidebarOpen ? "sidebarOpen" : ""} cosmic-${cosmicMode} ${recruiterMode ? "recruiterMode" : ""}`} onClick={() => activeMenu && setActiveMenu(null)}>
       <div className="spaceBackdrop" aria-hidden="true"><span className="stars starsOne" /><span className="stars starsTwo" /><div className="meteorShow"><i /><i /><i /><i /><i /><i /><i /></div></div>
       <header className="siteHeader">
         <div className="windowBar"><div className="windowDots" aria-hidden="true"><i /><i /><i /></div><a className="logo" href="#top">christian-bakhit / portfolio</a><button className="commandTrigger" onClick={() => setPaletteOpen(true)}><span>⌕</span> christian-bakhit : portfolio <kbd>Ctrl P</kbd></button><a className="contactLink" href="mailto:chrisbakhit@gmail.com">Contact</a></div>
@@ -296,7 +317,7 @@ export default function Home() {
 
       {sidebarOpen && <aside className="explorerPanel" aria-label="Portfolio explorer"><div className="explorerTitle"><span>EXPLORER</span><button onClick={() => setSidebarOpen(false)} aria-label="Close explorer">×</button></div><strong>⌄ CHRISTIAN-PORTFOLIO</strong><button className={activeSection === "top" ? "active" : undefined} onClick={() => jumpTo("#top")}><i className="tsIcon">TS</i> home.tsx</button><button className={activeSection === "about" ? "active" : undefined} onClick={() => jumpTo("#about")}><i className="mdIcon">#</i> profile.md</button><button className={activeSection === "experience" ? "active" : undefined} onClick={() => jumpTo("#experience")}><i className="jsIcon">JS</i> experience.js</button><button className={activeSection === "projects" ? "active" : undefined} onClick={() => jumpTo("#projects")}><i className="jsonIcon">{`{}`}</i> projects.json</button><button className={activeSection === "skills" ? "active" : undefined} onClick={() => jumpTo("#skills")}><i className="jsonIcon">{`{}`}</i> skills.json</button><button className={activeSection === "education" ? "active" : undefined} onClick={() => jumpTo("#education")}><i className="mdIcon">#</i> education.md</button><a href="/Christian_Bakhit_Resume.pdf" target="_blank"><i className="pdfIcon">PDF</i> resume <span>↓</span></a><div className={`explorerBranch ${checksRunning ? "checking" : ""}`}><button onClick={showBranchInfo} aria-label="Show main branch information">⑂ main</button><button onClick={runPortfolioChecks} aria-label="Run portfolio checks" disabled={checksRunning}>{checksRunning ? "◌" : "✓"}</button></div></aside>}
 
-      {paletteOpen && <div className="paletteBackdrop" onMouseDown={() => setPaletteOpen(false)}><div className="commandPalette" role="dialog" aria-modal="true" aria-label="Go to portfolio section" onMouseDown={(event) => event.stopPropagation()}><div className="paletteInput"><span>›</span><strong>Go to file or section</strong><kbd>ESC</kbd></div><button onClick={() => jumpTo("#top")}><i className="tsIcon">TS</i><span><b>home.tsx</b><small>Introduction and résumé</small></span></button><button onClick={() => jumpTo("#about")}><i className="mdIcon">#</i><span><b>profile.md</b><small>Real photo and background</small></span></button><button onClick={() => jumpTo("#experience")}><i className="jsIcon">JS</i><span><b>experience.js</b><small>Combined work history</small></span></button><button onClick={() => jumpTo("#projects")}><i className="jsonIcon">{`{}`}</i><span><b>projects.json</b><small>Live builds and site previews</small></span></button><button onClick={() => jumpTo("#skills")}><i className="jsonIcon">{`{}`}</i><span><b>skills.json</b><small>Technical stack and tools</small></span></button><button onClick={() => jumpTo("#education")}><i className="mdIcon">#</i><span><b>education.md</b><small>Degrees and continued study</small></span></button></div></div>}
+      {paletteOpen && <div className="paletteBackdrop" onMouseDown={() => setPaletteOpen(false)}><div className="commandPalette" role="dialog" aria-modal="true" aria-label="Search portfolio" onMouseDown={(event) => event.stopPropagation()}><div className="paletteInput"><span>›</span><input autoFocus value={paletteQuery} onChange={(event) => setPaletteQuery(event.target.value)} placeholder="Search React, AWS, AI, projects…" aria-label="Search portfolio" /><kbd>ESC</kbd></div>{paletteItems.map(([name, keywords, href, iconClass, icon]) => <button key={name} onClick={() => { jumpTo(href); setPaletteQuery(""); }}><i className={iconClass}>{icon}</i><span><b>{name}</b><small>{keywords}</small></span></button>)}{paletteItems.length === 0 && <p className="paletteEmpty">No matching file. Try a technology or project type.</p>}</div></div>}
 
       <section className="hero" id="top">
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><span>src</span><b>›</b><strong>home.tsx</strong></div>
@@ -319,7 +340,7 @@ export default function Home() {
       </section>
 
       <section className="about section" id="about">
-        <div className="profileConstellation" aria-hidden="true"><span /><span /><span /><span /><span /><i /><i /><i /></div>
+        <nav className="profileConstellation" aria-label="Profile constellation"><button onClick={() => jumpTo("#experience")} data-label="Supercharge" /><button onClick={() => jumpTo("#education")} data-label="Georgia Tech" /><button onClick={() => jumpTo("#education")} data-label="Johns Hopkins" /><button onClick={() => jumpTo("#skills")} data-label="Engineering" /><button onClick={() => jumpTo("#contact")} data-label="Houston" /><i /><i /><i /></nav>
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>profile.md</strong></div>
         <article className="profileRoute" data-reveal>
           <header className="routeIntro"><div className="routeFile"><span>01</span><b>PROFILE / README</b></div><h2>More than a title.<br /><em>Here&apos;s the route.</em></h2><p>Christian is a full-stack engineer who moves comfortably between product thinking, cloud architecture, and applied AI.</p></header>
@@ -353,10 +374,11 @@ export default function Home() {
         <div className="sectionTitle" data-reveal><span>03</span><h2>Selected projects</h2></div>
         <code className="jsonRoot" data-reveal><span>{`{`}</span> <b>&quot;projects&quot;</b>: [</code>
         <div className="projectGrid">
-          {projects.map(([title, description, tags, href, image], index) => <a href={href} target="_blank" rel="noreferrer" className="projectCard" key={title} data-reveal><div className="jsonRecord"><span>{index}</span><code>project</code></div><div className="projectVisual"><img src={image} alt={`${title} website preview`} /><span className="cardNumber">{String(index + 1).padStart(2, "0")}</span></div><div className="projectCopy"><small>name</small><h3>{title}</h3><small>summary</small><p>{description}</p></div><footer><span><i>stack</i>{tags}</span><b>↗</b></footer></a>)}
+          {projects.map(([title, description, tags, href, image], index) => <button type="button" onClick={() => setSelectedProject(index)} className="projectCard" key={title} data-reveal><div className="jsonRecord"><span>{index}</span><code>project</code><b className={`projectStatus status${projectStatus(title)}`}>{projectStatus(title)}</b></div><div className="projectVisual"><img src={image} alt={`${title} website preview`} /><span className="cardNumber">{String(index + 1).padStart(2, "0")}</span></div><div className="projectCopy"><small>name</small><h3>{title}</h3><small>summary</small><p>{description}</p></div><footer><span><i>stack</i>{tags}</span><b>Focus ↗</b></footer></button>)}
         </div>
         <code className="jsonRoot jsonClose" data-reveal>]</code>
       </section>
+      {selectedProject !== null && (() => { const [title, description, tags, href, image] = projects[selectedProject]; return <div className="projectFocusBackdrop" onMouseDown={() => setSelectedProject(null)}><article className="projectFocus" role="dialog" aria-modal="true" aria-label={`${title} case study`} onMouseDown={(event) => event.stopPropagation()}><button className="focusClose" onClick={() => setSelectedProject(null)} aria-label="Close project">×</button><div className="focusImage"><img src={image} alt={`${title} website`} /></div><div className="focusCopy"><span>{projectStatus(title)} project · {String(selectedProject + 1).padStart(2, "0")}</span><h2>{title}</h2><p>{description}</p><dl><div><dt>Role</dt><dd>Product engineering from concept through implementation</dd></div><div><dt>Stack</dt><dd>{tags}</dd></div><div><dt>Outcome</dt><dd>A working, publicly viewable product built for real users.</dd></div></dl><a href={href} target="_blank" rel="noreferrer">Open live project ↗</a></div></article></div>; })()}
 
       <section className="skillsEditor section" id="skills">
         <span className="sectionOrbit" aria-hidden="true"><i /><i /><i /></span>
@@ -386,7 +408,7 @@ export default function Home() {
         <footer><span>© {new Date().getFullYear()} Christian Bakhit</span><div><a href="https://github.com/ChrisBJHU" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/christianbakhit/" target="_blank" rel="noreferrer">LinkedIn</a></div><span>Houston, Texas</span></footer>
       </section>
       {terminalOpen && <section className={`terminalPanel ${terminalTheme}`} aria-label="Portfolio terminal"><header><span>TERMINAL</span><small>{terminalTheme !== "default" ? `${terminalTheme} mode` : "bash"}</small><button onClick={() => { setTerminalLines([]); setTerminalTheme("default"); }}>Clear</button><button onClick={() => setTerminalOpen(false)} aria-label="Close terminal">×</button></header><div className="terminalOutput" aria-live="polite">{terminalLines.map((line, index) => <p key={`${line}-${index}`}>{line}</p>)}</div><form onSubmit={(event) => { event.preventDefault(); runTerminalCommand(terminalInput); }}><span>christian@portfolio:~$</span><input aria-label="Terminal command" value={terminalInput} onChange={(event) => setTerminalInput(event.target.value)} autoComplete="off" spellCheck={false} autoFocus /></form></section>}
-      <div className="statusBar"><button onClick={() => setSidebarOpen((open) => !open)}>⑂ main</button><span>✓ {statusMessage}</span><button onClick={() => setPaletteOpen(true)}>Ctrl P</button><span>React · TypeScript</span><button onClick={() => setTerminalOpen((open) => !open)}>⌘ Terminal</button></div>
+      <div className="statusBar"><button onClick={() => setSidebarOpen((open) => !open)}>⑂ main</button><span>✓ {statusMessage}</span><div className="progressStars" aria-label={`${Math.round(scrollProgress * 100)}% explored`}>{[.12,.3,.5,.7,.9].map((point) => <i className={scrollProgress >= point ? "lit" : ""} key={point}>✦</i>)}</div><button onClick={() => setRecruiterMode((mode) => !mode)}>{recruiterMode ? "Exit Recruiter" : "Recruiter"}</button><button onClick={() => setPaletteOpen(true)}>Ctrl P</button><span>React · TypeScript</span><button onClick={() => setTerminalOpen((open) => !open)}>⌘ Terminal</button></div>
     </main>
   );
 }

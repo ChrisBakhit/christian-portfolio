@@ -129,9 +129,11 @@ main.sidebarOpen { padding-left: 268px; }
 .meteorShow i { position:absolute; right:-14%; width:clamp(95px,13vw,190px); height:1px; opacity:0; background:linear-gradient(90deg,transparent,rgba(139,233,211,.72) 60%,#fff); box-shadow:0 0 8px rgba(139,233,211,.5); transform:rotate(-31deg); animation:meteorShower 8.5s linear infinite; }
 .meteorShow i:after { content:""; position:absolute; right:-2px; top:-2px; width:5px; height:5px; border-radius:50%; background:#fff; box-shadow:0 0 12px var(--teal); }
 .meteorShow i:nth-child(1){top:13%;animation-delay:.2s}.meteorShow i:nth-child(2){top:26%;animation-delay:1.35s;animation-duration:7.2s}.meteorShow i:nth-child(3){top:41%;animation-delay:2.7s;animation-duration:10s}.meteorShow i:nth-child(4){top:9%;animation-delay:4s;animation-duration:9.4s}.meteorShow i:nth-child(5){top:55%;animation-delay:5.2s;animation-duration:8s}.meteorShow i:nth-child(6){top:34%;animation-delay:6.35s;animation-duration:11s}.meteorShow i:nth-child(7){top:68%;animation-delay:7.2s;animation-duration:9s}
-.profileConstellation { position:absolute; z-index:0; right:2vw; top:80px; width:310px; height:235px; opacity:.42; pointer-events:none; animation:constellationFloat 12s ease-in-out infinite; }
-.profileConstellation span { position:absolute; width:5px; height:5px; border-radius:50%; background:#cafff3; box-shadow:0 0 11px var(--teal); animation:constellationBlink 3s ease-in-out infinite; }
-.profileConstellation span:nth-child(1){left:8%;top:58%}.profileConstellation span:nth-child(2){left:29%;top:23%;animation-delay:.6s}.profileConstellation span:nth-child(3){left:53%;top:45%;animation-delay:1.2s}.profileConstellation span:nth-child(4){left:76%;top:14%;animation-delay:1.8s}.profileConstellation span:nth-child(5){left:91%;top:68%;animation-delay:2.4s}
+.profileConstellation { position:absolute; z-index:3; right:2vw; top:80px; width:310px; height:235px; opacity:.55; animation:constellationFloat 12s ease-in-out infinite; }
+.profileConstellation button { position:absolute; width:9px; height:9px; padding:0; border:1px solid #cafff3; border-radius:50%; background:#16342e; box-shadow:0 0 11px var(--teal); cursor:pointer; animation:constellationBlink 3s ease-in-out infinite; }
+.profileConstellation button:after { content:attr(data-label); position:absolute; left:12px; top:-5px; width:max-content; padding:4px 6px; border:1px solid #33413c; background:#0a0e0c; color:#b9c6c1; font:600 8px var(--font-mono); opacity:0; transform:translateY(4px); transition:.2s; }
+.profileConstellation button:hover:after,.profileConstellation button:focus-visible:after { opacity:1; transform:none; }
+.profileConstellation button:nth-child(1){left:8%;top:58%}.profileConstellation button:nth-child(2){left:29%;top:23%;animation-delay:.6s}.profileConstellation button:nth-child(3){left:53%;top:45%;animation-delay:1.2s}.profileConstellation button:nth-child(4){left:76%;top:14%;animation-delay:1.8s}.profileConstellation button:nth-child(5){left:91%;top:68%;animation-delay:2.4s}
 .profileConstellation i { position:absolute; height:1px; transform-origin:left; background:linear-gradient(90deg,rgba(139,233,211,.5),rgba(139,233,211,.08)); }
 .profileConstellation i:nth-of-type(1){left:9%;top:59%;width:105px;transform:rotate(-48deg)}.profileConstellation i:nth-of-type(2){left:30%;top:24%;width:96px;transform:rotate(35deg)}.profileConstellation i:nth-of-type(3){left:54%;top:46%;width:132px;transform:rotate(-30deg)}
 .profileDocument { max-width:900px; }
@@ -245,6 +247,7 @@ main.sidebarOpen { padding-left: 268px; }
 .resumeItem:hover:before { background:var(--teal); box-shadow:0 0 12px rgba(139,233,211,.55); }
 .resumeItem h3 { font-size:27px; }
 .projectCard { min-height:445px; border-color:rgba(255,255,255,.09); box-shadow:none; }
+.projectCard { width:100%; color:inherit; text-align:left; cursor:pointer; font:inherit; }
 .projectCard:hover { transform:translateY(-3px); border-color:rgba(139,233,211,.3); box-shadow:0 16px 36px rgba(0,0,0,.18); }
 .projectVisual img { filter:saturate(.76) brightness(.86); }
 .projectCard:hover .projectVisual img { filter:saturate(.94) brightness(.94); }
@@ -313,8 +316,25 @@ main.sidebarOpen { padding-left: 268px; }
 .terminalPanel.vault header,.terminalPanel.vault form { color:#ffd166; }
 .terminalPanel.vault .terminalOutput p { animation:vaultReveal .38s ease both; }
 .statusBar button { padding: 0; border: 0; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+.paletteInput input { width:100%; border:0; outline:0; background:transparent; color:#eef3f1; font:500 12px var(--font-mono); }
+.paletteInput input::placeholder { color:#7f8985; }
+.paletteEmpty { margin:0; padding:18px; color:#7f8985; font:500 11px var(--font-mono); }
+.projectStatus { margin-left:auto; padding:4px 7px; border:1px solid rgba(139,233,211,.25); border-radius:10px; color:var(--teal); font:650 8px var(--font-mono); text-transform:uppercase; letter-spacing:.08em; }
+.statusResearch { color:#d19cff; border-color:rgba(209,156,255,.3); }.statusCommunity { color:#79c0ff; border-color:rgba(121,192,255,.3); }
+.projectFocusBackdrop { position:fixed; z-index:100; inset:0; display:grid; place-items:center; padding:28px; background:rgba(2,5,4,.82); backdrop-filter:blur(15px); }
+.projectFocus { position:relative; width:min(1050px,100%); max-height:88vh; overflow:auto; display:grid; grid-template-columns:1.15fr .85fr; border:1px solid #3a4641; background:#0d1210; box-shadow:0 35px 110px #000; }
+.focusClose { position:absolute; z-index:3; right:14px; top:14px; width:34px; height:34px; border:1px solid #4a5651; background:#111715; color:#fff; cursor:pointer; }
+.focusImage { min-height:560px; overflow:hidden; background:#080b0a; }.focusImage img { width:100%; height:100%; object-fit:cover; object-position:top; }
+.focusCopy { padding:clamp(35px,5vw,70px); }.focusCopy>span { color:var(--teal); font:650 9px var(--font-mono); text-transform:uppercase; letter-spacing:.12em; }.focusCopy h2 { margin:20px 0; font-size:clamp(42px,5vw,70px); line-height:.93; letter-spacing:-.06em; }.focusCopy>p { color:#a4afaa; line-height:1.7; }.focusCopy dl { margin:35px 0; border-top:1px solid #333c38; }.focusCopy dl div { padding:15px 0; border-bottom:1px solid #333c38; }.focusCopy dt { color:#6f7b76; font:650 8px var(--font-mono); text-transform:uppercase; }.focusCopy dd { margin:6px 0 0; color:#d7dedb; font-size:12px; line-height:1.5; }.focusCopy>a { display:inline-block; padding:12px 16px; background:var(--teal); color:#07100d; font:700 10px var(--font-mono); text-transform:uppercase; }
+.progressStars { display:flex; gap:4px; }.progressStars i { color:rgba(255,255,255,.25); font-style:normal; transition:.3s; }.progressStars i.lit { color:#fff; text-shadow:0 0 7px #fff; }
+.cosmic-eclipse { filter:saturate(.72); }.cosmic-eclipse .spaceBackdrop { background:radial-gradient(circle at 78% 29%,#050505 0 8%,rgba(42,0,58,.28) 9%,transparent 21%),#020303; }.cosmic-warp .stars { animation-duration:3s; }.cosmic-warp .meteorShow i { animation-duration:2.2s!important; }.cosmic-launch .spaceBackdrop { filter:brightness(1.5) saturate(1.35); }
+.recruiterMode .meteorShow,.recruiterMode .sectionComet,.recruiterMode .sectionOrbit,.recruiterMode .profileConstellation,.recruiterMode .contactSky,.recruiterMode .blackHoleScene { display:none; }.recruiterMode .hero,.recruiterMode .section { padding-top:65px; padding-bottom:65px; }.recruiterMode .hero { min-height:auto; }.recruiterMode [data-reveal] { opacity:1; transform:none; }.recruiterMode .projectGrid { grid-template-columns:repeat(3,1fr); }.recruiterMode .projectCard { min-height:360px; }.recruiterMode .projectVisual { height:145px; }
 
 @media(max-width: 850px) {
+  .projectFocus { grid-template-columns:1fr; }
+  .focusImage { min-height:280px; max-height:340px; }
+  .recruiterMode .projectGrid { grid-template-columns:1fr; }
+  .progressStars { display:none; }
   main.sidebarOpen { padding-left: 48px; }
   .explorerPanel { display: none; }
   .desktopMenus { overflow-x: auto; scrollbar-width: none; }
