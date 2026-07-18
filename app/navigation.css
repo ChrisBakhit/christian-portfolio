@@ -119,12 +119,12 @@ main.sidebarOpen { padding-left: 268px; }
 .contactSky { position:absolute; z-index:0; inset:0; pointer-events:none; }
 .contactSky span { position:absolute; width:4px; height:4px; border-radius:50%; background:#07100d; opacity:.22; }
 .contactSky span:nth-child(1){left:7%;top:21%;width:6px;height:6px}.contactSky span:nth-child(2){left:18%;top:72%;opacity:.14}.contactSky span:nth-child(3){left:34%;top:13%}.contactSky span:nth-child(4){left:52%;top:48%;width:7px;height:7px;opacity:.16}.contactSky span:nth-child(5){left:67%;top:17%;opacity:.28}.contactSky span:nth-child(6){left:79%;top:62%;width:6px;height:6px}.contactSky span:nth-child(7){left:91%;top:28%;opacity:.15}.contactSky span:nth-child(8){left:43%;top:82%}
-.contactSignalArt { position:absolute!important; z-index:1!important; right:5%; top:9%; width:390px; height:280px; color:#07100d; pointer-events:none; opacity:.32; }
+.contactSignalArt { position:absolute!important; z-index:1!important; right:5%; top:9%; width:390px; height:280px; color:#07100d; pointer-events:none; opacity:.32; transform:scaleX(-1); }
 .signalStar { position:absolute; right:15px; top:9px; font-size:34px; line-height:1; text-shadow:0 0 18px rgba(7,16,13,.32); animation:signalStarPulse 3.5s ease-in-out infinite; }
 .signalWaves { position:absolute; right:38px; top:42px; width:210px; height:180px; transform:rotate(-34deg); }
 .signalWaves i { position:absolute; left:0; bottom:0; width:70px; height:70px; border:3px solid transparent; border-top-color:#07100d; border-radius:50%; opacity:0; animation:contactBroadcast 3.6s ease-out infinite; }
 .signalWaves i:nth-child(2) { animation-delay:1.2s; }.signalWaves i:nth-child(3) { animation-delay:2.4s; }
-.signalDish { position:absolute; left:20px; bottom:16px; width:145px; height:72px; overflow:hidden; border-top:9px solid #07100d; border-radius:100px 100px 0 0; transform:rotate(20deg); animation:dishFloat 5s ease-in-out infinite; }
+.signalDish { position:absolute; left:20px; bottom:16px; width:145px; height:72px; overflow:hidden; border-bottom:9px solid #07100d; border-radius:0 0 100px 100px; transform:rotate(20deg); animation:dishFloat 5s ease-in-out infinite; }
 .signalDish:before { content:""; position:absolute; left:66px; bottom:-41px; width:8px; height:70px; background:#07100d; transform:rotate(-20deg); }
 .signalDish:after { content:""; position:absolute; left:59px; bottom:20px; width:14px; height:14px; border-radius:50%; background:#07100d; }
 .signalDish i { position:absolute; left:45px; bottom:-3px; width:64px; height:7px; border-radius:50%; background:#07100d; }
@@ -379,7 +379,7 @@ main.sidebarOpen { padding-left: 268px; }
 }
 
 @media(max-width: 540px) {
-  .contactSignalArt { right:-92px; top:19%; width:300px; height:220px; opacity:.16; transform:scale(.82); transform-origin:center; }
+  .contactSignalArt { right:-92px; top:19%; width:300px; height:220px; opacity:.16; transform:scaleX(-1) scale(.82); transform-origin:center; }
   .profileWrap { width:min(100%,370px); }
   main.sidebarOpen { padding-left: 0; }
   .desktopMenus { padding-left: 4px; }
