@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const experience = [
   {
@@ -88,6 +88,7 @@ const projects = [
 export default function Home() {
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("top");
+  const scrollingToSection = useRef<string | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -96,6 +97,15 @@ export default function Home() {
     );
     document.querySelectorAll("[data-reveal]").forEach((el) => observer.observe(el));
     const updateActiveSection = () => {
+      const destination = scrollingToSection.current;
+      if (destination) {
+        const target = document.getElementById(destination);
+        const reachedTop = destination === "top" && window.scrollY < 8;
+        const reachedSection = target && Math.abs(target.getBoundingClientRect().top - 92) < 24;
+        const reachedPageEnd = destination === "projects" && window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+        if (!reachedTop && !reachedSection && !reachedPageEnd) return;
+        scrollingToSection.current = null;
+      }
       const sections = ["top", "about", "experience", "projects"];
       const current = sections.reduce((active, id) => {
         const element = document.getElementById(id);
@@ -121,8 +131,10 @@ export default function Home() {
   }, []);
 
   const jumpTo = (id: string) => {
+    const section = id.slice(1);
+    scrollingToSection.current = section;
+    setActiveSection(section);
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
-    setActiveSection(id.slice(1));
     setPaletteOpen(false);
   };
 
@@ -131,10 +143,10 @@ export default function Home() {
       <div className="spaceBackdrop" aria-hidden="true"><span className="stars starsOne" /><span className="stars starsTwo" /><span className="shootingStar" /></div>
       <header className="siteHeader">
         <div className="windowBar"><div className="windowDots" aria-hidden="true"><i /><i /><i /></div><a className="logo" href="#top">christian-bakhit / portfolio</a><button className="commandTrigger" onClick={() => setPaletteOpen(true)}><span>⌕</span> Go to file or section <kbd>Ctrl K</kbd></button><a className="contactLink" href="mailto:chrisbakhit@gmail.com">Contact</a></div>
-        <nav className="fileTabs" aria-label="Portfolio files"><a className={activeSection === "top" ? "active" : undefined} aria-current={activeSection === "top" ? "page" : undefined} onClick={() => setActiveSection("top")} href="#top"><i className="tsIcon">TS</i>home.tsx</a><a className={activeSection === "about" ? "active" : undefined} aria-current={activeSection === "about" ? "page" : undefined} onClick={() => setActiveSection("about")} href="#about"><i className="mdIcon">#</i>profile.md</a><a className={activeSection === "experience" ? "active" : undefined} aria-current={activeSection === "experience" ? "page" : undefined} onClick={() => setActiveSection("experience")} href="#experience"><i className="jsIcon">JS</i>experience.js</a><a className={activeSection === "projects" ? "active" : undefined} aria-current={activeSection === "projects" ? "page" : undefined} onClick={() => setActiveSection("projects")} href="#projects"><i className="jsonIcon">{`{}`}</i>projects.json</a><a href="/Christian_Bakhit_Resume.pdf" target="_blank"><i className="pdfIcon">PDF</i>résumé.pdf</a></nav>
+        <nav className="fileTabs" aria-label="Portfolio files"><a className={activeSection === "top" ? "active" : undefined} aria-current={activeSection === "top" ? "page" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#top"); }} href="#top"><i className="tsIcon">TS</i>home.tsx</a><a className={activeSection === "about" ? "active" : undefined} aria-current={activeSection === "about" ? "page" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#about"); }} href="#about"><i className="mdIcon">#</i>profile.md</a><a className={activeSection === "experience" ? "active" : undefined} aria-current={activeSection === "experience" ? "page" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#experience"); }} href="#experience"><i className="jsIcon">JS</i>experience.js</a><a className={activeSection === "projects" ? "active" : undefined} aria-current={activeSection === "projects" ? "page" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#projects"); }} href="#projects"><i className="jsonIcon">{`{}`}</i>projects.json</a><a href="/Christian_Bakhit_Resume.pdf" target="_blank"><i className="pdfIcon">PDF</i>résumé.pdf</a></nav>
       </header>
 
-      <aside className="activityRail" aria-label="Quick navigation"><a className={activeSection === "top" ? "active" : undefined} href="#top" aria-label="Home">⌂</a><a className={activeSection === "about" ? "active" : undefined} href="#about" aria-label="Profile">◎</a><a className={activeSection === "experience" ? "active" : undefined} href="#experience" aria-label="Experience">⑂</a><a className={activeSection === "projects" ? "active" : undefined} href="#projects" aria-label="Projects">◇</a><a href="mailto:chrisbakhit@gmail.com" aria-label="Email">✉</a></aside>
+      <aside className="activityRail" aria-label="Quick navigation"><a className={activeSection === "top" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#top"); }} href="#top" aria-label="Home">⌂</a><a className={activeSection === "about" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#about"); }} href="#about" aria-label="Profile">◎</a><a className={activeSection === "experience" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#experience"); }} href="#experience" aria-label="Experience">⑂</a><a className={activeSection === "projects" ? "active" : undefined} onClick={(event) => { event.preventDefault(); jumpTo("#projects"); }} href="#projects" aria-label="Projects">◇</a><a href="mailto:chrisbakhit@gmail.com" aria-label="Email">✉</a></aside>
 
       {paletteOpen && <div className="paletteBackdrop" onMouseDown={() => setPaletteOpen(false)}><div className="commandPalette" role="dialog" aria-modal="true" aria-label="Go to portfolio section" onMouseDown={(event) => event.stopPropagation()}><div className="paletteInput"><span>›</span><strong>Go to file or section</strong><kbd>ESC</kbd></div><button onClick={() => jumpTo("#top")}><i className="tsIcon">TS</i><span><b>home.tsx</b><small>Introduction and résumé</small></span></button><button onClick={() => jumpTo("#about")}><i className="mdIcon">#</i><span><b>profile.md</b><small>Real photo and background</small></span></button><button onClick={() => jumpTo("#experience")}><i className="jsIcon">JS</i><span><b>experience.js</b><small>Combined work history</small></span></button><button onClick={() => jumpTo("#projects")}><i className="jsonIcon">{`{}`}</i><span><b>projects.json</b><small>Live builds and site previews</small></span></button></div></div>}
 
