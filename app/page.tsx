@@ -341,7 +341,7 @@ export default function Home() {
 
       <section className="about section" id="about">
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>profile.md</strong></div>
-        <div className="profileSatellite" aria-hidden="true"><span className="satelliteOrbit" /><span className="profilePlanet"><i /><b /></span><span className="satelliteCraft"><span className="satelliteBody"><i /><b /></span><span className="satellitePanel satellitePanelLeft" /><span className="satellitePanel satellitePanelRight" /><span className="satelliteSignal" /></span></div>
+        <div className="profileSatellite" aria-hidden="true"><span className="satelliteOrbit" /><span className="satelliteCraft"><span className="satelliteBody"><i /><b /></span><span className="satellitePanel satellitePanelLeft" /><span className="satellitePanel satellitePanelRight" /><span className="satelliteSignal" /></span></div>
         <article className="profileReadme" data-reveal>
           <header className="profileReadmeHeader"><div><span>#</span><small>PROFILE.MD</small><h2>About me</h2></div><p>Houston, Texas</p></header>
           <div className="profileOverview">
