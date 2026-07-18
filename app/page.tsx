@@ -294,7 +294,7 @@ export default function Home() {
         <p className="codeComment" data-reveal>// skills.json — technologies I use to ship real products</p>
         <div className="skillsHeading" data-reveal><h2>Skills</h2><code>{`{ "status": "always_learning", "focus": "building_useful_software" }`}</code></div>
         <div className="skillGroupGrid">
-          {skillGroups.map((group, groupIndex) => <article className="skillGroup" data-reveal key={group.title}><h3>{group.title}</h3>{group.skills.map(([name, level], skillIndex) => <div className="skillRow" key={name}><span>{name}</span><i><b style={{ width: `${level}%`, "--skill-color": `var(--skill-${(groupIndex + skillIndex) % 5})` } as React.CSSProperties} /></i><em>{level}%</em></div>)}</article>)}
+          {skillGroups.map((group, groupIndex) => <article className="skillGroup" data-reveal key={group.title} style={{ "--group-index": groupIndex } as React.CSSProperties}><header><span>{String(groupIndex + 1).padStart(2, "0")}</span><h3>{group.title}</h3><small>{group.skills.length} capabilities</small></header><div className="skillOrbitGrid">{group.skills.map(([name, level], skillIndex) => <div className="skillNode" key={name}><div className="skillGauge" style={{ "--level": level, "--skill-color": `var(--skill-${(groupIndex + skillIndex) % 5})`, "--node-index": skillIndex } as React.CSSProperties}><span>{level}</span></div><strong>{name}</strong></div>)}</div></article>)}
         </div>
         <div className="familiarTools" data-reveal><span>Also familiar with</span><div>{["Azure", "Firebase", "SQL", "C++", "C#", "JIRA", "Unity", "Figma", "MLOps", "Vector DBs", "Cloudflare", "Vercel"].map((skill) => <b key={skill}>{skill}</b>)}</div></div>
       </section>
