@@ -342,11 +342,28 @@ export default function Home() {
 
       <section className="about section" id="about">
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>profile.md</strong></div>
-        <div className="sectionTitle" data-reveal><span>01</span><h2>Profile</h2></div>
-        <div className="aboutContent" data-reveal>
-          <p className="largeCopy">I build modern software across the stack, from responsive interfaces to cloud back ends and AI-powered workflows.</p>
-          <div className="realProfileGrid"><figure className="realPhoto"><img src="/christian-profile.webp" alt="Christian Bakhit at Washington Square Park" /><figcaption><span>christian-profile.webp</span><small>New York, NY</small></figcaption></figure><div className="aboutColumns"><p>My recent work combines React front ends, REST APIs, AWS Lambda, DynamoDB, and large language models to deliver production tools for patent intelligence and portfolio analysis.</p><p>I am comfortable moving quickly across unfamiliar systems, making end-to-end technical decisions, and translating complex engineering work for non-technical partners.</p></div></div>
-        </div>
+        <article className="profileReadme" data-reveal>
+          <header className="profileReadmeHeader"><div><span>#</span><small>PROFILE.MD</small><h2>About me</h2></div><p>Houston, Texas</p></header>
+          <div className="profileOverview">
+            <figure className="profileReadmePhoto"><img src="/christian-profile.webp" alt="Christian Bakhit at Washington Square Park" /><figcaption><span>Christian Bakhit</span><small>Software Developer</small></figcaption></figure>
+            <div className="profileNarrative">
+              <p>Hi! I&apos;m <strong>Christian Bakhit</strong>, a software developer living at the crossroads of <strong>backend engineering</strong>, <strong>AI/ML</strong>, and <strong>data science</strong>. I love building systems that are not just functional but genuinely <strong>intelligent and scalable</strong>.</p>
+              <p>Currently a <strong>Software Developer at Supercharge</strong>, building AI integrations and backend systems that power learning experiences for thousands of users daily.</p>
+              <div className="profileCredentials"><span><small>EDUCATION</small>Georgia Tech · M.S. Computer Science</span><span><small>BACKGROUND</small>Johns Hopkins · CS + Applied Math &amp; Statistics</span></div>
+            </div>
+          </div>
+          <section className="currentFocus">
+            <header><span>##</span><div><small>RIGHT NOW</small><h3>Current Focus</h3></div></header>
+            <div className="focusRows">
+              <p><i>🔭</i><span>Building scalable backend systems &amp; AI integrations at Supercharge</span></p>
+              <p><i>🤖</i><span>Deep interest in NLP, LLMs &amp; ML pipelines</span></p>
+              <p><i>🌱</i><span>Currently exploring RAG, MLOps &amp; Vector Databases</span></p>
+              <p><i>💬</i><span>Talk to me about Python, APIs, Data Science</span></p>
+              <p><i>⚡</i><span>Making data stories non-data people actually get</span></p>
+              <p><i>✨</i><span>Always learning, always shipping</span></p>
+            </div>
+          </section>
+        </article>
       </section>
 
       <section className="resume section" id="experience">
