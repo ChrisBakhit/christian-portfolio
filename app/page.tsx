@@ -298,11 +298,12 @@ export default function Home() {
       <section className="about section" id="about">
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>profile.md</strong></div>
         <div className="sectionTitle" data-reveal><span>01</span><h2>Profile</h2></div>
-        <div className="aboutContent" data-reveal>
+        <article className="profileDocument" data-reveal>
           <p className="codeComment">// profile.md — background, approach, and the person behind the work</p>
-          <p className="largeCopy">I build modern software across the stack, from responsive interfaces to cloud back ends and AI-powered workflows.</p>
-          <div className="realProfileGrid"><figure className="realPhoto"><img src="/christian-profile.webp" alt="Christian Bakhit at Washington Square Park" /><figcaption><span>christian-profile.webp</span><small>New York, NY</small></figcaption></figure><div className="aboutColumns"><p>My recent work combines React front ends, REST APIs, AWS Lambda, DynamoDB, and large language models to deliver production tools for patent intelligence and portfolio analysis.</p><p>I am comfortable moving quickly across unfamiliar systems, making end-to-end technical decisions, and translating complex engineering work for non-technical partners.</p></div></div>
-        </div>
+          <header className="profileHeading"><span>#</span><div><h3>About Christian</h3><p>Full-stack engineer building reliable software where product, cloud infrastructure, and applied AI meet.</p></div></header>
+          <div className="profileBody"><figure className="realPhoto"><img src="/christian-profile.webp" alt="Christian Bakhit at Washington Square Park" /><figcaption><span>christian-profile.webp</span><small>New York, NY</small></figcaption></figure><div className="profileNarrative"><p>I work across the stack—from responsive React interfaces to REST APIs, AWS serverless systems, data models, and AI-assisted workflows. My recent work focuses on production tools for patent intelligence and portfolio strategy.</p><p>I&apos;m most useful on teams that need someone who can enter an unfamiliar system, understand what matters, and carry a feature from an early idea through a dependable release.</p><blockquote>Build the right thing, explain it clearly, and leave the system better than you found it.</blockquote></div></div>
+          <dl className="profileFacts"><div><dt>Current</dt><dd>Full-Stack Developer at Supercharge</dd></div><div><dt>Based</dt><dd>Houston, Texas</dd></div><div><dt>Education</dt><dd>Georgia Tech · Johns Hopkins</dd></div><div><dt>Focus</dt><dd>React · AWS · AI workflows</dd></div></dl>
+        </article>
       </section>
 
       <section className="resume section" id="experience">

@@ -117,6 +117,21 @@ main.sidebarOpen { padding-left: 268px; }
 .codeComment { margin-bottom: 30px; color: #739688; font-size: 11px; letter-spacing: -.01em; }
 .hero .codeComment { margin-bottom: 24px; }
 .about .codeComment { margin-bottom: 28px; }
+.about { grid-template-columns:.3fr 1.7fr; gap:4vw; }
+.profileDocument { max-width:900px; }
+.profileHeading { display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:start; padding-bottom:34px; border-bottom:1px solid #343b38; }
+.profileHeading > span { margin-top:-8px; color:#79c0ff; font:700 38px var(--font-mono); }
+.profileHeading h3 { margin:0 0 12px; font-size:clamp(42px,5.4vw,72px); line-height:.95; letter-spacing:-.06em; }
+.profileHeading p { max-width:720px; margin:0; color:#b8c0bd; font-size:18px; line-height:1.55; }
+.profileBody { display:grid; grid-template-columns:220px 1fr; gap:4vw; align-items:start; padding:40px 0; }
+.profileBody .realPhoto { width:100%; transform:none; box-shadow:0 18px 45px rgba(0,0,0,.22); }
+.profileNarrative { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+.profileNarrative p { margin:0; color:#aab3af; line-height:1.78; }
+.profileNarrative blockquote { grid-column:1/-1; margin:6px 0 0; padding:18px 22px; border-left:2px solid var(--teal); background:rgba(139,233,211,.045); color:#dbe4e0; font:500 14px/1.65 var(--font-mono); }
+.profileFacts { margin:0; display:grid; grid-template-columns:repeat(2,1fr); border-top:1px solid #343b38; border-left:1px solid #343b38; }
+.profileFacts > div { min-height:94px; padding:20px; border-right:1px solid #343b38; border-bottom:1px solid #343b38; }
+.profileFacts dt { margin-bottom:9px; color:#71817a; font:600 9px var(--font-mono); text-transform:uppercase; letter-spacing:.13em; }
+.profileFacts dd { margin:0; color:#e1e7e4; font-size:14px; }
 .resume .sectionTitle,.projects .sectionTitle { margin-bottom: 54px; }
 .resumeList { position: relative; }
 .resumeList:before { content:""; position:absolute; top:0; bottom:0; left:190px; width:1px; background:linear-gradient(180deg,transparent,rgba(139,233,211,.22) 5%,rgba(139,233,211,.08) 95%,transparent); }
@@ -181,6 +196,8 @@ main.sidebarOpen { padding-left: 268px; }
   .skillGroupGrid { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .resumeList:before,.resumeItem:before { display:none; }
   .resumeItem:hover { padding-left:0; }
+  .about { grid-template-columns:1fr; }
+  .profileDocument { max-width:none; }
 }
 
 @media(max-width: 540px) {
@@ -190,6 +207,9 @@ main.sidebarOpen { padding-left: 268px; }
   .terminalPanel,.sidebarOpen .terminalPanel { left: 0; }
   .skillsEditor { padding-left: 20px; padding-right: 20px; }
   .skillGroupGrid { grid-template-columns: 1fr; }
+  .profileBody,.profileNarrative,.profileFacts { grid-template-columns:1fr; }
+  .profileBody .realPhoto { width:min(78%,260px); }
+  .profileNarrative blockquote { grid-column:auto; }
 }
 
 @keyframes gaugeArrive { to { opacity:1; transform:scale(1) rotate(0); } }
