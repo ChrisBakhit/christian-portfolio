@@ -249,7 +249,13 @@ main.sidebarOpen { padding-left: 268px; }
 .resumeItem:hover:before { background:var(--teal); box-shadow:0 0 12px rgba(139,233,211,.55); }
 .resumeItem h3 { font-size:27px; }
 .projectCard { min-height:445px; border-color:rgba(255,255,255,.09); box-shadow:none; }
-.projectCard { width:100%; color:inherit; text-align:left; cursor:pointer; font:inherit; }
+.projectCard { width:100%; color:inherit; text-align:left; cursor:pointer; font:inherit; appearance:none; -webkit-appearance:none; outline:0; }
+.projectCard:focus-visible { border-color:var(--teal); box-shadow:0 0 0 2px rgba(139,233,211,.22); }
+.projectCard:active { transform:translateY(-1px) scale(.995); }
+.projectCard .focusAction { display:flex; align-items:center; gap:8px; min-height:32px; padding:0 11px; border:1px solid rgba(139,233,211,.28); border-radius:3px; background:rgba(139,233,211,.055); color:#bff7ea; font:650 8px var(--font-mono); letter-spacing:.08em; white-space:nowrap; transition:background .2s,border-color .2s,color .2s; }
+.projectCard .focusAction i { color:inherit; font-size:12px; transition:transform .2s; }
+.projectCard:hover .focusAction { background:var(--teal); border-color:var(--teal); color:#07100d; transform:none; }
+.projectCard:hover .focusAction i { transform:translate(2px,-2px); }
 .projectCard:hover { transform:translateY(-3px); border-color:rgba(139,233,211,.3); box-shadow:0 16px 36px rgba(0,0,0,.18); }
 .projectVisual img { filter:saturate(.76) brightness(.86); }
 .projectCard:hover .projectVisual img { filter:saturate(.94) brightness(.94); }
@@ -356,6 +362,16 @@ main.sidebarOpen { padding-left: 268px; }
 }
 
 @media(max-width: 540px) {
+  .projectFocusBackdrop { padding:0; align-items:stretch; }
+  .projectFocus { width:100%; max-height:100dvh; min-height:100dvh; border:0; }
+  .focusImage { min-height:210px; max-height:230px; }
+  .focusCopy { padding:28px 20px 40px; }
+  .focusCopy h2 { font-size:42px; }
+  .focusCopy dl { margin:25px 0; }
+  .focusCopy>a { display:block; width:100%; padding:14px 16px; text-align:center; }
+  .focusClose { position:fixed; right:12px; top:12px; border-radius:50%; background:rgba(7,12,10,.9); }
+  .projectCard footer { gap:14px; align-items:center; }
+  .projectCard .focusAction { min-height:36px; padding:0 12px; }
   main.sidebarOpen { padding-left: 0; }
   .desktopMenus { padding-left: 4px; }
   .siteHeader { height: 120px; }

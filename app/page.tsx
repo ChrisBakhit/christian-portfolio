@@ -78,7 +78,7 @@ const projects = [
   ["St. Luke", "A production healthcare operations platform with scheduling, patient workflows, and administrative tooling.", "Next.js · Supabase · Operations", "https://st-luke-amber.vercel.app/", "/projects/st-luke.png"],
   ["DTFeatureMe", "A product for turning invention concepts into structured feature maps and clearer technical narratives.", "Next.js · Product · AI", "https://dtfeatureme.com/", "/projects/dtfeatureme.png"],
   ["Delineo", "An epidemiological research platform supporting collaborative disease modeling and simulation work.", "Research · Unity · React · SQL", "https://covidmod.isi.jhu.edu/", "/projects/delineo.png"],
-  ["AnyTown", "An interactive disease simulation for exploring how infections move through a modeled community.", "Simulation · C# · React", "https://covidmod.isi.jhu.edu/simulator", "/projects/anytown.png"],
+  ["AnyTown", "An interactive disease simulation for exploring how infections move through a modeled community.", "Simulation · C# · React", "https://malonecenter.jhu.edu/anytown-usa-tool-simulates-covid-19-spread-in-small-towns/", "/projects/anytown.png"],
   ["SkillLink", "A professional-networking product taken from concept through an accelerator-backed MVP.", "Founder · Node.js · AWS", "https://skilllink-app-chrisbjhus-projects.vercel.app/", "/projects/skilllink.png"],
   ["HopMC", "A Johns Hopkins Minecraft community and virtual Homewood campus built for connection during remote learning.", "Servers · Security · Community", "https://imagine.jhu.edu/blog/2021/09/23/hopmc-walk-around-homewood-campus-in-minecraft/", "/projects/hopmc.png"],
   ["SSHelping Hands", "A ministry platform for outreach, event registration, household coordination, and community support.", "Community · Web · Service", "https://www.sshelpinghands.org/", "/projects/sshelpinghands.png"],
@@ -286,7 +286,7 @@ export default function Home() {
     ],
     Help: [
       { label: "Keyboard Shortcuts", action: () => { setTerminalOpen(true); setTerminalLines(["Ctrl+P  Command Palette", "Ctrl+B  Toggle Explorer", "Ctrl+`  Toggle Terminal", "Esc  Close overlays"]); setActiveMenu(null); } },
-      { label: "GitHub ↗", action: () => { window.open("https://github.com/ChrisBJHU", "_blank"); setActiveMenu(null); } },
+      { label: "GitHub ↗", action: () => { window.open("https://github.com/ChrisBakhit", "_blank"); setActiveMenu(null); } },
       { label: "About", action: () => { jumpTo("#about"); setStatusMessage("Christian Bakhit Portfolio"); } },
     ],
   };
@@ -372,7 +372,7 @@ export default function Home() {
         <div className="sectionTitle" data-reveal><span>03</span><h2>Selected projects</h2></div>
         <code className="jsonRoot" data-reveal><span>{`{`}</span> <b>&quot;projects&quot;</b>: [</code>
         <div className="projectGrid">
-          {projects.map(([title, description, tags, href, image], index) => <button type="button" onClick={() => setSelectedProject(index)} className="projectCard" key={title} data-reveal><div className="jsonRecord"><span>{index}</span><code>project</code><b className={`projectStatus status${projectStatus(title)}`}>{projectStatus(title)}</b></div><div className="projectVisual"><img src={image} alt={`${title} website preview`} /><span className="cardNumber">{String(index + 1).padStart(2, "0")}</span></div><div className="projectCopy"><small>name</small><h3>{title}</h3><small>summary</small><p>{description}</p></div><footer><span><i>stack</i>{tags}</span><b>Focus ↗</b></footer></button>)}
+          {projects.map(([title, description, tags, href, image], index) => <button type="button" onClick={() => setSelectedProject(index)} className="projectCard" key={title} data-reveal><div className="jsonRecord"><span>{index}</span><code>project</code><b className={`projectStatus status${projectStatus(title)}`}>{projectStatus(title)}</b></div><div className="projectVisual"><img src={image} alt={`${title} website preview`} /><span className="cardNumber">{String(index + 1).padStart(2, "0")}</span></div><div className="projectCopy"><small>name</small><h3>{title}</h3><small>summary</small><p>{description}</p></div><footer><span><i>stack</i>{tags}</span><b className="focusAction">Case study <i>↗</i></b></footer></button>)}
         </div>
         <code className="jsonRoot jsonClose" data-reveal>]</code>
       </section>
@@ -403,7 +403,7 @@ export default function Home() {
         <p data-reveal>Full-stack engineering, AI-assisted products, and cloud systems.</p>
         <h2 data-reveal>Let&apos;s talk.</h2>
         <a data-reveal href="mailto:chrisbakhit@gmail.com">chrisbakhit@gmail.com <span>↗</span></a>
-        <footer><span>© {new Date().getFullYear()} Christian Bakhit</span><div><a href="https://github.com/ChrisBJHU" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/christianbakhit/" target="_blank" rel="noreferrer">LinkedIn</a></div><span>Houston, Texas</span></footer>
+        <footer><span>© {new Date().getFullYear()} Christian Bakhit</span><div><a href="https://github.com/ChrisBakhit" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/christianbakhit/" target="_blank" rel="noreferrer">LinkedIn</a></div><span>Houston, Texas</span></footer>
       </section>
       {terminalOpen && <section className={`terminalPanel ${terminalTheme}`} aria-label="Portfolio terminal"><header><span>TERMINAL</span><small>{terminalTheme !== "default" ? `${terminalTheme} mode` : "bash"}</small><button onClick={() => { setTerminalLines([]); setTerminalTheme("default"); }}>Clear</button><button onClick={() => setTerminalOpen(false)} aria-label="Close terminal">×</button></header><div className="terminalOutput" aria-live="polite">{terminalLines.map((line, index) => <p key={`${line}-${index}`}>{line}</p>)}</div><form onSubmit={(event) => { event.preventDefault(); runTerminalCommand(terminalInput); }}><span>christian@portfolio:~$</span><input aria-label="Terminal command" value={terminalInput} onChange={(event) => setTerminalInput(event.target.value)} autoComplete="off" spellCheck={false} autoFocus /></form></section>}
       <div className="statusBar"><button onClick={() => setSidebarOpen((open) => !open)}>⑂ main</button><span>✓ {statusMessage}</span><div className="progressStars" aria-label={`${Math.round(scrollProgress * 100)}% explored`}>{[.12,.3,.5,.7,.9].map((point) => <i className={scrollProgress >= point ? "lit" : ""} key={point}>✦</i>)}</div><button onClick={() => setPaletteOpen(true)}>Ctrl P</button><span>React · TypeScript</span><button onClick={() => setTerminalOpen((open) => !open)}>⌘ Terminal</button></div>
