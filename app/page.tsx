@@ -334,7 +334,6 @@ export default function Home() {
           <span className="portraitGlow" aria-hidden="true" />
           <div className="portraitFrame">
             <img src="/christian-agent-portrait.png" alt="Stylized portrait of Christian Bakhit" />
-            <span className="portraitLabel">Engineer</span>
           </div>
           <div className="profileMeta"><span>Based in Houston, TX</span><span>Georgia Tech · JHU</span></div>
         </div>
