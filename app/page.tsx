@@ -185,7 +185,7 @@ export default function Home() {
       education: ["Entering education.md gravity well…"],
       resume: ["Opening resume.pdf…"],
       contact: ["chrisbakhit@gmail.com"],
-      neofetch: ["christian@portfolio", "OS: Houston / Web", "Shell: React + TypeScript", "Cloud: AWS", "Editor: Codex", "Uptime: always learning"],
+      neofetch: ["christian@portfolio", "OS: Houston / Web", "Shell: React + TypeScript", "Cloud: AWS", "Editor: VS Code", "Uptime: always learning"],
       "git status": ["On branch main", "Your portfolio is up to date.", "nothing to commit, still building things"],
       coffee: ["Brewing…", "[██████████] 100%", "Coffee compiled successfully. No warnings."],
       "sudo hire christian": ["Permission granted.", "Opening mail client…"],
