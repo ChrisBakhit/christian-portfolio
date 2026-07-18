@@ -366,6 +366,7 @@ export default function Home() {
 
       <section className="projects section" id="projects">
         <span className="sectionComet cometThree" aria-hidden="true" />
+        <div className="projectAsteroids" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /></div>
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>projects.json</strong></div>
         <p className="codeComment" data-reveal>// projects.json — selected products, platforms, and community builds</p>
         <div className="sectionTitle" data-reveal><span>03</span><h2>Selected projects</h2></div>
