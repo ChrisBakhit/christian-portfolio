@@ -132,7 +132,10 @@ main.sidebarOpen { padding-left: 268px; }
 .codeComment { margin-bottom: 30px; color: #739688; font-size: 11px; letter-spacing: -.01em; }
 .hero .codeComment { margin-bottom: 24px; }
 .about .codeComment { margin-bottom: 28px; }
-.about { display:block; }
+.about { display:block; isolation:isolate; overflow:hidden; background:radial-gradient(ellipse at 12% 18%,rgba(72,146,255,.14),transparent 32%),radial-gradient(ellipse at 86% 72%,rgba(139,233,211,.12),transparent 38%),linear-gradient(145deg,#0a1117 0%,#0b1518 48%,#0a0e12 100%); }
+.about:before { content:""; position:absolute; z-index:0; inset:-22%; pointer-events:none; opacity:.58; background:radial-gradient(circle,#d9fff8 0 1px,transparent 1.6px),radial-gradient(circle,#91b8ff 0 1px,transparent 1.7px); background-size:97px 97px,151px 151px; background-position:12px 29px,72px 4px; mask-image:radial-gradient(ellipse at 50% 45%,black 0 52%,transparent 82%); animation:profileStars 22s linear infinite; }
+.about:after { content:""; position:absolute; z-index:0; width:min(78vw,900px); height:min(78vw,900px); right:-34%; top:8%; border:1px solid rgba(139,233,211,.1); border-radius:50%; box-shadow:0 0 0 42px rgba(139,233,211,.025),0 0 0 96px rgba(139,233,211,.018); pointer-events:none; transform:rotate(-18deg); animation:profileOrbit 18s ease-in-out infinite alternate; }
+.about > * { position:relative; z-index:1; }
 .meteorShow { position:absolute; inset:0; overflow:hidden; }
 .meteorShow i { position:absolute; right:-14%; width:clamp(95px,13vw,190px); height:1px; opacity:0; background:linear-gradient(90deg,transparent,rgba(139,233,211,.72) 60%,#fff); box-shadow:0 0 8px rgba(139,233,211,.5); transform:rotate(-31deg); animation:meteorShower 5.2s linear infinite; }
 .meteorShow i:after { content:""; position:absolute; right:-2px; top:-2px; width:5px; height:5px; border-radius:50%; background:#fff; box-shadow:0 0 12px var(--teal); }
@@ -474,4 +477,6 @@ main.sidebarOpen { padding-left: 268px; }
 @keyframes signalStarPulse { 50% { opacity:.5; transform:scale(1.18) rotate(8deg); } }
 @keyframes dishFloat { 50% { translate:0 -7px; rotate:2deg; } }
 @keyframes profileTrace { from { translate:-35% 0; opacity:.45; } to { translate:290% 0; opacity:.9; } }
+@keyframes profileStars { from { background-position:12px 29px,72px 4px; transform:translate3d(0,0,0) rotate(0deg); } to { background-position:86px 112px,4px 96px; transform:translate3d(-2%,1%,0) rotate(2deg); } }
+@keyframes profileOrbit { from { transform:rotate(-18deg) translate3d(0,0,0); opacity:.72; } to { transform:rotate(-11deg) translate3d(-18px,12px,0); opacity:1; } }
 @media(prefers-reduced-motion:reduce) { .skillGauge { opacity:1; transform:none; } .signalStar,.signalWaves i,.signalDish { animation:none; } .signalWaves i { opacity:.18; } }
