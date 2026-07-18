@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const experience = [
   {
@@ -86,25 +86,47 @@ const projects = [
 ];
 
 export default function Home() {
+  const [paletteOpen, setPaletteOpen] = useState(false);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("visible")),
       { threshold: 0.1 },
     );
     document.querySelectorAll("[data-reveal]").forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setPaletteOpen((open) => !open);
+      }
+      if (event.key === "Escape") setPaletteOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("keydown", onKeyDown);
+    };
   }, []);
+
+  const jumpTo = (id: string) => {
+    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
+    setPaletteOpen(false);
+  };
 
   return (
     <main>
       <div className="spaceBackdrop" aria-hidden="true"><span className="stars starsOne" /><span className="stars starsTwo" /><span className="shootingStar" /></div>
       <header className="siteHeader">
-        <a className="logo" href="#top">Christian Bakhit</a>
-        <nav aria-label="Main navigation"><a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="/Christian_Bakhit_Resume.pdf" target="_blank">Résumé</a></nav>
-        <a className="contactLink" href="mailto:chrisbakhit@gmail.com">Contact</a>
+        <div className="windowBar"><div className="windowDots" aria-hidden="true"><i /><i /><i /></div><a className="logo" href="#top">christian-bakhit / portfolio</a><button className="commandTrigger" onClick={() => setPaletteOpen(true)}><span>⌕</span> Go to file or section <kbd>Ctrl K</kbd></button><a className="contactLink" href="mailto:chrisbakhit@gmail.com">Contact</a></div>
+        <nav className="fileTabs" aria-label="Portfolio files"><a className="active" href="#top"><i className="tsIcon">TS</i>home.tsx</a><a href="#about"><i className="mdIcon">#</i>profile.md</a><a href="#experience"><i className="jsIcon">JS</i>experience.js</a><a href="#projects"><i className="jsonIcon">{`{}`}</i>projects.json</a><a href="/Christian_Bakhit_Resume.pdf" target="_blank"><i className="pdfIcon">PDF</i>résumé.pdf</a></nav>
       </header>
 
+      <aside className="activityRail" aria-label="Quick navigation"><a href="#top" aria-label="Home">⌂</a><a href="#about" aria-label="Profile">◎</a><a href="#experience" aria-label="Experience">⑂</a><a href="#projects" aria-label="Projects">◇</a><a href="mailto:chrisbakhit@gmail.com" aria-label="Email">✉</a></aside>
+
+      {paletteOpen && <div className="paletteBackdrop" onMouseDown={() => setPaletteOpen(false)}><div className="commandPalette" role="dialog" aria-modal="true" aria-label="Go to portfolio section" onMouseDown={(event) => event.stopPropagation()}><div className="paletteInput"><span>›</span><strong>Go to file or section</strong><kbd>ESC</kbd></div><button onClick={() => jumpTo("#top")}><i className="tsIcon">TS</i><span><b>home.tsx</b><small>Introduction and résumé</small></span></button><button onClick={() => jumpTo("#about")}><i className="mdIcon">#</i><span><b>profile.md</b><small>Real photo and background</small></span></button><button onClick={() => jumpTo("#experience")}><i className="jsIcon">JS</i><span><b>experience.js</b><small>Combined work history</small></span></button><button onClick={() => jumpTo("#projects")}><i className="jsonIcon">{`{}`}</i><span><b>projects.json</b><small>Live builds and site previews</small></span></button></div></div>}
+
       <section className="hero" id="top">
+        <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><span>src</span><b>›</b><strong>home.tsx</strong></div>
         <div className="heroText" data-reveal>
           <span className="status"><i /> Open to opportunities</span>
           <p className="kicker">Full-Stack Engineering · AI · Cloud</p>
@@ -123,14 +145,16 @@ export default function Home() {
       </section>
 
       <section className="about section" id="about">
+        <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>profile.md</strong></div>
         <div className="sectionTitle" data-reveal><span>01</span><h2>Profile</h2></div>
         <div className="aboutContent" data-reveal>
           <p className="largeCopy">I build modern software across the stack, from responsive interfaces to cloud back ends and AI-powered workflows.</p>
-          <div className="aboutColumns"><p>My recent work combines React front ends, REST APIs, AWS Lambda, DynamoDB, and large language models to deliver production tools for patent intelligence and portfolio analysis.</p><p>I am comfortable moving quickly across unfamiliar systems, making end-to-end technical decisions, and translating complex engineering work for non-technical partners.</p></div>
+          <div className="realProfileGrid"><figure className="realPhoto"><img src="/christian-profile.webp" alt="Christian Bakhit at Washington Square Park" /><figcaption><span>christian-profile.webp</span><small>New York, NY</small></figcaption></figure><div className="aboutColumns"><p>My recent work combines React front ends, REST APIs, AWS Lambda, DynamoDB, and large language models to deliver production tools for patent intelligence and portfolio analysis.</p><p>I am comfortable moving quickly across unfamiliar systems, making end-to-end technical decisions, and translating complex engineering work for non-technical partners.</p></div></div>
         </div>
       </section>
 
       <section className="resume section" id="experience">
+        <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>experience.js</strong></div>
         <div className="sectionTitle" data-reveal><span>02</span><h2>Experience</h2></div>
         <div className="resumeList">
           {experience.map((item) => <article className="resumeItem" key={item.role + item.company} data-reveal><div className="resumeDate">{item.dates}</div><div><h3>{item.role}</h3><p className="company">{item.company}</p><ul>{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul></div></article>)}
@@ -138,6 +162,7 @@ export default function Home() {
       </section>
 
       <section className="projects section" id="projects">
+        <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>projects.json</strong></div>
         <div className="sectionTitle" data-reveal><span>03</span><h2>Selected projects</h2></div>
         <div className="projectGrid">
           {projects.map(([title, description, tags, href, image], index) => <a href={href} target="_blank" rel="noreferrer" className="projectCard" key={title} data-reveal><div className="projectVisual"><img src={image} alt={`${title} website preview`} /><span className="cardNumber">{String(index + 1).padStart(2, "0")}</span></div><div className="projectCopy"><h3>{title}</h3><p>{description}</p></div><footer><span>{tags}</span><b>↗</b></footer></a>)}
@@ -155,6 +180,7 @@ export default function Home() {
         <a data-reveal href="mailto:chrisbakhit@gmail.com">chrisbakhit@gmail.com <span>↗</span></a>
         <footer><span>© {new Date().getFullYear()} Christian Bakhit</span><div><a href="https://github.com/ChrisBJHU" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/christianbakhit/" target="_blank" rel="noreferrer">LinkedIn</a></div><span>Houston, Texas</span></footer>
       </section>
+      <div className="statusBar" aria-hidden="true"><span>⑂ main</span><span>✓ portfolio online</span><span>UTF-8</span><span>React · TypeScript</span><span>Christian Dark</span></div>
     </main>
   );
 }
