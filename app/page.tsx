@@ -231,6 +231,11 @@ export default function Home() {
   };
 
   const showBranchInfo = () => {
+    if (terminalOpen) {
+      setTerminalOpen(false);
+      setStatusMessage("portfolio online");
+      return;
+    }
     setTerminalLines(["$ git branch --show-current", "main", "$ git log -1 --oneline", "latest  portfolio ready to ship"]);
     setTerminalOpen(true);
     setStatusMessage("main branch opened");
