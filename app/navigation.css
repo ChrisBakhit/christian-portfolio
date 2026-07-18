@@ -68,7 +68,7 @@ main.sidebarOpen { padding-left: 268px; }
   width: 220px;
   display: flex;
   flex-direction: column;
-  padding-top: 86px;
+  padding-top: 8px;
   border-right: 1px solid #2b322f;
   background: rgba(17,21,20,.985);
   color: #aeb7b3;
