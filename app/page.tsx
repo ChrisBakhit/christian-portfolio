@@ -285,7 +285,7 @@ export default function Home() {
 
   return (
     <main className={sidebarOpen ? "sidebarOpen" : undefined} onClick={() => activeMenu && setActiveMenu(null)}>
-      <div className="spaceBackdrop" aria-hidden="true"><span className="stars starsOne" /><span className="stars starsTwo" /><span className="shootingStar" /></div>
+      <div className="spaceBackdrop" aria-hidden="true"><span className="stars starsOne" /><span className="stars starsTwo" /><div className="meteorShow"><i /><i /><i /><i /><i /><i /><i /></div></div>
       <header className="siteHeader">
         <div className="windowBar"><div className="windowDots" aria-hidden="true"><i /><i /><i /></div><a className="logo" href="#top">christian-bakhit / portfolio</a><button className="commandTrigger" onClick={() => setPaletteOpen(true)}><span>⌕</span> christian-bakhit : portfolio <kbd>Ctrl P</kbd></button><a className="contactLink" href="mailto:chrisbakhit@gmail.com">Contact</a></div>
         <nav className="desktopMenus" aria-label="Application menu" onClick={(event) => event.stopPropagation()}>{Object.keys(menuItems).map((menu) => <div className="menuRoot" key={menu}><button aria-expanded={activeMenu === menu} onClick={() => setActiveMenu(activeMenu === menu ? null : menu)}>{menu}</button>{activeMenu === menu && <div className="menuDropdown" role="menu">{menuItems[menu].map((item) => <button role="menuitem" key={item.label} onClick={item.action}><span>{item.label}</span>{item.shortcut && <kbd>{item.shortcut}</kbd>}</button>)}</div>}</div>)}</nav>
@@ -319,7 +319,7 @@ export default function Home() {
       </section>
 
       <section className="about section" id="about">
-        <span className="sectionComet cometOne" aria-hidden="true" />
+        <div className="profileConstellation" aria-hidden="true"><span /><span /><span /><span /><span /><i /><i /><i /></div>
         <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>profile.md</strong></div>
         <article className="profileRoute" data-reveal>
           <header className="routeIntro"><div className="routeFile"><span>01</span><b>PROFILE / README</b></div><h2>More than a title.<br /><em>Here&apos;s the route.</em></h2><p>Christian is a full-stack engineer who moves comfortably between product thinking, cloud architecture, and applied AI.</p></header>
@@ -378,6 +378,7 @@ export default function Home() {
       </section>
 
       <section className="contact" id="contact">
+        <div className="contactSky" aria-hidden="true"><span /><span /><span /><span /><span /><span /><span /><span /><i /></div>
         <p className="contactComment" data-reveal>// contact.css — start a conversation</p>
         <p data-reveal>Full-stack engineering, AI-assisted products, and cloud systems.</p>
         <h2 data-reveal>Let&apos;s talk.</h2>

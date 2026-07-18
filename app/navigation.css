@@ -114,10 +114,26 @@ main.sidebarOpen { padding-left: 268px; }
 .familiarTools b { padding: 8px 11px; border: 1px solid #343c39; border-radius: 2px; color: #aeb8b4; background: #171b1a; font: 500 10px var(--font-mono); }
 .educationOnly { grid-template-columns: minmax(0,760px); }
 .contact .contactComment { margin-bottom: 20px; color: rgba(7,16,13,.62); font: 650 11px var(--font-mono); font-style: italic; text-transform: none; letter-spacing: 0; }
+.contact { position:relative; overflow:hidden; isolation:isolate; }
+.contact>*:not(.contactSky) { position:relative; z-index:2; }
+.contactSky { position:absolute; z-index:0; inset:0; pointer-events:none; }
+.contactSky span { position:absolute; width:4px; height:4px; border-radius:50%; background:#07100d; opacity:.28; animation:contactTwinkle 3.2s ease-in-out infinite; }
+.contactSky span:nth-child(1){left:7%;top:21%}.contactSky span:nth-child(2){left:18%;top:72%;animation-delay:.5s}.contactSky span:nth-child(3){left:34%;top:13%;animation-delay:1s}.contactSky span:nth-child(4){left:52%;top:48%;animation-delay:1.5s}.contactSky span:nth-child(5){left:67%;top:17%;animation-delay:2s}.contactSky span:nth-child(6){left:79%;top:62%;animation-delay:2.5s}.contactSky span:nth-child(7){left:91%;top:28%;animation-delay:1.2s}.contactSky span:nth-child(8){left:43%;top:82%;animation-delay:.8s}
+.contactSky i { position:absolute; right:-120px; top:-240px; width:560px; height:560px; border:1px solid rgba(7,16,13,.13); border-radius:50%; box-shadow:0 0 0 75px rgba(7,16,13,.035),0 0 0 150px rgba(7,16,13,.022); animation:contactOrbit 24s linear infinite; }
+.contactSky i:after { content:""; position:absolute; left:61px; top:78px; width:9px; height:9px; border-radius:50%; background:#07100d; box-shadow:0 0 0 6px rgba(7,16,13,.08); }
 .codeComment { margin-bottom: 30px; color: #739688; font-size: 11px; letter-spacing: -.01em; }
 .hero .codeComment { margin-bottom: 24px; }
 .about .codeComment { margin-bottom: 28px; }
 .about { display:block; }
+.meteorShow { position:absolute; inset:0; overflow:hidden; }
+.meteorShow i { position:absolute; right:-14%; width:clamp(95px,13vw,190px); height:1px; opacity:0; background:linear-gradient(90deg,transparent,rgba(139,233,211,.72) 60%,#fff); box-shadow:0 0 8px rgba(139,233,211,.5); transform:rotate(-31deg); animation:meteorShower 8.5s linear infinite; }
+.meteorShow i:after { content:""; position:absolute; right:-2px; top:-2px; width:5px; height:5px; border-radius:50%; background:#fff; box-shadow:0 0 12px var(--teal); }
+.meteorShow i:nth-child(1){top:13%;animation-delay:.2s}.meteorShow i:nth-child(2){top:26%;animation-delay:1.35s;animation-duration:7.2s}.meteorShow i:nth-child(3){top:41%;animation-delay:2.7s;animation-duration:10s}.meteorShow i:nth-child(4){top:9%;animation-delay:4s;animation-duration:9.4s}.meteorShow i:nth-child(5){top:55%;animation-delay:5.2s;animation-duration:8s}.meteorShow i:nth-child(6){top:34%;animation-delay:6.35s;animation-duration:11s}.meteorShow i:nth-child(7){top:68%;animation-delay:7.2s;animation-duration:9s}
+.profileConstellation { position:absolute; z-index:0; right:2vw; top:80px; width:310px; height:235px; opacity:.42; pointer-events:none; animation:constellationFloat 12s ease-in-out infinite; }
+.profileConstellation span { position:absolute; width:5px; height:5px; border-radius:50%; background:#cafff3; box-shadow:0 0 11px var(--teal); animation:constellationBlink 3s ease-in-out infinite; }
+.profileConstellation span:nth-child(1){left:8%;top:58%}.profileConstellation span:nth-child(2){left:29%;top:23%;animation-delay:.6s}.profileConstellation span:nth-child(3){left:53%;top:45%;animation-delay:1.2s}.profileConstellation span:nth-child(4){left:76%;top:14%;animation-delay:1.8s}.profileConstellation span:nth-child(5){left:91%;top:68%;animation-delay:2.4s}
+.profileConstellation i { position:absolute; height:1px; transform-origin:left; background:linear-gradient(90deg,rgba(139,233,211,.5),rgba(139,233,211,.08)); }
+.profileConstellation i:nth-of-type(1){left:9%;top:59%;width:105px;transform:rotate(-48deg)}.profileConstellation i:nth-of-type(2){left:30%;top:24%;width:96px;transform:rotate(35deg)}.profileConstellation i:nth-of-type(3){left:54%;top:46%;width:132px;transform:rotate(-30deg)}
 .profileDocument { max-width:900px; }
 .profileRoute { max-width:1160px; margin:auto; }
 .routeIntro { display:grid; grid-template-columns:180px minmax(420px,1fr) minmax(220px,.55fr); gap:34px; align-items:end; padding-bottom:48px; border-bottom:1px solid #36403c; }
@@ -351,4 +367,9 @@ main.sidebarOpen { padding-left: 268px; }
 @keyframes lensWarp { 0% { opacity:.55; transform:scale(.72); border-color:rgba(139,233,211,.35); box-shadow:0 0 12px rgba(139,233,211,.12); } 100% { opacity:0; transform:scale(1.75); border-color:rgba(183,118,224,.05); box-shadow:0 0 60px rgba(113,45,158,.08); } }
 @keyframes photoScan { 0% { top:0; opacity:0; } 12% { opacity:.65; } 80% { opacity:.35; } 100% { top:100%; opacity:0; } }
 @keyframes routePulse { 0%,100% { opacity:.25; transform:scale(.7); } 50% { opacity:1; transform:scale(1.7); } }
+@keyframes meteorShower { 0%,8% { opacity:0; translate:0 0; } 11% { opacity:.9; } 30%,100% { opacity:0; translate:-125vw 72vh; } }
+@keyframes constellationFloat { 50% { transform:translate(-13px,9px) rotate(2deg); } }
+@keyframes constellationBlink { 50% { opacity:.25; transform:scale(.65); } }
+@keyframes contactTwinkle { 50% { opacity:.08; transform:scale(.45); } }
+@keyframes contactOrbit { to { transform:rotate(360deg); } }
 @media(prefers-reduced-motion:reduce) { .skillGauge { opacity:1; transform:none; } }
