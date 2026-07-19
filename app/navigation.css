@@ -289,6 +289,7 @@ main.sidebarOpen { padding-left: 268px; }
 .blackHoleScene:is(:hover,:focus-visible,:active) .gravityLabel { color:#8ca59b; }
 .blackHoleScene:is(:hover,:focus-visible,:active) + .educationDocument { transform:translateX(-12px) scale(.985); }
 .resume .sectionTitle,.projects .sectionTitle { margin-bottom: 54px; }
+.projects .sectionTitle { width:min(100%,890px); margin-left:auto; margin-right:auto; }
 .resumeList { position: relative; }
 .resumeList:before { content:""; position:absolute; top:0; bottom:0; left:190px; width:1px; background:linear-gradient(180deg,transparent,rgba(139,233,211,.22) 5%,rgba(139,233,211,.08) 95%,transparent); }
 .resumeItem { position:relative; padding:36px 22px 36px 0; transition:background .25s ease,padding-left .25s ease; }
