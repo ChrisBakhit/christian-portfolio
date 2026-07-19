@@ -399,6 +399,7 @@ main.sidebarOpen { padding-left: 268px; }
   .projectGrid { grid-template-columns:repeat(2,minmax(0,1fr)); width:min(100%,720px); }
   .hero { grid-template-columns:1fr minmax(390px,.8fr); }
   .profileWrap { width:min(100%,455px); }
+  .contactSignalArt { right:-28px; top:auto; bottom:84px; width:315px; height:230px; opacity:.2; transform:scale(.9); transform-origin:right bottom; }
 }
 
 @media(max-width: 850px) {
