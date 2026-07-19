@@ -289,10 +289,6 @@ main.sidebarOpen { padding-left: 268px; }
 .blackHoleScene:is(:hover,:focus-visible,:active) .gravityLabel { color:#8ca59b; }
 .blackHoleScene:is(:hover,:focus-visible,:active) + .educationDocument { transform:translateX(-12px) scale(.985); }
 .resume .sectionTitle,.projects .sectionTitle { margin-bottom: 54px; }
-.projectsPrelude { display:grid; grid-template-columns:minmax(220px,.52fr) minmax(0,1fr); gap:clamp(34px,7vw,110px); align-items:end; width:min(100%,1080px); margin:48px auto 58px; }
-.projectsCodePanel { display:grid; gap:8px; align-content:start; padding:22px 24px; border-left:2px solid rgba(139,233,211,.48); background:linear-gradient(90deg,rgba(9,22,24,.72),rgba(9,22,24,.18)); color:#d7c56c; font:600 14px/1.65 var(--font-mono); box-shadow:inset 18px 0 32px rgba(26,124,120,.06); }
-.projectsCodePanel code { display:block; white-space:pre; }.projectsCodePanel code:first-child { color:#eef4f1; font-size:25px; line-height:1; }.projectsCodePanel b { color:#67b7ff; font-weight:500; }.projectsCodePanel .codeDim { color:#688078; font-size:11px; font-weight:500; }
-.projectsReadable { max-width:510px; padding-bottom:4px; }.projectEyebrow { color:#8be9d3; font:650 9px var(--font-mono); letter-spacing:.16em; }.projectsReadable h2 { margin:12px 0 12px; color:#f1f5f3; font-size:clamp(48px,6vw,86px); line-height:.86; letter-spacing:-.075em; }.projectsReadable p { max-width:430px; margin:0; color:#aebbb6; font-size:15px; line-height:1.6; }.projectCount { display:inline-block; margin-top:22px; color:#74847d; font:600 9px var(--font-mono); letter-spacing:.08em; text-transform:uppercase; }
 .resumeList { position: relative; }
 .resumeList:before { content:""; position:absolute; top:0; bottom:0; left:190px; width:1px; background:linear-gradient(180deg,transparent,rgba(139,233,211,.22) 5%,rgba(139,233,211,.08) 95%,transparent); }
 .resumeItem { position:relative; padding:36px 22px 36px 0; transition:background .25s ease,padding-left .25s ease; }
@@ -303,6 +299,8 @@ main.sidebarOpen { padding-left: 268px; }
 .projects { padding-left:clamp(22px,2.6vw,48px); padding-right:clamp(22px,2.6vw,48px); }
 .projectGrid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; width:min(100%,890px); margin:0 auto; }
 .projectCard { min-height:410px; padding:0 18px 20px; border-color:rgba(255,255,255,.09); box-shadow:none; }
+.projectCodeSnippet { min-height:62px; margin:0 -18px 18px; padding:10px 13px; display:flex; align-items:center; gap:8px; border-bottom:1px solid rgba(139,233,211,.14); background:linear-gradient(90deg,rgba(8,18,19,.85),rgba(13,24,25,.2)); color:#a8b8b2; font:500 9px/1.5 var(--font-mono); overflow:hidden; }
+.projectCodeSnippet>div { min-width:0; display:grid; gap:2px; overflow:hidden; }.projectCodeSnippet code { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }.projectCodeSnippet code b { color:#67b7ff; font-weight:500; }.projectCodeSnippet .syntaxBrace { color:#d7c56c; font-size:17px; }.projectCodeSnippet .projectStatus { flex:none; margin-left:auto; }
 .projectCard { width:100%; color:inherit; text-align:left; cursor:pointer; font:inherit; appearance:none; -webkit-appearance:none; outline:0; }
 .projectVisual { height:168px; margin:0 -18px 20px; }
 .projectCard p { font-size:12px; line-height:1.55; margin-bottom:20px; }
@@ -407,8 +405,6 @@ main.sidebarOpen { padding-left: 268px; }
 }
 
 @media(max-width: 850px) {
-  .projectsPrelude { grid-template-columns:1fr; gap:30px; margin-top:38px; margin-bottom:42px; }
-  .projectsReadable { max-width:620px; }
   .profileSatellite { right:2vw; opacity:.42; transform:scale(.82); transform-origin:top right; }
   .contactSignalArt { right:-70px; top:auto; bottom:86px; opacity:.18; transform:scale(.82); transform-origin:center bottom; }
   .projectGrid { grid-template-columns:1fr; width:min(100%,520px); margin:0 auto; }
@@ -439,9 +435,6 @@ main.sidebarOpen { padding-left: 268px; }
 }
 
 @media(max-width: 540px) {
-  .projectsCodePanel { padding:18px 16px; font-size:12px; }
-  .projectsCodePanel code:first-child { font-size:21px; }
-  .projectsReadable h2 { font-size:20vw; }
   .profileSatellite { display:none; }
   .contactSignalArt { right:-82px; top:auto; bottom:66px; width:270px; height:205px; opacity:.2; transform:scale(.78); transform-origin:center bottom; }
   .profileWrap { width:min(100%,370px); }
