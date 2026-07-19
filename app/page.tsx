@@ -379,10 +379,12 @@ export default function Home() {
       <section className="projects section" id="projects">
         <span className="sectionComet cometThree" aria-hidden="true" />
         <div className="projectAsteroids" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /></div>
-        <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>projects.json</strong></div>
-        <p className="codeComment" data-reveal>// projects.json — selected products, platforms, and community builds</p>
-        <div className="sectionTitle" data-reveal><span>03</span><h2>Selected projects</h2></div>
-        <code className="jsonRoot" data-reveal><span>{`{`}</span> <b>&quot;projects&quot;</b>: [</code>
+        <div className="projectHeader">
+          <div className="editorCrumb"><span>christian-portfolio</span><b>›</b><strong>projects.json</strong></div>
+          <p className="codeComment" data-reveal>// projects.json — selected products, platforms, and community builds</p>
+          <div className="sectionTitle" data-reveal><span>03</span><h2>Selected projects</h2></div>
+          <code className="jsonRoot" data-reveal><span>{`{`}</span> <b>&quot;projects&quot;</b>: [</code>
+        </div>
         <div className="projectGrid">
           {projects.map(([title, description, tags, href, image], index) => <a href={href} target="_blank" rel="noreferrer" className="projectCard" key={title} data-reveal><div className="projectCodeSnippet"><span className="syntaxBrace">{`{`}</span><div><code><b>&quot;name&quot;</b>: &quot;{title}&quot;,</code><code><b>&quot;stack&quot;</b>: &quot;{tags}&quot;,</code></div><span className="syntaxBrace">{`}`}</span><b className={`projectStatus status${projectStatus(title)}`}>{projectStatus(title)}</b></div><div className="projectVisual"><img src={image} alt={`${title} website preview`} /><span className="cardNumber">{String(index + 1).padStart(2, "0")}</span></div><div className="projectCopy"><small>name</small><h3>{title}</h3><small>summary</small><p>{description}</p></div><footer><span><i>stack</i>{tags}</span><b aria-hidden="true">↗</b></footer></a>)}
         </div>
