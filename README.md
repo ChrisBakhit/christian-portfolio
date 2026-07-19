@@ -2,7 +2,7 @@
 
 My personal software engineering portfolio, built as an interactive VS Code-inspired workspace with a cinematic space theme.
 
-**Live site:** [christian-portfolio-chrisbjhus-projects.vercel.app](https://christian-portfolio-chrisbjhus-projects.vercel.app)
+**Live site:** [bakhit.work](https://bakhit.work)
 
 ## About
 
