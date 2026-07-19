@@ -304,8 +304,6 @@ main.sidebarOpen { padding-left: 268px; }
 .projects { padding-left:clamp(22px,2.6vw,48px); padding-right:clamp(22px,2.6vw,48px); }
 .projectGrid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; width:min(100%,890px); margin:0 auto; }
 .projectCard { min-height:410px; padding:0 18px 20px; border-color:rgba(255,255,255,.09); box-shadow:none; }
-.projectCodeSnippet { min-height:62px; margin:0 -18px 18px; padding:10px 13px; display:flex; align-items:center; gap:8px; border-bottom:1px solid rgba(139,233,211,.14); background:linear-gradient(90deg,rgba(8,18,19,.85),rgba(13,24,25,.2)); color:#a8b8b2; font:500 9px/1.5 var(--font-mono); overflow:hidden; }
-.projectCodeSnippet>div { min-width:0; display:grid; gap:2px; overflow:hidden; }.projectCodeSnippet code { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }.projectCodeSnippet code b { color:#67b7ff; font-weight:500; }.projectCodeSnippet .syntaxBrace { color:#d7c56c; font-size:17px; }.projectCodeSnippet .projectStatus { flex:none; margin-left:auto; }
 .projectCard { width:100%; color:inherit; text-align:left; cursor:pointer; font:inherit; appearance:none; -webkit-appearance:none; outline:0; }
 .projectVisual { height:168px; margin:0 -18px 20px; }
 .projectCard p { font-size:12px; line-height:1.55; margin-bottom:20px; }
@@ -315,7 +313,6 @@ main.sidebarOpen { padding-left: 268px; }
 .projectCard:hover { transform:translateY(-3px); border-color:rgba(139,233,211,.3); box-shadow:0 16px 36px rgba(0,0,0,.18); }
 .projectVisual img { filter:saturate(.76) brightness(.86); }
 .projectCard:hover .projectVisual img { filter:saturate(.94) brightness(.94); }
-.projectCard h3 { font-size:23px; }
 .skillsEditor { border-top-color:rgba(139,233,211,.14); }
 .portraitFrame { aspect-ratio:1; width:min(100%,520px); margin-inline:auto; padding:11px; overflow:visible; border:1px solid rgba(139,233,211,.34); border-radius:50%; background:radial-gradient(circle at 50% 45%,rgba(29,101,108,.26),rgba(7,12,19,.96) 67%); box-shadow:0 32px 90px rgba(0,0,0,.55),0 0 0 10px rgba(139,233,211,.035),0 0 70px rgba(48,185,174,.16); }
 .portraitFrame:before { inset:11px; border-radius:50%; background:linear-gradient(145deg,rgba(139,233,211,.16),transparent 35%,rgba(0,0,0,.38) 100%); }
